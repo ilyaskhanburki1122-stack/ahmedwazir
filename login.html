@@ -110,7 +110,7 @@
       const pass = document.getElementById('admin-pass').value.trim();
 
       // Retrieve any custom password saved in settings
-      let customPassword = 'AhmedWazir@Secure#2026';
+      let customPassword = 'ahmedwazir112233';
       try {
         const storedSettings = localStorage.getItem('aw_settings');
         if (storedSettings) {
@@ -120,7 +120,7 @@
       } catch (err) {}
 
       const validUsers = ['ahmedwazir', 'ahmed', 'admin'];
-      const validPasswords = ['AhmedWazir@Secure#2026', customPassword];
+      const validPasswords = ['ahmedwazir112233', customPassword];
 
       if (validUsers.includes(user) && validPasswords.includes(pass)) {
         sessionStorage.setItem('adminAuth', 'true');
