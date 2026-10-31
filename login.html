@@ -44,24 +44,13 @@
       <p class="text-xs text-slate-400">Restricted access for Ahmed Wazir Agency Dashboard</p>
     </div>
 
-    <!-- Credentials Info Banner -->
-    <div class="p-3.5 rounded-2xl bg-blue-950/40 border border-blue-500/30 text-xs text-slate-300 space-y-1.5">
-      <div class="flex items-center gap-1.5 text-blue-400 font-bold text-xs">
-        <i class="fa-solid fa-circle-info"></i> Login Credentials
-      </div>
-      <div class="space-y-1 text-slate-300 font-mono text-xs pt-0.5">
-        <div>Username: <strong class="text-cyan-300 font-bold">admin</strong> <span class="text-slate-500">(or ahmed)</span></div>
-        <div>Password: <strong class="text-cyan-300 font-bold">admin123</strong></div>
-      </div>
-    </div>
-
     <!-- Login Form -->
     <form id="admin-login-form" class="space-y-4">
       <div>
         <label class="block text-xs font-bold text-slate-300 mb-1.5">Username</label>
         <div class="relative">
           <span class="absolute left-3.5 top-3 text-slate-500 text-sm"><i class="fa-solid fa-user"></i></span>
-          <input type="text" id="admin-user" placeholder="admin" value="admin" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500" required />
+          <input type="text" id="admin-user" placeholder="Enter username" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500" required autocomplete="username" />
         </div>
       </div>
 
@@ -69,7 +58,7 @@
         <label class="block text-xs font-bold text-slate-300 mb-1.5">Password</label>
         <div class="relative">
           <span class="absolute left-3.5 top-3 text-slate-500 text-sm"><i class="fa-solid fa-key"></i></span>
-          <input type="password" id="admin-pass" placeholder="Enter password" value="admin123" class="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500" required />
+          <input type="password" id="admin-pass" placeholder="Enter password" class="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-blue-500" required autocomplete="current-password" />
           <button type="button" id="toggle-pass-btn" class="absolute right-3.5 top-3 text-slate-400 hover:text-white text-sm focus:outline-none">
             <i class="fa-solid fa-eye" id="eye-icon"></i>
           </button>
@@ -121,17 +110,17 @@
       const pass = document.getElementById('admin-pass').value.trim();
 
       // Retrieve any custom password saved in settings
-      let customPassword = 'admin123';
+      let customPassword = 'AhmedWazir@Secure#2026';
       try {
-        const storedSettings = localStorage.getItem('aw_dashboard_settings');
+        const storedSettings = localStorage.getItem('aw_settings');
         if (storedSettings) {
           const s = JSON.parse(storedSettings);
           if (s && s.password) customPassword = s.password;
         }
       } catch (err) {}
 
-      const validUsers = ['admin', 'ahmed', 'ahmedwazir'];
-      const validPasswords = ['admin123', 'ahmed123', 'ahmed2026', customPassword];
+      const validUsers = ['ahmedwazir', 'ahmed', 'admin'];
+      const validPasswords = ['AhmedWazir@Secure#2026', customPassword];
 
       if (validUsers.includes(user) && validPasswords.includes(pass)) {
         sessionStorage.setItem('adminAuth', 'true');
