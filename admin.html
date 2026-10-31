@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Wazir — Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --bg-primary: #08090D;
+            --bg-card: #0c101d;
+            --bg-card-hover: #111628;
+            --bg-sidebar: #0a0e18;
+            --accent-blue: #3978FF;
+            --accent-cyan: #00D4FF;
+            --accent-gradient: linear-gradient(135deg, #3978FF, #00D4FF);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(57, 120, 255, 0.15);
+            --border-hover: rgba(57, 120, 255, 0.35);
+            --glass-bg: rgba(12, 16, 29, 0.85);
+            --glass-border: rgba(57, 120, 255, 0.12);
+            --sidebar-width: 280px;
+            --sidebar-collapsed: 72px;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed; left: 0; top: 0; bottom: 0;
+            width: var(--sidebar-width);
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex; flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex; align-items: center; gap: 14px;
+        }
+        .sidebar-logo {
+            width: 42px; height: 42px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 18px; color: #fff;
+            flex-shrink: 0;
+        }
+        .sidebar-brand h2 { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+        .sidebar-brand span { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        .sidebar-nav { flex: 1; overflow-y: auto; padding: 16px 12px; }
+        .nav-section-label {
+            font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--text-muted); padding: 12px 12px 6px; font-weight: 600;
+        }
+        .nav-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 11px 14px; margin: 2px 0;
+            border-radius: 10px; cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            font-size: 13.5px; font-weight: 500;
+            text-decoration: none;
+            position: relative;
+        }
+        .nav-item:hover { background: rgba(57, 120, 255, 0.08); color: var(--text-primary); }
+        .nav-item.active {
+            background: rgba(57, 120, 255, 0.12);
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        .nav-item.active::before {
+            content: '';
+            position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            width: 3px; height: 60%; border-radius: 0 4px 4px 0;
+            background: var(--accent-gradient);
+        }
+        .nav-item i { width: 20px; text-align: center; font-size: 15px; }
+        .nav-badge {
+            margin-left: auto; font-size: 10px; font-weight: 700;
+            background: var(--accent-gradient); color: #fff;
+            padding: 2px 8px; border-radius: 10px;
+        }
+
+        .sidebar-footer {
+            padding: 16px; border-top: 1px solid var(--border-color);
+        }
+        .sidebar-footer .nav-item { color: #ef4444; }
+        .sidebar-footer .nav-item:hover { background: rgba(239, 68, 68, 0.1); }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            position: sticky; top: 0; z-index: 900;
+            background: rgba(8, 9, 13, 0.88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 32px; height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .topbar-left { display: flex; align-items: center; gap: 16px; }
+        .menu-toggle {
+            display: none; background: none; border: none;
+            color: var(--text-secondary); font-size: 20px; cursor: pointer;
+            padding: 8px; border-radius: 8px;
+        }
+        .menu-toggle:hover { background: rgba(57, 120, 255, 0.1); color: var(--text-primary); }
+        .topbar-title { font-size: 18px; font-weight: 700; }
+        .topbar-right { display: flex; align-items: center; gap: 12px; }
+        .topbar-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 8px;
+            font-size: 13px; font-weight: 500; cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: transparent; color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .topbar-btn:hover { border-color: var(--border-hover); color: var(--text-primary); background: rgba(57,120,255,0.06); }
+        .topbar-btn.primary {
+            background: var(--accent-gradient); border: none;
+            color: #fff; font-weight: 600;
+        }
+        .topbar-btn.primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(57,120,255,0.3); }
+
+        /* ===== CONTENT AREA ===== */
+        .content-area { padding: 28px 32px 60px; }
+        .section-panel { display: none; animation: fadeIn 0.3s ease; }
+        .section-panel.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--border-hover); }
+        .card-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px; padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .card-header h3 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .card-header h3 i { color: var(--accent-blue); font-size: 18px; }
+
+        /* ===== THEME PRESETS ===== */
+        .theme-presets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 16px;
+            margin-top: 10px;
+        }
+        .theme-preset-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+        .theme-preset-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .theme-preset-card.active {
+            border-color: #00D4FF;
+            background: rgba(0, 212, 255, 0.07);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        .theme-preset-card .preset-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .theme-preset-card .preset-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .theme-preset-card .preset-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .theme-swatch-circles {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .color-swatch-dot {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.25);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .theme-swatch-gradient {
+            height: 8px;
+            border-radius: 6px;
+            width: 100%;
+        }
+        .preset-active-badge {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #10b981;
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+        .theme-preset-card.active .preset-active-badge {
+            display: flex;
+        }
+
+        /* ===== STAT CARDS ===== */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 22px;
+            position: relative; overflow: hidden;
+            transition: all 0.3s;
+        }
+        .stat-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .stat-card .stat-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; margin-bottom: 14px;
+        }
+        .stat-card .stat-value { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+        .stat-card .stat-label { font-size: 13px; color: var(--text-muted); }
+        .stat-card::after {
+            content: ''; position: absolute; top: -30px; right: -30px;
+            width: 100px; height: 100px; border-radius: 50%;
+            opacity: 0.06;
+        }
+        .stat-blue .stat-icon { background: rgba(57,120,255,0.12); color: #3978FF; }
+        .stat-blue::after { background: #3978FF; }
+        .stat-cyan .stat-icon { background: rgba(0,212,255,0.12); color: #00D4FF; }
+        .stat-cyan::after { background: #00D4FF; }
+        .stat-purple .stat-icon { background: rgba(139,92,246,0.12); color: #8b5cf6; }
+        .stat-purple::after { background: #8b5cf6; }
+        .stat-green .stat-icon { background: rgba(16,185,129,0.12); color: #10b981; }
+        .stat-green::after { background: #10b981; }
+        .stat-amber .stat-icon { background: rgba(245,158,11,0.12); color: #f59e0b; }
+        .stat-amber::after { background: #f59e0b; }
+        .stat-rose .stat-icon { background: rgba(244,63,94,0.12); color: #f43f5e; }
+        .stat-rose::after { background: #f43f5e; }
+
+        /* ===== FORM STYLES ===== */
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block; font-size: 12.5px; font-weight: 600;
+            color: var(--text-secondary); margin-bottom: 7px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .form-group label i { margin-right: 6px; color: var(--accent-blue); }
+        .form-control {
+            width: 100%; padding: 11px 14px;
+            background: rgba(8, 9, 13, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .form-control:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(57,120,255,0.1); }
+        .form-control::placeholder { color: var(--text-muted); }
+        textarea.form-control { resize: vertical; min-height: 100px; font-family: inherit; }
+        select.form-control { cursor: pointer; }
+        select.form-control option { background: var(--bg-card); color: var(--text-primary); }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 20px; border-radius: 10px;
+            font-size: 13.5px; font-weight: 600; cursor: pointer;
+            border: none; transition: all 0.25s;
+        }
+        .btn-primary {
+            background: var(--accent-gradient); color: #fff;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(57,120,255,0.35); }
+        .btn-secondary {
+            background: rgba(57,120,255,0.1); color: var(--accent-blue);
+            border: 1px solid rgba(57,120,255,0.2);
+        }
+        .btn-secondary:hover { background: rgba(57,120,255,0.18); border-color: rgba(57,120,255,0.35); }
+        .btn-danger {
+            background: rgba(239,68,68,0.1); color: #ef4444;
+            border: 1px solid rgba(239,68,68,0.2);
+        }
+        .btn-danger:hover { background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.35); }
+        .btn-success {
+            background: rgba(16,185,129,0.1); color: #10b981;
+            border: 1px solid rgba(16,185,129,0.2);
+        }
+        .btn-success:hover { background: rgba(16,185,129,0.2); }
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+        /* ===== ITEM CARDS (Services, Portfolio, etc.) ===== */
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+        .item-card {
+            background: rgba(8, 9, 13, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .item-card:hover { border-color: var(--border-hover); }
+        .item-card-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .item-card-number {
+            font-size: 11px; font-weight: 700;
+            background: var(--accent-gradient);
+            color: #fff; padding: 3px 10px; border-radius: 8px;
+        }
+        .item-card-actions { display: flex; gap: 6px; }
+        .item-card-actions button {
+            width: 30px; height: 30px; border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: transparent; color: var(--text-muted);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 12px; transition: all 0.2s;
+        }
+        .item-card-actions .btn-del:hover { background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.3); }
+
+        /* ===== QUICK ACTIONS GRID ===== */
+        .quick-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+        .quick-action {
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            padding: 20px 14px; border-radius: 14px;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            cursor: pointer; transition: all 0.2s;
+            text-decoration: none; color: var(--text-secondary);
+        }
+        .quick-action:hover { border-color: var(--border-hover); transform: translateY(-2px); color: var(--text-primary); }
+        .quick-action i { font-size: 22px; color: var(--accent-blue); }
+        .quick-action span { font-size: 12.5px; font-weight: 600; text-align: center; }
+
+        /* ===== TOAST NOTIFICATIONS ===== */
+        .toast-container {
+            position: fixed; top: 20px; right: 20px; z-index: 10000;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .toast {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 20px; border-radius: 12px;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            animation: toastIn 0.3s ease;
+            min-width: 300px;
+        }
+        .toast.toast-success { border-color: rgba(16,185,129,0.4); }
+        .toast.toast-success i { color: #10b981; }
+        .toast.toast-error { border-color: rgba(239,68,68,0.4); }
+        .toast.toast-error i { color: #ef4444; }
+        .toast.toast-info { border-color: rgba(57,120,255,0.4); }
+        .toast.toast-info i { color: #3978FF; }
+        .toast i { font-size: 18px; flex-shrink: 0; }
+        .toast-body { flex: 1; }
+        .toast-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+        .toast-msg { font-size: 12px; color: var(--text-muted); }
+        .toast-close {
+            background: none; border: none; color: var(--text-muted);
+            cursor: pointer; font-size: 14px; padding: 4px;
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes toastOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(40px); }
+        }
+
+        /* ===== STAR RATING ===== */
+        .star-rating { display: flex; gap: 4px; }
+        .star-rating .star {
+            font-size: 20px; cursor: pointer; color: var(--text-muted);
+            transition: color 0.15s;
+        }
+        .star-rating .star.active { color: #f59e0b; }
+        .star-rating .star:hover { color: #fbbf24; }
+
+        /* ===== MOBILE OVERLAY ===== */
+        .sidebar-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6); z-index: 999;
+        }
+        .sidebar-overlay.active { display: block; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .menu-toggle { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .content-area { padding: 16px; }
+            .topbar { padding: 0 16px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .items-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ===== MISC ===== */
+        .section-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+        .section-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+        .divider { border: none; border-top: 1px solid var(--border-color); margin: 20px 0; }
+        .badge {
+            display: inline-flex; align-items: center; padding: 3px 10px;
+            border-radius: 8px; font-size: 11px; font-weight: 600;
+        }
+        .badge-blue { background: rgba(57,120,255,0.12); color: #3978FF; }
+        .badge-green { background: rgba(16,185,129,0.12); color: #10b981; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7); z-index: 10001;
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 28px; width: 90%; max-width: 520px;
+            max-height: 80vh; overflow-y: auto;
+        }
+        .modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 18px; }
+    </style>
+</head>
+<body>
+
+<!-- ==================== TOAST CONTAINER ==================== -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ==================== SIDEBAR OVERLAY (Mobile) ==================== -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- ==================== SIDEBAR ==================== -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">AW</div>
+        <div class="sidebar-brand">
+            <h2>Ahmed Wazir</h2>
+            <span>Admin Panel</span>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a class="nav-item active" data-section="dashboard" onclick="switchSection('dashboard')">
+            <i class="fa-solid fa-chart-pie"></i> Dashboard
+        </a>
+
+        <div class="nav-section-label">Content</div>
+        <a class="nav-item" data-section="hero" onclick="switchSection('hero')">
+            <i class="fa-solid fa-house"></i> Hero Section
+        </a>
+        <a class="nav-item" data-section="services" onclick="switchSection('services')">
+            <i class="fa-solid fa-briefcase"></i> Services
+            <span class="nav-badge" id="servicesCount">12</span>
+        </a>
+        <a class="nav-item" data-section="about" onclick="switchSection('about')">
+            <i class="fa-solid fa-user"></i> About Me
+        </a>
+        <a class="nav-item" data-section="portfolio" onclick="switchSection('portfolio')">
+            <i class="fa-solid fa-folder-open"></i> Portfolio
+            <span class="nav-badge" id="portfolioCount">6</span>
+        </a>
+        <a class="nav-item" data-section="pricing" onclick="switchSection('pricing')">
+            <i class="fa-solid fa-tags"></i> Pricing
+        </a>
+        <a class="nav-item" data-section="reviews" onclick="switchSection('reviews')">
+            <i class="fa-solid fa-star"></i> Reviews
+            <span class="nav-badge" id="reviewsCount">10</span>
+        </a>
+        <a class="nav-item" data-section="faq" onclick="switchSection('faq')">
+            <i class="fa-solid fa-circle-question"></i> FAQ
+            <span class="nav-badge" id="faqCount">5</span>
+        </a>
+
+        <div class="nav-section-label">Configuration</div>
+        <a class="nav-item" data-section="contact" onclick="switchSection('contact')">
+            <i class="fa-solid fa-phone"></i> Contact Info
+        </a>
+        <a class="nav-item" data-section="social" onclick="switchSection('social')">
+            <i class="fa-solid fa-share-nodes"></i> Social Links
+        </a>
+        <a class="nav-item" data-section="theme" onclick="switchSection('theme')">
+            <i class="fa-solid fa-palette"></i> Website Colors
+        </a>
+        <a class="nav-item" data-section="settings" onclick="switchSection('settings')">
+            <i class="fa-solid fa-gear"></i> Settings
+        </a>
+    </nav>
+    <div class="sidebar-footer">
+        <a class="nav-item" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+    </div>
+</aside>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<div class="main-content">
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1 class="topbar-title" id="topbarTitle">Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+            <button class="topbar-btn" onclick="window.open('index.html','_blank')">
+                <i class="fa-solid fa-eye"></i> Preview Site
+            </button>
+            <button class="topbar-btn primary" onclick="applyToWebsite()">
+                <i class="fa-solid fa-rocket"></i> Apply Changes
+            </button>
+        </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="content-area">
+
+        <!-- ==================== DASHBOARD SECTION ==================== -->
+        <div class="section-panel active" id="panel-dashboard">
+            <h2 class="section-title">Welcome back, Ahmed 👋</h2>
+            <p class="section-subtitle">Here's an overview of your portfolio website content.</p>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card stat-blue">
+                    <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="stat-value" id="dashServicesCount">12</div>
+                    <div class="stat-label">Total Services</div>
+                </div>
+                <div class="stat-card stat-cyan">
+                    <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+                    <div class="stat-value" id="dashPortfolioCount">6</div>
+                    <div class="stat-label">Portfolio Projects</div>
+                </div>
+                <div class="stat-card stat-purple">
+                    <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="stat-value" id="dashReviewsCount">10</div>
+                    <div class="stat-label">Client Reviews</div>
+                </div>
+                <div class="stat-card stat-green">
+                    <div class="stat-icon"><i class="fa-solid fa-circle-question"></i></div>
+                    <div class="stat-value" id="dashFaqCount">5</div>
+                    <div class="stat-label">FAQ Items</div>
+                </div>
+                <div class="stat-card stat-amber">
+                    <div class="stat-icon"><i class="fa-solid fa-tags"></i></div>
+                    <div class="stat-value" id="dashPricingCount">3</div>
+                    <div class="stat-label">Pricing Plans</div>
+                </div>
+                <div class="stat-card stat-rose">
+                    <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-value" id="dashLastSaved">—</div>
+                    <div class="stat-label">Last Updated</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
+                </div>
+                <div class="quick-actions">
+                    <a class="quick-action" onclick="switchSection('hero')"><i class="fa-solid fa-house"></i><span>Edit Hero</span></a>
+                    <a class="quick-action" onclick="switchSection('services')"><i class="fa-solid fa-briefcase"></i><span>Manage Services</span></a>
+                    <a class="quick-action" onclick="switchSection('about')"><i class="fa-solid fa-user"></i><span>Edit About</span></a>
+                    <a class="quick-action" onclick="switchSection('portfolio')"><i class="fa-solid fa-folder-open"></i><span>Manage Portfolio</span></a>
+                    <a class="quick-action" onclick="switchSection('pricing')"><i class="fa-solid fa-tags"></i><span>Edit Pricing</span></a>
+                    <a class="quick-action" onclick="switchSection('reviews')"><i class="fa-solid fa-star"></i><span>Manage Reviews</span></a>
+                    <a class="quick-action" onclick="switchSection('faq')"><i class="fa-solid fa-circle-question"></i><span>Edit FAQ</span></a>
+                    <a class="quick-action" onclick="switchSection('contact')"><i class="fa-solid fa-phone"></i><span>Contact Info</span></a>
+                    <a class="quick-action" onclick="switchSection('social')"><i class="fa-solid fa-share-nodes"></i><span>Social Links</span></a>
+                    <a class="quick-action" onclick="switchSection('settings')"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+                    <a class="quick-action" onclick="window.open('index.html','_blank')"><i class="fa-solid fa-eye"></i><span>Preview Site</span></a>
+                    <a class="quick-action" onclick="exportData()"><i class="fa-solid fa-download"></i><span>Export Data</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== HERO SECTION ==================== -->
+        <div class="section-panel" id="panel-hero">
+            <h2 class="section-title">Hero Section</h2>
+            <p class="section-subtitle">Edit the main hero banner content that visitors see first.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-heading"></i> Hero Content</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-heading"></i> Title Text</label>
+                        <input type="text" class="form-control" id="heroTitle" placeholder="I Design & Develop">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-align-left"></i> Subtitle / Tagline</label>
+                        <input type="text" class="form-control" id="heroSubtitle" placeholder="Creative Developer & Designer">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-hand-pointer"></i> CTA Button Text</label>
+                        <input type="text" class="form-control" id="heroCta" placeholder="Let's Talk">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-brands fa-whatsapp"></i> WhatsApp Number</label>
+                        <input type="text" class="form-control" id="heroWhatsapp" placeholder="+9647700000000">
+                    </div>
+                </div>
+                <hr class="divider">
+                <h4 style="font-size:14px; font-weight:700; margin-bottom:14px;"><i class="fa-solid fa-chart-bar" style="color:var(--accent-blue);margin-right:6px;"></i>Hero Stats</h4>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Projects Count</label>
+                        <input type="number" class="form-control" id="heroProjects" placeholder="150">
+                    </div>
+                    <div class="form-group">
+                        <label>Happy Clients</label>
+                        <input type="number" class="form-control" id="heroClients" placeholder="100">
+                    </div>
+                    <div class="form-group">
+                        <label>Years Experience</label>
+                        <input type="number" class="form-control" id="heroYears" placeholder="5">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="saveHero()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== SERVICES SECTION ==================== -->
+        <div class="section-panel" id="panel-services">
+            <h2 class="section-title">Services</h2>
+            <p class="section-subtitle">Manage all services displayed on your website.</p>
+
+            <div class="btn-group" style="margin-bottom:20px;">
+                <button class="btn btn-primary" onclick="addService()"><i class="fa-solid fa-plus"></i> Add Service</button>
+                <button class="btn btn-secondary" onclick="saveServices()"><i class="fa-solid fa-floppy-disk"></i> Save All Services</button>
+            </div>
+
+            <div class="items-grid" id="servicesGrid">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+
+        <!-- ==================== ABOUT SECTION ==================== -->
+        <div class="section-panel" id="panel-about">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Edit your personal information and bio.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-user"></i> Personal Info</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-image"></i> Profile Photo URL</label>
+                        <input type="text" class="form-control" id="aboutPhoto" placeholder="images/profile.png">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-user"></i> Full Name</label>
+                        <input type="text" class="form-control" id="aboutName" placeholder="Ahmed Wazir">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-briefcase"></i> Title / Role</label>
+                        <input type="text" class="form-control" id="aboutTitle" placeholder="Full Stack Developer & Designer">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-align-left"></i> Bio / Description</label>
+                    <textarea class="form-control" id="aboutBio" rows="5" placeholder="Write about yourself..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-code"></i> Skills (comma separated)</label>
+                    <input type="text" class="form-control" id="aboutSkills" placeholder="HTML, CSS, JavaScript, React, Node.js, Figma">
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-trophy"></i> Experience Highlights (one per line)</label>
+                    <textarea class="form-control" id="aboutExperience" rows="4" placeholder="5+ Years Experience&#10;150+ Projects Completed&#10;100+ Happy Clients"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="saveAbout()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PORTFOLIO SECTION ==================== -->
+        <div class="section-panel" id="panel-portfolio">
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-subtitle">Manage your portfolio projects and case studies.</p>
+
+            <div class="btn-group" style="margin-bottom:20px;">
+                <button class="btn btn-primary" onclick="addPortfolio()"><i class="fa-solid fa-plus"></i> Add Project</button>
+                <button class="btn btn-secondary" onclick="savePortfolio()"><i class="fa-solid fa-floppy-disk"></i> Save All Projects</button>
+            </div>
+
+            <div class="items-grid" id="portfolioGrid">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+
+        <!-- ==================== PRICING SECTION ==================== -->
+        <div class="section-panel" id="panel-pricing">
+            <h2 class="section-title">Pricing</h2>
+            <p class="section-subtitle">Manage your pricing packages.</p>
+
+            <div class="btn-group" style="margin-bottom:20px;">
+                <button class="btn btn-primary" onclick="addPricing()"><i class="fa-solid fa-plus"></i> Add Package</button>
+                <button class="btn btn-secondary" onclick="savePricing()"><i class="fa-solid fa-floppy-disk"></i> Save All Packages</button>
+            </div>
+
+            <div class="items-grid" id="pricingGrid">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+
+        <!-- ==================== REVIEWS SECTION ==================== -->
+        <div class="section-panel" id="panel-reviews">
+            <h2 class="section-title">Reviews</h2>
+            <p class="section-subtitle">Manage client testimonials and reviews.</p>
+
+            <div class="btn-group" style="margin-bottom:20px;">
+                <button class="btn btn-primary" onclick="addReview()"><i class="fa-solid fa-plus"></i> Add Review</button>
+                <button class="btn btn-secondary" onclick="saveReviews()"><i class="fa-solid fa-floppy-disk"></i> Save All Reviews</button>
+            </div>
+
+            <div class="items-grid" id="reviewsGrid">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+
+        <!-- ==================== FAQ SECTION ==================== -->
+        <div class="section-panel" id="panel-faq">
+            <h2 class="section-title">FAQ</h2>
+            <p class="section-subtitle">Manage frequently asked questions.</p>
+
+            <div class="btn-group" style="margin-bottom:20px;">
+                <button class="btn btn-primary" onclick="addFaq()"><i class="fa-solid fa-plus"></i> Add Question</button>
+                <button class="btn btn-secondary" onclick="saveFaq()"><i class="fa-solid fa-floppy-disk"></i> Save All FAQs</button>
+            </div>
+
+            <div class="items-grid" id="faqGrid">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <div class="section-panel" id="panel-contact">
+            <h2 class="section-title">Contact Information</h2>
+            <p class="section-subtitle">Manage your contact details and office information.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-map-marker-alt"></i> Contact Details</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-building"></i> Office Address</label>
+                        <input type="text" class="form-control" id="contactAddress" placeholder="Baghdad, Iraq">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-map"></i> Google Maps Embed URL</label>
+                        <input type="text" class="form-control" id="contactMaps" placeholder="https://www.google.com/maps/embed?...">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-brands fa-whatsapp"></i> WhatsApp Number</label>
+                        <input type="text" class="form-control" id="contactWhatsapp" placeholder="+9647700000000">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-envelope"></i> Email</label>
+                        <input type="email" class="form-control" id="contactEmail" placeholder="contact@ahmedwazir.com">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-clock"></i> Working Hours</label>
+                        <input type="text" class="form-control" id="contactHours" placeholder="9:00 AM - 6:00 PM">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-signal"></i> Status Message</label>
+                        <input type="text" class="form-control" id="contactStatus" placeholder="ONLINE NOW">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="saveContact()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== SOCIAL LINKS SECTION ==================== -->
+        <div class="section-panel" id="panel-social">
+            <h2 class="section-title">Social Links</h2>
+            <p class="section-subtitle">Manage your social media profile links.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-share-nodes"></i> Social Profiles</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-brands fa-facebook"></i> Facebook URL</label>
+                        <input type="url" class="form-control" id="socialFacebook" placeholder="https://facebook.com/ahmedwazir">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-brands fa-tiktok"></i> TikTok URL</label>
+                        <input type="url" class="form-control" id="socialTiktok" placeholder="https://tiktok.com/@ahmedwazir">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-brands fa-instagram"></i> Instagram URL</label>
+                        <input type="url" class="form-control" id="socialInstagram" placeholder="https://instagram.com/ahmedwazir">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-brands fa-whatsapp"></i> WhatsApp Link</label>
+                        <input type="url" class="form-control" id="socialWhatsapp" placeholder="https://wa.me/9647700000000">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="saveSocial()"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== THEME & COLORS SECTION ==================== -->
+        <div class="section-panel" id="panel-theme">
+            <h2 class="section-title">Website Theme &amp; Colors</h2>
+            <p class="section-subtitle">Customize your website's color palette with one click or choose custom hex brand colors. Changes apply immediately to your live site.</p>
+
+            <!-- Preset Palettes -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-swatchbook"></i> Designer Color Presets</h3>
+                    <span style="font-size:12px; color:var(--text-muted);">Click any palette to preview &amp; select</span>
+                </div>
+                <div class="theme-presets-grid" id="themePresetsGrid">
+                    <!-- Preset cards rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- Custom Colors -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-sliders"></i> Custom Brand Colors</h3>
+                    <button class="btn btn-secondary btn-sm" onclick="resetThemeToDefault()"><i class="fa-solid fa-rotate-left"></i> Reset to Default</button>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-brush"></i> Primary Brand Color</label>
+                        <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+                            <input type="color" id="themePrimaryColor" value="#3978FF" oninput="onCustomColorChange()" style="width:52px; height:42px; border-radius:10px; border:1px solid var(--border-color); background:none; cursor:pointer; padding:2px;">
+                            <input type="text" class="form-control" id="themePrimaryText" value="#3978FF" oninput="onCustomColorTextChange()" placeholder="#3978FF" style="font-family:monospace; font-weight:700;">
+                        </div>
+                        <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Used for major gradients, primary buttons, borders and highlights</small>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-wand-magic-sparkles"></i> Secondary Accent Color</label>
+                        <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+                            <input type="color" id="themeSecondaryColor" value="#00D4FF" oninput="onCustomColorChange()" style="width:52px; height:42px; border-radius:10px; border:1px solid var(--border-color); background:none; cursor:pointer; padding:2px;">
+                            <input type="text" class="form-control" id="themeSecondaryText" value="#00D4FF" oninput="onCustomColorTextChange()" placeholder="#00D4FF" style="font-family:monospace; font-weight:700;">
+                        </div>
+                        <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Used for glowing text, neon accents, cursor, and gradient endpoints</small>
+                    </div>
+                </div>
+
+                <div class="btn-group" style="margin-top:20px;">
+                    <button class="btn btn-primary" onclick="saveTheme()"><i class="fa-solid fa-floppy-disk"></i> Save &amp; Apply Colors</button>
+                    <a href="index.html" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Website</a>
+                </div>
+            </div>
+
+            <!-- Live Preview Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-eye"></i> Live Website Simulation Preview</h3>
+                    <span style="font-size:12px; color:var(--text-muted);">See how buttons, badges &amp; gradients look in real-time</span>
+                </div>
+                <div id="themePreviewBox" style="background:#08090D; border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:26px; display:flex; flex-direction:column; gap:22px; transition:all 0.3s; position:relative; overflow:hidden;">
+                    <!-- Ambient Glow -->
+                    <div id="previewAmbientGlow" style="position:absolute; top:-40px; right:-40px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(57,120,255,0.25) 0%, transparent 70%); pointer-events:none; filter:blur(40px);"></div>
+
+                    <!-- Header mockup -->
+                    <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:16px; position:relative; z-index:2;">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <div id="previewBadge" style="width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:15px; background:linear-gradient(135deg, #3978FF, #00D4FF); box-shadow:0 0 18px rgba(57,120,255,0.5);">AW</div>
+                            <div>
+                                <h4 style="font-size:16px; font-weight:800; color:#fff; margin:0; letter-spacing:0.5px;">AHMED WAZIR</h4>
+                                <span id="previewSubtitle" style="font-size:11px; color:#00D4FF; font-weight:700; letter-spacing:0.8px; text-transform:uppercase;">LEAD DESIGNER &amp; DEVELOPER</span>
+                            </div>
+                        </div>
+                        <div id="previewAvailablePill" style="display:flex; align-items:center; gap:8px; padding:6px 14px; border-radius:20px; background:rgba(8,9,13,0.9); border:1px solid #10b981; font-size:11px; color:#10b981; font-weight:700;">
+                            <span style="width:7px; height:7px; border-radius:50%; background:#10b981;"></span> Available for New Projects
+                        </div>
+                    </div>
+
+                    <!-- Headline mockup -->
+                    <div style="position:relative; z-index:2;">
+                        <div style="display:inline-block; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#a4acba; margin-bottom:6px;">Main Website Headline</div>
+                        <h2 id="previewHeadline" style="font-size:24px; font-weight:900; line-height:1.3; color:#fff;">
+                            Turning Ideas Into <span id="previewGradientText" style="background:linear-gradient(135deg, #3978FF 0%, #00D4FF 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900;">Powerful Digital Experiences.</span>
+                        </h2>
+                    </div>
+
+                    <!-- Buttons and tags mockup -->
+                    <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center; position:relative; z-index:2;">
+                        <button id="previewBtnPrimary" type="button" style="padding:11px 24px; border-radius:12px; border:none; font-weight:800; font-size:13px; color:#fff; background:linear-gradient(135deg, #3978FF, #00D4FF); box-shadow:0 8px 24px rgba(57,120,255,0.4); cursor:default; display:flex; align-items:center; gap:8px;">
+                            <i class="fa-solid fa-comments"></i> Book Consultation
+                        </button>
+                        <button id="previewBtnOutline" type="button" style="padding:10px 22px; border-radius:12px; background:rgba(255,255,255,0.03); border:1.5px solid #00D4FF; font-weight:800; font-size:13px; color:#00D4FF; cursor:default; display:flex; align-items:center; gap:8px;">
+                            <i class="fa-solid fa-briefcase"></i> View Portfolio
+                        </button>
+                        <span id="previewChecklist" style="display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:#fff;">
+                            <i id="previewCheckIcon" class="fa-solid fa-check" style="color:#00D4FF;"></i> 100% Satisfaction Guarantee
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== SETTINGS SECTION ==================== -->
+        <div class="section-panel" id="panel-settings">
+            <h2 class="section-title">Settings</h2>
+            <p class="section-subtitle">Manage website settings and admin preferences.</p>
+
+            <!-- General Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-globe"></i> Website Settings</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-heading"></i> Website Title</label>
+                        <input type="text" class="form-control" id="settingsTitle" placeholder="Ahmed Wazir — Portfolio">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-align-left"></i> Meta Description</label>
+                        <textarea class="form-control" id="settingsMeta" rows="3" placeholder="Ahmed Wazir portfolio website..."></textarea>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="saveSettings()"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
+                </div>
+            </div>
+
+            <!-- Admin Password -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-lock"></i> Admin Password</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" class="form-control" id="settingsCurrentPw" placeholder="Enter current password">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" id="settingsNewPw" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" class="form-control" id="settingsConfirmPw" placeholder="Confirm new password">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="changePassword()"><i class="fa-solid fa-key"></i> Change Password</button>
+                </div>
+            </div>
+
+            <!-- Data Management -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-database"></i> Data Management</h3>
+                </div>
+                <div class="btn-group" style="margin-top:0;">
+                    <button class="btn btn-primary" onclick="exportData()"><i class="fa-solid fa-download"></i> Export Data (JSON)</button>
+                    <label class="btn btn-secondary" style="cursor:pointer;">
+                        <i class="fa-solid fa-upload"></i> Import Data (JSON)
+                        <input type="file" accept=".json" onchange="importData(event)" style="display:none;">
+                    </label>
+                    <button class="btn btn-danger" onclick="resetData()"><i class="fa-solid fa-trash"></i> Reset All to Defaults</button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end .content-area -->
+</div><!-- end .main-content -->
+
+
+<!-- ====================================================================== -->
+<!-- ========================= JAVASCRIPT ================================= -->
+<!-- ====================================================================== -->
+<script>
+// Session Authentication Protection
+if (sessionStorage.getItem('adminAuth') !== 'true') {
+    window.location.href = 'login.html';
+}
+
+// ===================================================================
+// DEFAULT DATA
+// ===================================================================
+const DEFAULTS = {
+    hero: {
+        title: "I Design & Develop Professional Websites",
+        subtitle: "From custom e-commerce stores to academy platforms and high-converting corporate portals, I craft digital experiences tailored to your goals.",
+        cta: "Chat Us",
+        whatsapp: "923433387801",
+        projects: 150,
+        clients: 120,
+        years: 5
+    },
+    services: [
+        { icon: "fa-solid fa-briefcase", title: "Business Website Design", description: "Sleek corporate websites that establish instant credibility, communicate value propositions, and turn visitors into qualified leads.", color: "blue" },
+        { icon: "fa-solid fa-cart-shopping", title: "E-Commerce Website", description: "Feature-packed online stores with product catalogs, smooth checkout funnels, inventory tracking, and payment gateways.", color: "emerald" },
+        { icon: "fa-brands fa-wordpress", title: "WordPress Website", description: "Custom-built WordPress solutions offering effortless content editing, custom themes, robust plugins, and top-tier security.", color: "indigo" },
+        { icon: "fa-solid fa-store", title: "WooCommerce Store", description: "Scalable WooCommerce setups configured for local Pakistani & international shipping, tax calculation, and order automation.", color: "purple" },
+        { icon: "fa-solid fa-graduation-cap", title: "School & Academy Website", description: "Educational portals equipped with student admission forms, teacher directories, fee notices, and LMS online learning modules.", color: "amber" },
+        { icon: "fa-solid fa-utensils", title: "Restaurant Website", description: "Mouth-watering food presentation layouts, interactive digital menus, table reservation engines, and WhatsApp ordering.", color: "orange" },
+        { icon: "fa-solid fa-hospital", title: "Hospital Website", description: "Trust-building medical layouts featuring doctor schedules, department overviews, online appointment booking, and emergency contacts.", color: "teal" },
+        { icon: "fa-solid fa-building", title: "Real Estate Website", description: "Luxury property showcases with high-res photo galleries, location filters, price breakdowns, and direct agent inquiry forms.", color: "rose" },
+        { icon: "fa-solid fa-truck-fast", title: "Transport Website", description: "Fleet tracking pages, shipment quote calculators, logistics service catalogs, and instant driver/cargo coordination.", color: "sky" },
+        { icon: "fa-solid fa-user-tie", title: "Portfolio Website", description: "Showcase your talent with stunning personal portfolios for freelancers, photographers, designers, and high-ticket consultants.", color: "cyan" },
+        { icon: "fa-solid fa-bullhorn", title: "Landing Page Design", description: "High-converting single-page landing experiences built for Facebook/Google ad campaigns with blazing sub-second load speed.", color: "violet" },
+        { icon: "fa-solid fa-code", title: "Custom Website Development", description: "Tailor-made web solutions built from scratch with clean modern code (HTML5, Tailwind, React, Node.js) with zero limitations.", color: "blue" }
+    ],
+    about: {
+        photo: "ahmed-profile.jpg",
+        name: "Ahmed Wazir",
+        title: "Professional Website Designer & Developer",
+        bio: "I specialize in creating attractive, modern, and high-converting websites for businesses across diverse industries. From corporate brands and online stores to academies, hospitals, real estate agencies, and luxury fashion labels, I engineer digital solutions that solve real business challenges.\n\nEvery website I build is 100% mobile responsive, ultra-fast, and search-engine optimized to turn first-time visitors into long-term clients.",
+        skills: "WordPress & WooCommerce, React.js & Tailwind CSS, UI/UX Wireframing, Speed Tuning (99+ PageSpeed), SEO Architecture",
+        experience: "5+ Years Experience\n150+ Websites Completed\n120+ Happy Clients\n99% Client Retention"
+    },
+    portfolio: [
+        { title: "E-Commerce Mega Store", description: "A complete online mega store featuring flash sales, product categories, electronics, lifestyle appliances, cart and secure checkout.", url: "www.crazyoctoberstore.com", image: "portfolio-ecommerce.png", category: "ecommerce", tech: "WooCommerce, Online Payments, SEO", demo: "demo-ecommerce.html" },
+        { title: "PCMA Pakistan", description: "Official industrial B2B portal for Pakistan's chemical sector. Features policy advocacy, specialized committees, executive leadership and member onboarding.", url: "www.pcma.org.pk", image: "portfolio-pcma.png", category: "corporate", tech: "Industrial B2B, Policy Advocacy, Member Portal", demo: "demo-pcma.html" },
+        { title: "Servis Tyres & Rubber", description: "Automotive manufacturing brand with interactive tyre finder, OEM motorcycle partnerships, 40+ country export map, and Servis lubricants.", url: "www.servistyres.com", image: "portfolio-servis.png", category: "automotive", tech: "Tyre Selector, OEM Approved, Export Network", demo: "demo-servis.html" },
+        { title: "Live Bids Auto Auction", description: "Digital live car bidding platform with real-time countdown clocks, 200-point computer inspection sheets, verified sellers and mobile app synchronization.", url: "www.livebids.pk", image: "portfolio-autobids.png", category: "automotive", tech: "Live Auctions, Inspection Sheets, Mobile App", demo: "demo-autobids.html" },
+        { title: "Falcon English School", description: "Premier educational portal featuring Principal's message with national crest, STEM robotics labs, Primary/Middle/High curriculums and WhatsApp admissions.", url: "www.falconschool.edu.pk", image: "portfolio-school.png", category: "school", tech: "Admissions 2026–27, STEM Labs, Matric Result", demo: "demo-school.html" },
+        { title: "Mahwish Luxury Couture", description: "Pakistani luxury pret and bridal boutique featuring 8 handcrafted product cards with PKR pricing, custom size selectors, atelier craft, and functional bag.", url: "www.mahwishcouture.com", image: "portfolio-couture.png", category: "fashion", tech: "Luxury Pret, Bridal Couture, PKR Shopping Bag", demo: "luxe-apparel.html" }
+    ],
+    pricing: [
+        {
+            name: "Basic",
+            badge: "🥉 Starter",
+            tagline: "Perfect for small shops & personal brands",
+            discount: "🎉 20% OFF for Limited Time",
+            features: "1 Landing Page\nMobile Friendly Design\nContact & WhatsApp Button\nBasic SEO Setup\nFree SSL Certificate\nFast Loading Speed\n30 Days Free Support",
+            whatsappMsg: "Hi Ahmed! I am interested in the Basic Package.",
+            buttonText: "Get Basic Price"
+        },
+        {
+            name: "Premium",
+            badge: "💎 POPULAR",
+            tagline: "Most popular for growing businesses",
+            discount: "🎉 20% OFF for Limited Time",
+            features: "5 Premium Pages\nCustom Modern UI Design\nWordPress / Custom Build\nAdvanced On-Page SEO\nGoogle Analytics + Maps\nBlog Section Included\nSocial Media Integration\n90 Days Free Support",
+            whatsappMsg: "Hi Ahmed! I am interested in the Premium Package.",
+            buttonText: "Get Premium Price"
+        },
+        {
+            name: "Gold",
+            badge: "👑 BEST VALUE",
+            tagline: "Complete solution — store, booking & more",
+            discount: "🎉 20% OFF for Limited Time",
+            features: "Unlimited Pages & Products\nFull E-Commerce Store\nSecure Payment Gateway\nOrder & Booking System\nComplete SEO Optimisation\nLogo + Branding Design\nAdmin Training Video\n360 Days Free Support",
+            whatsappMsg: "Hi Ahmed! I am interested in the Gold Package.",
+            buttonText: "Get Gold Price"
+        }
+    ],
+    reviews: [
+        { name: "Al Funun Academy Director", role: "Education Sector", initials: "AA", text: "Ahmed Wazir designed our academy portal with incredible speed and visual quality. Our student enrollments doubled right after launch!", rating: 5, gradient: "from-blue-500 to-cyan-400" },
+        { name: "Muhammad Khan", role: "TechMart Founder", initials: "MK", text: "Working with Ahmed was seamless. The e-commerce store he created for us loads blazingly fast and mobile users love it.", rating: 5, gradient: "from-emerald-500 to-teal-400" },
+        { name: "Sarah Hassan", role: "Real Estate Manager", initials: "SH", text: "The design quality is top-notch! Extremely responsive, great communication, and delivered 2 days before the deadline.", rating: 5, gradient: "from-purple-500 to-pink-500" },
+        { name: "Dr. Tariq Mahmood", role: "HealthCare Portal Director", initials: "TM", text: "Ahmed designed our clinic booking platform with exceptional security, visual elegance, and mobile responsiveness.", rating: 5, gradient: "from-cyan-500 to-blue-500" },
+        { name: "Ayesha Rehman", role: "CreativePulse CEO", initials: "AR", text: "Our website traffic and lead conversions jumped 45% after Ahmed Wazir redesigned our corporate site. Outstanding support!", rating: 5, gradient: "from-rose-500 to-amber-500" },
+        { name: "Bilal Ahmed", role: "SaaSify Tech Lead", initials: "BA", text: "Extremely impressive execution on our SaaS cloud product landing page. Clean Tailwind structure and fast performance.", rating: 5, gradient: "from-indigo-500 to-purple-500" },
+        { name: "Usman Farooq", role: "Gourmet Dining Owner", initials: "UF", text: "The online restaurant ordering platform Ahmed created for us increased our daily takeaway orders significantly!", rating: 5, gradient: "from-amber-500 to-red-500" },
+        { name: "Fatima Zahra", role: "Luxe Fashion Manager", initials: "FZ", text: "Beautiful UI/UX design with smooth animation. Our customers love shopping on the new boutique store. 10/10 service!", rating: 5, gradient: "from-pink-500 to-rose-500" },
+        { name: "Kashif Raza", role: "Apex Auto Logistics Director", initials: "KR", text: "Fast, reliable, and super creative web developer. He built our fleet tracking company portal in record time.", rating: 5, gradient: "from-teal-500 to-emerald-500" },
+        { name: "Zainab Shah", role: "SkillForge Academy Founder", initials: "ZS", text: "Top quality LMS platform design. The course registration and video module integration work flawlessly!", rating: 5, gradient: "from-blue-600 to-indigo-600" }
+    ],
+    faq: [
+        { question: "How long does it take to build a complete website?", answer: "Standard landing pages and basic websites are delivered within 3 to 5 business days. Complex e-commerce stores, LMS platforms, or custom web portals usually take between 7 to 14 days depending on feature requirements." },
+        { question: "Will my website be mobile friendly and fast loading?", answer: "Yes, absolutely! Every website we build is 100% responsive, optimized for smartphones, tablets, and large screens, and passes high Google PageSpeed performance scores." },
+        { question: "Do you provide custom design or use ready templates?", answer: "We craft custom designs tailored to your brand identity, colors, and industry needs. We do not copy generic templates, ensuring your site stands out from competitors." },
+        { question: "What technologies do you use for web development?", answer: "We specialize in modern frontend stacks including HTML5, CSS3, Tailwind CSS, JavaScript ES6+, React, Next.js, Node.js Express, as well as WordPress and WooCommerce when requested." },
+        { question: "Do you offer website maintenance after launch?", answer: "Yes! We provide post-launch support, security audits, performance updates, and minor content revisions to keep your website running smoothly 24/7." }
+    ],
+    contact: {
+        address: "Alfunun Academy, Hawksbay Rd, Musharraf Colony Sector 6 Hawkes Bay Town, Karachi, 74200",
+        maps: "https://maps.google.com/maps?q=Alfunun+Academy,+Hawksbay+Rd,+Musharraf+Colony+Sector+6+Hawkes+Bay+Town,+Karachi,+74200&t=&z=15&ie=UTF8&iwloc=&output=embed",
+        whatsapp: "923433387801",
+        email: "ahmedyaseenwazir@gmail.com",
+        hours: "Mon – Sun · 9:00 AM – 11:00 PM PKT",
+        status: "ONLINE NOW"
+    },
+    social: {
+        facebook: "https://facebook.com",
+        tiktok: "https://tiktok.com",
+        instagram: "https://instagram.com",
+        whatsapp: "https://wa.me/923433387801"
+    },
+    settings: {
+        title: "Ahmed Wazir | Professional Website Design Services",
+        meta: "Professional website design & development services by Ahmed Wazir. Custom e-commerce, corporate websites, portals, and landing pages.",
+        password: "admin123"
+    },
+    theme: {
+        preset: "blue",
+        primary: "#3978FF",
+        secondary: "#00D4FF"
+    }
+};
+
+// ===================================================================
+// UTILITY FUNCTIONS
+// ===================================================================
+
+/** Get data from localStorage or return default */
+function getData(key) {
+    try {
+        const raw = localStorage.getItem('aw_dashboard_' + key);
+        return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULTS[key]));
+    } catch (e) {
+        return JSON.parse(JSON.stringify(DEFAULTS[key]));
+    }
+}
+
+/** Save data to localStorage */
+function setData(key, data) {
+    localStorage.setItem('aw_dashboard_' + key, JSON.stringify(data));
+    localStorage.setItem('aw_dashboard_lastSaved', new Date().toISOString());
+}
+
+/** Show toast notification */
+function showToast(title, msg, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const icons = { success: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info' };
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <i class="fa-solid ${icons[type]}"></i>
+        <div class="toast-body">
+            <div class="toast-title">${title}</div>
+            <div class="toast-msg">${msg}</div>
+        </div>
+        <button class="toast-close" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.style.animation = 'toastOut 0.3s ease forwards';
+        setTimeout(() => toast.remove(), 300);
+    }, 3500);
+}
+
+/** Escape HTML for safe rendering */
+function escHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+}
+
+// ===================================================================
+// NAVIGATION
+// ===================================================================
+
+const sectionTitles = {
+    dashboard: 'Dashboard',
+    hero: 'Hero Section',
+    services: 'Services',
+    about: 'About Me',
+    portfolio: 'Portfolio',
+    pricing: 'Pricing',
+    reviews: 'Reviews',
+    faq: 'FAQ',
+    contact: 'Contact Info',
+    social: 'Social Links',
+    theme: 'Website Theme & Colors',
+    settings: 'Settings'
+};
+
+function switchSection(id) {
+    // Update nav
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const navItem = document.querySelector(`.nav-item[data-section="${id}"]`);
+    if (navItem) navItem.classList.add('active');
+
+    // Update panels
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById('panel-' + id);
+    if (panel) panel.classList.add('active');
+
+    // Update topbar
+    document.getElementById('topbarTitle').textContent = sectionTitles[id] || id;
+
+    // Close sidebar on mobile
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('active');
+
+    // Load data for the section
+    loadSectionData(id);
+}
+
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('active');
+}
+
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        sessionStorage.removeItem('adminAuth');
+        sessionStorage.removeItem('adminUser');
+        window.location.href = 'login.html';
+    }
+}
+
+// ===================================================================
+// LOAD SECTION DATA
+// ===================================================================
+
+function loadSectionData(section) {
+    switch(section) {
+        case 'dashboard': loadDashboard(); break;
+        case 'hero': loadHero(); break;
+        case 'services': renderServices(); break;
+        case 'about': loadAbout(); break;
+        case 'portfolio': renderPortfolio(); break;
+        case 'pricing': renderPricing(); break;
+        case 'reviews': renderReviews(); break;
+        case 'faq': renderFaq(); break;
+        case 'contact': loadContact(); break;
+        case 'social': loadSocial(); break;
+        case 'theme': loadTheme(); break;
+        case 'settings': loadSettings(); break;
+    }
+}
+
+// ===================================================================
+// DASHBOARD
+// ===================================================================
+
+function loadDashboard() {
+    const services = getData('services');
+    const portfolio = getData('portfolio');
+    const reviews = getData('reviews');
+    const faq = getData('faq');
+    const pricing = getData('pricing');
+
+    document.getElementById('dashServicesCount').textContent = services.length;
+    document.getElementById('dashPortfolioCount').textContent = portfolio.length;
+    document.getElementById('dashReviewsCount').textContent = reviews.length;
+    document.getElementById('dashFaqCount').textContent = faq.length;
+    document.getElementById('dashPricingCount').textContent = pricing.length;
+
+    // Sidebar badges
+    document.getElementById('servicesCount').textContent = services.length;
+    document.getElementById('portfolioCount').textContent = portfolio.length;
+    document.getElementById('reviewsCount').textContent = reviews.length;
+    document.getElementById('faqCount').textContent = faq.length;
+
+    // Last saved
+    const lastSaved = localStorage.getItem('aw_dashboard_lastSaved');
+    if (lastSaved) {
+        const d = new Date(lastSaved);
+        const now = new Date();
+        const diff = Math.floor((now - d) / 60000);
+        let text = 'Just now';
+        if (diff > 0 && diff < 60) text = diff + 'm ago';
+        else if (diff >= 60 && diff < 1440) text = Math.floor(diff / 60) + 'h ago';
+        else if (diff >= 1440) text = Math.floor(diff / 1440) + 'd ago';
+        document.getElementById('dashLastSaved').textContent = text;
+    }
+}
+
+// ===================================================================
+// HERO SECTION
+// ===================================================================
+
+function loadHero() {
+    const d = getData('hero');
+    document.getElementById('heroTitle').value = d.title || '';
+    document.getElementById('heroSubtitle').value = d.subtitle || '';
+    document.getElementById('heroCta').value = d.cta || '';
+    document.getElementById('heroWhatsapp').value = d.whatsapp || '';
+    document.getElementById('heroProjects').value = d.projects || '';
+    document.getElementById('heroClients').value = d.clients || '';
+    document.getElementById('heroYears').value = d.years || '';
+}
+
+function saveHero() {
+    const data = {
+        title: document.getElementById('heroTitle').value,
+        subtitle: document.getElementById('heroSubtitle').value,
+        cta: document.getElementById('heroCta').value,
+        whatsapp: document.getElementById('heroWhatsapp').value,
+        projects: parseInt(document.getElementById('heroProjects').value) || 0,
+        clients: parseInt(document.getElementById('heroClients').value) || 0,
+        years: parseInt(document.getElementById('heroYears').value) || 0
+    };
+    setData('hero', data);
+    showToast('Hero Updated', 'Hero section data saved successfully.');
+}
+
+// ===================================================================
+// SERVICES
+// ===================================================================
+
+function renderServices() {
+    const services = getData('services');
+    const grid = document.getElementById('servicesGrid');
+    grid.innerHTML = services.map((s, i) => `
+        <div class="item-card" id="service-${i}">
+            <div class="item-card-header">
+                <span class="item-card-number">#${i + 1}</span>
+                <div class="item-card-actions">
+                    <button class="btn-del" onclick="deleteService(${i})" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Icon Class</label>
+                <input type="text" class="form-control svc-icon" value="${escHTML(s.icon)}" placeholder="fa-solid fa-briefcase">
+            </div>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control svc-title" value="${escHTML(s.title)}" placeholder="Service Title">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control svc-desc" rows="2" placeholder="Service description...">${escHTML(s.description)}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Color Accent</label>
+                <select class="form-control svc-color">
+                    ${['blue','purple','cyan','emerald','amber','rose','indigo','orange','teal','slate','violet','sky'].map(c =>
+                        `<option value="${c}" ${s.color === c ? 'selected' : ''}>${c.charAt(0).toUpperCase() + c.slice(1)}</option>`
+                    ).join('')}
+                </select>
+            </div>
+        </div>
+    `).join('');
+}
+
+function collectServices() {
+    const cards = document.querySelectorAll('#servicesGrid .item-card');
+    return Array.from(cards).map(card => ({
+        icon: card.querySelector('.svc-icon').value,
+        title: card.querySelector('.svc-title').value,
+        description: card.querySelector('.svc-desc').value,
+        color: card.querySelector('.svc-color').value
+    }));
+}
+
+function saveServices() {
+    const data = collectServices();
+    setData('services', data);
+    showToast('Services Saved', `${data.length} services saved successfully.`);
+    updateBadges();
+}
+
+function addService() {
+    const services = collectServices();
+    services.push({ icon: 'fa-solid fa-star', title: 'New Service', description: 'Service description here.', color: 'blue' });
+    setData('services', services);
+    renderServices();
+    updateBadges();
+    showToast('Service Added', 'A new service card has been added.', 'info');
+    // Scroll to bottom
+    document.getElementById('servicesGrid').lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function deleteService(idx) {
+    if (!confirm('Delete this service?')) return;
+    const services = collectServices();
+    services.splice(idx, 1);
+    setData('services', services);
+    renderServices();
+    updateBadges();
+    showToast('Service Deleted', 'Service removed successfully.', 'error');
+}
+
+// ===================================================================
+// ABOUT
+// ===================================================================
+
+function loadAbout() {
+    const d = getData('about');
+    document.getElementById('aboutPhoto').value = d.photo || '';
+    document.getElementById('aboutName').value = d.name || '';
+    document.getElementById('aboutTitle').value = d.title || '';
+    document.getElementById('aboutBio').value = d.bio || '';
+    document.getElementById('aboutSkills').value = d.skills || '';
+    document.getElementById('aboutExperience').value = d.experience || '';
+}
+
+function saveAbout() {
+    const data = {
+        photo: document.getElementById('aboutPhoto').value,
+        name: document.getElementById('aboutName').value,
+        title: document.getElementById('aboutTitle').value,
+        bio: document.getElementById('aboutBio').value,
+        skills: document.getElementById('aboutSkills').value,
+        experience: document.getElementById('aboutExperience').value
+    };
+    setData('about', data);
+    showToast('About Updated', 'About section saved successfully.');
+}
+
+// ===================================================================
+// PORTFOLIO
+// ===================================================================
+
+function renderPortfolio() {
+    const items = getData('portfolio');
+    const grid = document.getElementById('portfolioGrid');
+    grid.innerHTML = items.map((p, i) => `
+        <div class="item-card" id="portfolio-${i}">
+            <div class="item-card-header">
+                <span class="item-card-number">#${i + 1}</span>
+                <div class="item-card-actions">
+                    <button class="btn-del" onclick="deletePortfolio(${i})" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Project Title</label>
+                <input type="text" class="form-control pf-title" value="${escHTML(p.title)}" placeholder="Project Title">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control pf-desc" rows="2" placeholder="Brief description...">${escHTML(p.description)}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Website URL</label>
+                <input type="text" class="form-control pf-url" value="${escHTML(p.url)}" placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+                <label>Screenshot Image</label>
+                <input type="text" class="form-control pf-image" value="${escHTML(p.image)}" placeholder="images/project1.png">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" class="form-control pf-category" value="${escHTML(p.category)}" placeholder="E-Commerce">
+            </div>
+            <div class="form-group">
+                <label>Tech Pills (comma separated)</label>
+                <input type="text" class="form-control pf-tech" value="${escHTML(p.tech)}" placeholder="React, Node.js, MongoDB">
+            </div>
+            <div class="form-group">
+                <label>Demo Page URL</label>
+                <input type="text" class="form-control pf-demo" value="${escHTML(p.demo)}" placeholder="projects/demo.html">
+            </div>
+        </div>
+    `).join('');
+}
+
+function collectPortfolio() {
+    const cards = document.querySelectorAll('#portfolioGrid .item-card');
+    return Array.from(cards).map(card => ({
+        title: card.querySelector('.pf-title').value,
+        description: card.querySelector('.pf-desc').value,
+        url: card.querySelector('.pf-url').value,
+        image: card.querySelector('.pf-image').value,
+        category: card.querySelector('.pf-category').value,
+        tech: card.querySelector('.pf-tech').value,
+        demo: card.querySelector('.pf-demo').value
+    }));
+}
+
+function savePortfolio() {
+    const data = collectPortfolio();
+    setData('portfolio', data);
+    showToast('Portfolio Saved', `${data.length} projects saved successfully.`);
+    updateBadges();
+}
+
+function addPortfolio() {
+    const items = collectPortfolio();
+    items.push({ title: 'New Project', description: 'Project description.', url: '', image: '', category: 'Web', tech: 'HTML, CSS', demo: '' });
+    setData('portfolio', items);
+    renderPortfolio();
+    updateBadges();
+    showToast('Project Added', 'A new project has been added.', 'info');
+    document.getElementById('portfolioGrid').lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function deletePortfolio(idx) {
+    if (!confirm('Delete this project?')) return;
+    const items = collectPortfolio();
+    items.splice(idx, 1);
+    setData('portfolio', items);
+    renderPortfolio();
+    updateBadges();
+    showToast('Project Deleted', 'Project removed successfully.', 'error');
+}
+
+// ===================================================================
+// PRICING
+// ===================================================================
+
+function renderPricing() {
+    const items = getData('pricing');
+    const grid = document.getElementById('pricingGrid');
+    grid.innerHTML = items.map((p, i) => `
+        <div class="item-card" id="pricing-${i}">
+            <div class="item-card-header">
+                <span class="item-card-number">#${i + 1}</span>
+                <div class="item-card-actions">
+                    <button class="btn-del" onclick="deletePricing(${i})" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Package Name</label>
+                <input type="text" class="form-control pr-name" value="${escHTML(p.name)}" placeholder="Basic">
+            </div>
+            <div class="form-group">
+                <label>Badge Text</label>
+                <input type="text" class="form-control pr-badge" value="${escHTML(p.badge)}" placeholder="Starter">
+            </div>
+            <div class="form-group">
+                <label>Tagline</label>
+                <input type="text" class="form-control pr-tagline" value="${escHTML(p.tagline)}" placeholder="Perfect for...">
+            </div>
+            <div class="form-group">
+                <label>Discount Text</label>
+                <input type="text" class="form-control pr-discount" value="${escHTML(p.discount)}" placeholder="Save 20%">
+            </div>
+            <div class="form-group">
+                <label>Features (one per line)</label>
+                <textarea class="form-control pr-features" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3">${escHTML(p.features)}</textarea>
+            </div>
+            <div class="form-group">
+                <label>WhatsApp Message</label>
+                <input type="text" class="form-control pr-wamsg" value="${escHTML(p.whatsappMsg)}" placeholder="Hi, I'm interested in...">
+            </div>
+            <div class="form-group">
+                <label>Button Text</label>
+                <input type="text" class="form-control pr-btn" value="${escHTML(p.buttonText)}" placeholder="Get Started">
+            </div>
+        </div>
+    `).join('');
+}
+
+function collectPricing() {
+    const cards = document.querySelectorAll('#pricingGrid .item-card');
+    return Array.from(cards).map(card => ({
+        name: card.querySelector('.pr-name').value,
+        badge: card.querySelector('.pr-badge').value,
+        tagline: card.querySelector('.pr-tagline').value,
+        discount: card.querySelector('.pr-discount').value,
+        features: card.querySelector('.pr-features').value,
+        whatsappMsg: card.querySelector('.pr-wamsg').value,
+        buttonText: card.querySelector('.pr-btn').value
+    }));
+}
+
+function savePricing() {
+    const data = collectPricing();
+    setData('pricing', data);
+    showToast('Pricing Saved', `${data.length} packages saved successfully.`);
+}
+
+function addPricing() {
+    const items = collectPricing();
+    items.push({ name: 'New Package', badge: 'New', tagline: 'Great for...', discount: '', features: 'Feature 1\nFeature 2', whatsappMsg: 'Hi, I am interested!', buttonText: 'Get Started' });
+    setData('pricing', items);
+    renderPricing();
+    showToast('Package Added', 'A new pricing package has been added.', 'info');
+    document.getElementById('pricingGrid').lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function deletePricing(idx) {
+    if (!confirm('Delete this package?')) return;
+    const items = collectPricing();
+    items.splice(idx, 1);
+    setData('pricing', items);
+    renderPricing();
+    showToast('Package Deleted', 'Pricing package removed.', 'error');
+}
+
+// ===================================================================
+// REVIEWS
+// ===================================================================
+
+function renderReviews() {
+    const items = getData('reviews');
+    const grid = document.getElementById('reviewsGrid');
+    grid.innerHTML = items.map((r, i) => `
+        <div class="item-card" id="review-${i}">
+            <div class="item-card-header">
+                <span class="item-card-number">#${i + 1}</span>
+                <div class="item-card-actions">
+                    <button class="btn-del" onclick="deleteReview(${i})" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Client Name</label>
+                <input type="text" class="form-control rv-name" value="${escHTML(r.name)}" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label>Client Title / Role</label>
+                <input type="text" class="form-control rv-role" value="${escHTML(r.role)}" placeholder="CEO, Company">
+            </div>
+            <div class="form-group">
+                <label>Initials (for avatar)</label>
+                <input type="text" class="form-control rv-initials" value="${escHTML(r.initials)}" maxlength="2" placeholder="JD">
+            </div>
+            <div class="form-group">
+                <label>Review Text</label>
+                <textarea class="form-control rv-text" rows="3" placeholder="Review text...">${escHTML(r.text)}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Rating (1-5)</label>
+                <div class="star-rating" data-index="${i}">
+                    ${[1,2,3,4,5].map(s => `<span class="star ${s <= r.rating ? 'active' : ''}" data-star="${s}" onclick="setStarRating(${i}, ${s})"><i class="fa-solid fa-star"></i></span>`).join('')}
+                </div>
+                <input type="hidden" class="rv-rating" value="${r.rating || 5}">
+            </div>
+            <div class="form-group">
+                <label>Gradient Colors</label>
+                <select class="form-control rv-gradient">
+                    ${[
+                        'from-blue-500 to-cyan-500',
+                        'from-purple-500 to-pink-500',
+                        'from-emerald-500 to-teal-500',
+                        'from-amber-500 to-orange-500',
+                        'from-rose-500 to-red-500',
+                        'from-indigo-500 to-blue-500',
+                        'from-violet-500 to-purple-500',
+                        'from-cyan-500 to-blue-500',
+                        'from-teal-500 to-emerald-500',
+                        'from-sky-500 to-indigo-500'
+                    ].map(g => `<option value="${g}" ${r.gradient === g ? 'selected' : ''}>${g}</option>`).join('')}
+                </select>
+            </div>
+        </div>
+    `).join('');
+}
+
+function setStarRating(reviewIndex, starValue) {
+    const card = document.getElementById('review-' + reviewIndex);
+    if (!card) return;
+    card.querySelector('.rv-rating').value = starValue;
+    card.querySelectorAll('.star').forEach(s => {
+        const sv = parseInt(s.dataset.star);
+        s.classList.toggle('active', sv <= starValue);
+    });
+}
+
+function collectReviews() {
+    const cards = document.querySelectorAll('#reviewsGrid .item-card');
+    return Array.from(cards).map(card => ({
+        name: card.querySelector('.rv-name').value,
+        role: card.querySelector('.rv-role').value,
+        initials: card.querySelector('.rv-initials').value,
+        text: card.querySelector('.rv-text').value,
+        rating: parseInt(card.querySelector('.rv-rating').value) || 5,
+        gradient: card.querySelector('.rv-gradient').value
+    }));
+}
+
+function saveReviews() {
+    const data = collectReviews();
+    setData('reviews', data);
+    showToast('Reviews Saved', `${data.length} reviews saved successfully.`);
+    updateBadges();
+}
+
+function addReview() {
+    const items = collectReviews();
+    items.push({ name: 'New Client', role: 'Title', initials: 'NC', text: 'Great work!', rating: 5, gradient: 'from-blue-500 to-cyan-500' });
+    setData('reviews', items);
+    renderReviews();
+    updateBadges();
+    showToast('Review Added', 'A new review has been added.', 'info');
+    document.getElementById('reviewsGrid').lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function deleteReview(idx) {
+    if (!confirm('Delete this review?')) return;
+    const items = collectReviews();
+    items.splice(idx, 1);
+    setData('reviews', items);
+    renderReviews();
+    updateBadges();
+    showToast('Review Deleted', 'Review removed successfully.', 'error');
+}
+
+// ===================================================================
+// FAQ
+// ===================================================================
+
+function renderFaq() {
+    const items = getData('faq');
+    const grid = document.getElementById('faqGrid');
+    grid.innerHTML = items.map((f, i) => `
+        <div class="item-card" id="faq-${i}">
+            <div class="item-card-header">
+                <span class="item-card-number">#${i + 1}</span>
+                <div class="item-card-actions">
+                    <button class="btn-del" onclick="deleteFaq(${i})" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Question</label>
+                <input type="text" class="form-control fq-question" value="${escHTML(f.question)}" placeholder="What is...?">
+            </div>
+            <div class="form-group">
+                <label>Answer</label>
+                <textarea class="form-control fq-answer" rows="3" placeholder="The answer is...">${escHTML(f.answer)}</textarea>
+            </div>
+        </div>
+    `).join('');
+}
+
+function collectFaq() {
+    const cards = document.querySelectorAll('#faqGrid .item-card');
+    return Array.from(cards).map(card => ({
+        question: card.querySelector('.fq-question').value,
+        answer: card.querySelector('.fq-answer').value
+    }));
+}
+
+function saveFaq() {
+    const data = collectFaq();
+    setData('faq', data);
+    showToast('FAQ Saved', `${data.length} FAQ items saved successfully.`);
+    updateBadges();
+}
+
+function addFaq() {
+    const items = collectFaq();
+    items.push({ question: 'New Question?', answer: 'Answer goes here.' });
+    setData('faq', items);
+    renderFaq();
+    updateBadges();
+    showToast('FAQ Added', 'A new FAQ has been added.', 'info');
+    document.getElementById('faqGrid').lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function deleteFaq(idx) {
+    if (!confirm('Delete this FAQ?')) return;
+    const items = collectFaq();
+    items.splice(idx, 1);
+    setData('faq', items);
+    renderFaq();
+    updateBadges();
+    showToast('FAQ Deleted', 'FAQ item removed successfully.', 'error');
+}
+
+// ===================================================================
+// CONTACT
+// ===================================================================
+
+function loadContact() {
+    const d = getData('contact');
+    document.getElementById('contactAddress').value = d.address || '';
+    document.getElementById('contactMaps').value = d.maps || '';
+    document.getElementById('contactWhatsapp').value = d.whatsapp || '';
+    document.getElementById('contactEmail').value = d.email || '';
+    document.getElementById('contactHours').value = d.hours || '';
+    document.getElementById('contactStatus').value = d.status || '';
+}
+
+function saveContact() {
+    const data = {
+        address: document.getElementById('contactAddress').value,
+        maps: document.getElementById('contactMaps').value,
+        whatsapp: document.getElementById('contactWhatsapp').value,
+        email: document.getElementById('contactEmail').value,
+        hours: document.getElementById('contactHours').value,
+        status: document.getElementById('contactStatus').value
+    };
+    setData('contact', data);
+    showToast('Contact Saved', 'Contact information saved successfully.');
+}
+
+// ===================================================================
+// SOCIAL
+// ===================================================================
+
+function loadSocial() {
+    const d = getData('social');
+    document.getElementById('socialFacebook').value = d.facebook || '';
+    document.getElementById('socialTiktok').value = d.tiktok || '';
+    document.getElementById('socialInstagram').value = d.instagram || '';
+    document.getElementById('socialWhatsapp').value = d.whatsapp || '';
+}
+
+function saveSocial() {
+    const data = {
+        facebook: document.getElementById('socialFacebook').value,
+        tiktok: document.getElementById('socialTiktok').value,
+        instagram: document.getElementById('socialInstagram').value,
+        whatsapp: document.getElementById('socialWhatsapp').value
+    };
+    setData('social', data);
+    showToast('Social Links Saved', 'Social media links saved successfully.');
+}
+
+// ===================================================================
+// SETTINGS
+// ===================================================================
+
+function loadSettings() {
+    const d = getData('settings');
+    document.getElementById('settingsTitle').value = d.title || '';
+    document.getElementById('settingsMeta').value = d.meta || '';
+}
+
+function saveSettings() {
+    const current = getData('settings');
+    const data = {
+        title: document.getElementById('settingsTitle').value,
+        meta: document.getElementById('settingsMeta').value,
+        password: current.password || DEFAULTS.settings.password
+    };
+    setData('settings', data);
+    showToast('Settings Saved', 'Website settings updated successfully.');
+}
+
+function changePassword() {
+    const current = document.getElementById('settingsCurrentPw').value;
+    const newPw = document.getElementById('settingsNewPw').value;
+    const confirmPw = document.getElementById('settingsConfirmPw').value;
+    const settings = getData('settings');
+
+    if (!current || !newPw || !confirmPw) {
+        showToast('Error', 'Please fill in all password fields.', 'error');
+        return;
+    }
+    if (current !== settings.password) {
+        showToast('Error', 'Current password is incorrect.', 'error');
+        return;
+    }
+    if (newPw !== confirmPw) {
+        showToast('Error', 'New passwords do not match.', 'error');
+        return;
+    }
+    if (newPw.length < 4) {
+        showToast('Error', 'Password must be at least 4 characters.', 'error');
+        return;
+    }
+
+    settings.password = newPw;
+    setData('settings', settings);
+    document.getElementById('settingsCurrentPw').value = '';
+    document.getElementById('settingsNewPw').value = '';
+    document.getElementById('settingsConfirmPw').value = '';
+    showToast('Password Changed', 'Admin password updated successfully.');
+}
+
+// ===================================================================
+// DATA MANAGEMENT
+// ===================================================================
+
+function exportData() {
+    const allData = {};
+    const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+    keys.forEach(k => { allData[k] = getData(k); });
+
+    const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ahmed-wazir-dashboard-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Data Exported', 'Backup file downloaded successfully.');
+}
+
+function importData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+            let count = 0;
+            keys.forEach(k => {
+                if (data[k]) {
+                    setData(k, data[k]);
+                    count++;
+                }
+            });
+            showToast('Data Imported', `${count} sections imported successfully.`);
+            loadDashboard();
+        } catch (err) {
+            showToast('Import Error', 'Invalid JSON file. Please check the file.', 'error');
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+}
+
+function resetData() {
+    if (!confirm('⚠️ This will reset ALL dashboard data to defaults. This action cannot be undone. Continue?')) return;
+    if (!confirm('Are you really sure? All your custom data will be lost.')) return;
+
+    const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+    keys.forEach(k => localStorage.removeItem('aw_dashboard_' + k));
+    localStorage.removeItem('aw_dashboard_lastSaved');
+    showToast('Data Reset', 'All data has been reset to defaults.', 'info');
+    loadDashboard();
+}
+
+// ===================================================================
+// APPLY TO WEBSITE
+// ===================================================================
+
+function applyToWebsite() {
+    // Save a master flag that the main site JS can check
+    const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+    keys.forEach(k => {
+        const data = getData(k);
+        localStorage.setItem('aw_dashboard_' + k, JSON.stringify(data));
+    });
+    localStorage.setItem('aw_dashboard_applied', new Date().toISOString());
+
+    showToast('Changes Applied! 🚀', 'All changes have been saved and will appear on the website. Open the site to see updates.', 'success');
+}
+
+// ===================================================================
+// UPDATE BADGES
+// ===================================================================
+
+function updateBadges() {
+    const services = getData('services');
+    const portfolio = getData('portfolio');
+    const reviews = getData('reviews');
+    const faq = getData('faq');
+
+    const el = (id) => document.getElementById(id);
+    if (el('servicesCount')) el('servicesCount').textContent = services.length;
+    if (el('portfolioCount')) el('portfolioCount').textContent = portfolio.length;
+    if (el('reviewsCount')) el('reviewsCount').textContent = reviews.length;
+    if (el('faqCount')) el('faqCount').textContent = faq.length;
+}
+
+// ===================================================================
+// INITIALIZATION
+// ===================================================================
+
+document.addEventListener('DOMContentLoaded', function () {
+    loadDashboard();
+    updateBadges();
+});
+
+// ===================================================================
+// WEBSITE THEME & COLOR CUSTOMIZATION
+// ===================================================================
+
+const THEME_PRESETS = [
+    {
+        id: 'blue',
+        name: 'Electric Blue & Cyan',
+        desc: 'Default signature high-trust tech branding',
+        primary: '#3978FF',
+        secondary: '#00D4FF'
+    },
+    {
+        id: 'emerald',
+        name: 'Emerald Neon & Mint',
+        desc: 'Fresh, vibrant, modern & growth-oriented',
+        primary: '#10b981',
+        secondary: '#06b6d4'
+    },
+    {
+        id: 'purple',
+        name: 'Royal Violet & Magenta',
+        desc: 'Creative, agency luxury & premium vibe',
+        primary: '#8b5cf6',
+        secondary: '#d946ef'
+    },
+    {
+        id: 'orange',
+        name: 'Sunset Flame & Amber',
+        desc: 'High energy, bold & high-converting',
+        primary: '#f97316',
+        secondary: '#eab308'
+    },
+    {
+        id: 'red',
+        name: 'Ruby Crimson & Coral',
+        desc: 'Passionate, dominant & bold presence',
+        primary: '#ef4444',
+        secondary: '#f43f5e'
+    },
+    {
+        id: 'gold',
+        name: 'Cyber Gold & Bronze',
+        desc: 'Elite, high-ticket & VIP presentation',
+        primary: '#eab308',
+        secondary: '#f59e0b'
+    },
+    {
+        id: 'cyberpunk',
+        name: 'Neon Cyberpunk & Cyan',
+        desc: 'Futuristic synthwave cyberpunk glow',
+        primary: '#00D4FF',
+        secondary: '#f43f5e'
+    },
+    {
+        id: 'sapphire',
+        name: 'Deep Sapphire & Sky',
+        desc: 'Corporate authority & sleek modern vibe',
+        primary: '#2563eb',
+        secondary: '#38bdf8'
+    }
+];
+
+function hexToRgbaHelper(hex, alpha) {
+    if (!hex) return 'rgba(57, 120, 255, ' + alpha + ')';
+    hex = hex.replace('#', '');
+    if (hex.length === 3) hex = hex.split('').map(function(c) { return c + c; }).join('');
+    var r = parseInt(hex.substring(0, 2), 16) || 0;
+    var g = parseInt(hex.substring(2, 4), 16) || 0;
+    var b = parseInt(hex.substring(4, 6), 16) || 0;
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+}
+
+function renderThemePresets() {
+    var grid = document.getElementById('themePresetsGrid');
+    if (!grid) return;
+    
+    var currentTheme = getData('theme');
+    var curP = ((currentTheme && currentTheme.primary) || '#3978FF').toLowerCase();
+    var curS = ((currentTheme && currentTheme.secondary) || '#00D4FF').toLowerCase();
+
+    grid.innerHTML = THEME_PRESETS.map(function(preset) {
+        var isActive = (preset.primary.toLowerCase() === curP && preset.secondary.toLowerCase() === curS);
+        return (
+            '<div class="theme-preset-card ' + (isActive ? 'active' : '') + '" onclick="selectThemePreset(\'' + preset.id + '\')" id="preset-card-' + preset.id + '">' +
+                '<div class="preset-active-badge"><i class="fa-solid fa-check"></i></div>' +
+                '<div class="preset-header">' +
+                    '<span class="preset-title">' + preset.name + '</span>' +
+                    '<div class="theme-swatch-circles">' +
+                        '<span class="color-swatch-dot" style="background:' + preset.primary + ';" title="Primary: ' + preset.primary + '"></span>' +
+                        '<span class="color-swatch-dot" style="background:' + preset.secondary + ';" title="Secondary: ' + preset.secondary + '"></span>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="theme-swatch-gradient" style="background:linear-gradient(90deg, ' + preset.primary + ', ' + preset.secondary + ');"></div>' +
+                '<p class="preset-desc">' + preset.desc + '</p>' +
+            '</div>'
+        );
+    }).join('');
+}
+
+function selectThemePreset(presetId) {
+    var preset = THEME_PRESETS.find(function(p) { return p.id === presetId; });
+    if (!preset) return;
+
+    document.getElementById('themePrimaryColor').value = preset.primary;
+    document.getElementById('themePrimaryText').value = preset.primary;
+    document.getElementById('themeSecondaryColor').value = preset.secondary;
+    document.getElementById('themeSecondaryText').value = preset.secondary;
+
+    document.querySelectorAll('.theme-preset-card').forEach(function(c) { c.classList.remove('active'); });
+    var activeCard = document.getElementById('preset-card-' + presetId);
+    if (activeCard) activeCard.classList.add('active');
+
+    updateThemePreview(preset.primary, preset.secondary);
+}
+
+function onCustomColorChange() {
+    var p = document.getElementById('themePrimaryColor').value;
+    var s = document.getElementById('themeSecondaryColor').value;
+    document.getElementById('themePrimaryText').value = p;
+    document.getElementById('themeSecondaryText').value = s;
+    highlightMatchingPreset(p, s);
+    updateThemePreview(p, s);
+}
+
+function onCustomColorTextChange() {
+    var p = document.getElementById('themePrimaryText').value.trim();
+    var s = document.getElementById('themeSecondaryText').value.trim();
+    if (/^#[0-9A-Fa-f]{6}$/.test(p)) document.getElementById('themePrimaryColor').value = p;
+    if (/^#[0-9A-Fa-f]{6}$/.test(s)) document.getElementById('themeSecondaryColor').value = s;
+    highlightMatchingPreset(p, s);
+    updateThemePreview(p, s);
+}
+
+function highlightMatchingPreset(p, s) {
+    document.querySelectorAll('.theme-preset-card').forEach(function(c) { c.classList.remove('active'); });
+    var matched = THEME_PRESETS.find(function(pr) {
+        return pr.primary.toLowerCase() === p.toLowerCase() && pr.secondary.toLowerCase() === s.toLowerCase();
+    });
+    if (matched) {
+        var card = document.getElementById('preset-card-' + matched.id);
+        if (card) card.classList.add('active');
+    }
+}
+
+function updateThemePreview(primary, secondary) {
+    if (!primary || !secondary) return;
+    var pRgba = hexToRgbaHelper(primary, 0.4);
+    var pRgba20 = hexToRgbaHelper(primary, 0.2);
+
+    var badge = document.getElementById('previewBadge');
+    if (badge) {
+        badge.style.background = 'linear-gradient(135deg, ' + primary + ', ' + secondary + ')';
+        badge.style.boxShadow = '0 0 18px ' + pRgba;
+    }
+
+    var sub = document.getElementById('previewSubtitle');
+    if (sub) sub.style.color = secondary;
+
+    var grad = document.getElementById('previewGradientText');
+    if (grad) {
+        grad.style.background = 'linear-gradient(135deg, ' + primary + ' 0%, ' + secondary + ' 100%)';
+        grad.style.webkitBackgroundClip = 'text';
+    }
+
+    var btnPri = document.getElementById('previewBtnPrimary');
+    if (btnPri) {
+        btnPri.style.background = 'linear-gradient(135deg, ' + primary + ', ' + secondary + ')';
+        btnPri.style.boxShadow = '0 8px 24px ' + pRgba;
+    }
+
+    var btnOut = document.getElementById('previewBtnOutline');
+    if (btnOut) {
+        btnOut.style.borderColor = secondary;
+        btnOut.style.color = secondary;
+    }
+
+    var checkIcon = document.getElementById('previewCheckIcon');
+    if (checkIcon) checkIcon.style.color = secondary;
+
+    var glow = document.getElementById('previewAmbientGlow');
+    if (glow) glow.style.background = 'radial-gradient(circle, ' + pRgba20 + ' 0%, transparent 70%)';
+}
+
+function loadTheme() {
+    var theme = getData('theme') || DEFAULTS.theme;
+    document.getElementById('themePrimaryColor').value = theme.primary || '#3978FF';
+    document.getElementById('themePrimaryText').value = theme.primary || '#3978FF';
+    document.getElementById('themeSecondaryColor').value = theme.secondary || '#00D4FF';
+    document.getElementById('themeSecondaryText').value = theme.secondary || '#00D4FF';
+
+    renderThemePresets();
+    updateThemePreview(theme.primary, theme.secondary);
+}
+
+function saveTheme() {
+    var primary = document.getElementById('themePrimaryText').value.trim() || '#3978FF';
+    var secondary = document.getElementById('themeSecondaryText').value.trim() || '#00D4FF';
+
+    var preset = 'custom';
+    var match = THEME_PRESETS.find(function(p) {
+        return p.primary.toLowerCase() === primary.toLowerCase() && p.secondary.toLowerCase() === secondary.toLowerCase();
+    });
+    if (match) preset = match.id;
+
+    var themeData = { preset: preset, primary: primary, secondary: secondary };
+    setData('theme', themeData);
+
+    localStorage.setItem('aw_dashboard_theme', JSON.stringify(themeData));
+    localStorage.setItem('aw_dashboard_applied', new Date().toISOString());
+
+    showToast('Theme Saved! 🎨', 'Website colors updated to ' + primary + ' & ' + secondary + '. Changes applied to website!', 'success');
+}
+
+function resetThemeToDefault() {
+    selectThemePreset('blue');
+    saveTheme();
+}
+
+</script>
+</body>
+</html>

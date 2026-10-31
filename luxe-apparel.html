@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxe Couture — Where Fabric Becomes Art | Luxury Pakistani Pret & Bridals</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #fcf9f5;
+      color: #1a1a1a;
+    }
+    .font-serif-title {
+      font-family: 'Playfair Display', serif;
+    }
+    .text-couture-plum {
+      color: #571c2c;
+    }
+    .bg-couture-plum {
+      background-color: #571c2c;
+    }
+    .border-couture-plum {
+      border-color: #571c2c;
+    }
+  </style>
+</head>
+<body class="bg-[#fcf9f5] text-stone-900 antialiased selection:bg-[#571c2c] selection:text-white">
+
+  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+  <div class="bg-[#571c2c] text-white text-xs py-2 px-4 sm:px-8 text-center font-bold tracking-widest uppercase">
+    Complimentary Express Nationwide Delivery on Orders Over PKR 10,000 · Worldwide Shipping Available
+  </div>
+
+  <!-- ================= NAVIGATION BAR ================= -->
+  <header class="sticky top-0 z-50 bg-[#fcf9f5]/95 backdrop-blur-md border-b border-stone-200 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-[#571c2c] text-[#f2e8dc] flex items-center justify-center font-serif-title text-xl font-bold shadow-md">
+          M
+        </div>
+        <div>
+          <span class="text-2xl font-black font-serif-title text-[#571c2c] tracking-widest uppercase">MAHWISH</span>
+          <span class="text-[8px] font-bold text-stone-500 uppercase tracking-widest block -mt-1">Luxury Couture & Pret</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-stone-700">
+        <a href="#home" class="text-[#571c2c] hover:text-[#571c2c] transition">Home</a>
+        <a href="#collections" class="hover:text-[#571c2c] transition">Collections</a>
+        <a href="#categories" class="hover:text-[#571c2c] transition">Categories</a>
+        <a href="#new-arrivals" class="hover:text-[#571c2c] transition">New Arrivals</a>
+        <a href="#atelier" class="hover:text-[#571c2c] transition">The Atelier</a>
+        <a href="#about" class="hover:text-[#571c2c] transition">About Us</a>
+        <a href="#contact" class="hover:text-[#571c2c] transition">Contact</a>
+      </nav>
+
+      <!-- Cart Button with Counter -->
+      <div class="flex items-center gap-4">
+        <a href="#cart" onclick="toggleCart(); return false;" class="relative px-5 py-2.5 rounded-full bg-[#571c2c] hover:bg-[#421421] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all flex items-center gap-2">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Bag (<span id="cart-count">2</span>)</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= HERO BANNER: WHERE FABRIC BECOMES ART ================= -->
+  <section id="home" class="relative overflow-hidden bg-[#1f0a10] text-white py-24 sm:py-36 px-4 sm:px-8">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1920&q=85" alt="Pakistani Luxury Bridal Pret Model" class="w-full h-full object-cover object-center opacity-45 scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#1f0a10] via-[#1f0a10]/80 to-transparent"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="max-w-2xl space-y-6">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-[#571c2c] border border-rose-300/40 text-rose-200 text-xs font-bold uppercase tracking-widest">
+          HAUTE COUTURE & LUXURY PRET 2026
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold font-serif-title text-[#f7eee4] leading-tight tracking-tight">
+          WHERE FABRIC <br />
+          <span class="italic font-normal text-rose-300">BECOMES ART</span>
+        </h1>
+
+        <p class="text-stone-300 text-sm sm:text-base leading-relaxed max-w-xl font-light">
+          A timeless ode to South Asian heritage. Handcrafted zardozi, crushed micro-velvets, and hand-embellished silk organza silhouettes tailored to perfection.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="#new-arrivals" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#571c2c] to-[#7a283e] hover:brightness-110 text-white font-bold text-xs uppercase tracking-widest shadow-xl transition-all hover:scale-105">
+            Explore Collection
+          </a>
+          <a href="#atelier" class="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest border border-white/30 transition-all">
+            The Atelier Craft
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 VALUE PROPOSITION BADGES ================= -->
+  <section class="py-8 bg-white border-b border-stone-200 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      
+      <div class="flex flex-col items-center gap-2 p-2">
+        <div class="w-10 h-10 rounded-full bg-rose-50 text-[#571c2c] flex items-center justify-center text-lg">
+          <i class="fa-solid fa-scissors"></i>
+        </div>
+        <div class="text-xs font-bold text-stone-900 uppercase tracking-wide">Custom Stitching</div>
+        <p class="text-[11px] text-stone-500">Made-to-measure tailored fits</p>
+      </div>
+
+      <div class="flex flex-col items-center gap-2 p-2">
+        <div class="w-10 h-10 rounded-full bg-rose-50 text-[#571c2c] flex items-center justify-center text-lg">
+          <i class="fa-solid fa-plane-departure"></i>
+        </div>
+        <div class="text-xs font-bold text-stone-900 uppercase tracking-wide">Express Delivery</div>
+        <p class="text-[11px] text-stone-500">Across Pakistan & 35+ countries</p>
+      </div>
+
+      <div class="flex flex-col items-center gap-2 p-2">
+        <div class="w-10 h-10 rounded-full bg-rose-50 text-[#571c2c] flex items-center justify-center text-lg">
+          <i class="fa-solid fa-gem"></i>
+        </div>
+        <div class="text-xs font-bold text-stone-900 uppercase tracking-wide">100% Pure Fabrics</div>
+        <p class="text-[11px] text-stone-500">Micro-velvet, raw silk & organza</p>
+      </div>
+
+      <div class="flex flex-col items-center gap-2 p-2">
+        <div class="w-10 h-10 rounded-full bg-rose-50 text-[#571c2c] flex items-center justify-center text-lg">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div class="text-xs font-bold text-stone-900 uppercase tracking-wide">Secure Checkout</div>
+        <p class="text-[11px] text-stone-500">Cards, bank transfer & COD</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CURATED COLLECTIONS ================= -->
+  <section id="collections" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+      <div class="text-xs font-bold uppercase tracking-widest text-[#571c2c]">EXQUISITE SILHOUETTES</div>
+      <h2 class="text-3xl sm:text-4xl font-bold font-serif-title text-stone-900">Curated Collections</h2>
+      <p class="text-xs text-stone-500">Step inside our four foundational design disciplines created for the modern muse.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <div class="relative h-96 rounded-2xl overflow-hidden group shadow-lg cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80" alt="Velvet & Silk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 text-white text-center">
+          <span class="text-[10px] uppercase font-bold tracking-widest text-rose-300">Winter Luxury</span>
+          <h3 class="text-xl font-bold font-serif-title">Velvet & Raw Silk</h3>
+          <p class="text-xs text-stone-300 mt-1">Rich jewels & golden tilla</p>
+        </div>
+      </div>
+
+      <div class="relative h-96 rounded-2xl overflow-hidden group shadow-lg cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Formal Pret" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 text-white text-center">
+          <span class="text-[10px] uppercase font-bold tracking-widest text-rose-300">Ready to Wear</span>
+          <h3 class="text-xl font-bold font-serif-title">Formal Pret</h3>
+          <p class="text-xs text-stone-300 mt-1">Effortless day-to-evening</p>
+        </div>
+      </div>
+
+      <div class="relative h-96 rounded-2xl overflow-hidden group shadow-lg cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Festive Luxury" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 text-white text-center">
+          <span class="text-[10px] uppercase font-bold tracking-widest text-rose-300">Wedding Season</span>
+          <h3 class="text-xl font-bold font-serif-title">Festive Organza</h3>
+          <p class="text-xs text-stone-300 mt-1">Scalloped borders & moti</p>
+        </div>
+      </div>
+
+      <div class="relative h-96 rounded-2xl overflow-hidden group shadow-lg cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80" alt="Bridal Couture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 text-white text-center">
+          <span class="text-[10px] uppercase font-bold tracking-widest text-rose-300">Custom Bridal</span>
+          <h3 class="text-xl font-bold font-serif-title">Bridal Couture</h3>
+          <p class="text-xs text-stone-300 mt-1">Heirloom wedding ensembles</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SHOP BY CATEGORY ================= -->
+  <section id="categories" class="py-12 bg-white border-y border-stone-200 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-8">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-[#571c2c]">Shop By Category</h3>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4 text-center">
+        
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-shirt"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">Unstitched</span>
+        </div>
+
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-vest"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">Pret Kurti</span>
+        </div>
+
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-vest-patches"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">3-Piece</span>
+        </div>
+
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">Bridal</span>
+        </div>
+
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-ribbon"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">Shawls</span>
+        </div>
+
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">Velvet</span>
+        </div>
+
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">Bottoms</span>
+        </div>
+
+        <div class="p-3 bg-stone-50 hover:bg-rose-50 rounded-xl border border-stone-200 transition cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-white text-[#571c2c] flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-110 transition">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <span class="text-xs font-bold text-stone-800">Clutches</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NEW ARRIVALS: 8 PRODUCT CARDS ================= -->
+  <section id="new-arrivals" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#571c2c]">SEASON'S FINEST</div>
+        <h2 class="text-3xl sm:text-4xl font-bold font-serif-title text-stone-900">New Arrivals</h2>
+      </div>
+      <p class="text-xs text-stone-500 max-w-sm mt-2 md:mt-0">All sample items are handcrafted upon order with complimentary size alteration support.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Product 1 -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-200 flex flex-col justify-between group">
+        <div>
+          <div class="h-80 relative overflow-hidden bg-stone-100">
+            <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80" alt="Burgundy Velvet Ensemble" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#571c2c] text-white text-[10px] font-bold uppercase">Pret</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-serif-title font-bold text-base text-stone-900 group-hover:text-[#571c2c] transition">Noor-e-Zainab Velvet Kurti</h3>
+            <p class="text-xs text-stone-500">Pure 9000 micro-velvet with hand-worked zardozi & dabka.</p>
+            <div class="flex items-center gap-2 pt-1 text-xs">
+              <span class="font-bold text-stone-400">Size:</span>
+              <span class="px-2 py-0.5 rounded border border-stone-300 font-bold">S</span>
+              <span class="px-2 py-0.5 rounded border border-[#571c2c] bg-[#571c2c] text-white font-bold">M</span>
+              <span class="px-2 py-0.5 rounded border border-stone-300 font-bold">L</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0 flex items-center justify-between border-t border-stone-100 mt-2">
+          <span class="text-base font-black text-[#571c2c]">PKR 18,500</span>
+          <button onclick="addToBag(18500)" class="px-4 py-2 rounded-full bg-[#571c2c] hover:bg-[#3f121e] text-white text-xs font-bold uppercase tracking-wider transition">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-200 flex flex-col justify-between group">
+        <div>
+          <div class="h-80 relative overflow-hidden bg-stone-100">
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Royal Blue Festive" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-blue-900 text-white text-[10px] font-bold uppercase">Festive</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-serif-title font-bold text-base text-stone-900 group-hover:text-[#571c2c] transition">Feroza Raw Silk 3-Piece</h3>
+            <p class="text-xs text-stone-500">Pure Rawayat silk paired with a scalloped organza dupatta.</p>
+            <div class="flex items-center gap-2 pt-1 text-xs">
+              <span class="font-bold text-stone-400">Size:</span>
+              <span class="px-2 py-0.5 rounded border border-stone-300 font-bold">XS</span>
+              <span class="px-2 py-0.5 rounded border border-stone-300 font-bold">S</span>
+              <span class="px-2 py-0.5 rounded border border-[#571c2c] bg-[#571c2c] text-white font-bold">M</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0 flex items-center justify-between border-t border-stone-100 mt-2">
+          <span class="text-base font-black text-[#571c2c]">PKR 24,000</span>
+          <button onclick="addToBag(24000)" class="px-4 py-2 rounded-full bg-[#571c2c] hover:bg-[#3f121e] text-white text-xs font-bold uppercase tracking-wider transition">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-200 flex flex-col justify-between group">
+        <div>
+          <div class="h-80 relative overflow-hidden bg-stone-100">
+            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80" alt="Ivory Organza Pret" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-amber-700 text-white text-[10px] font-bold uppercase">Couture</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-serif-title font-bold text-base text-stone-900 group-hover:text-[#571c2c] transition">Zarmeen Ivory Peshwas</h3>
+            <p class="text-xs text-stone-500">Flared 16-kali kalidar with intricate mukesh and resham tilla.</p>
+            <div class="flex items-center gap-2 pt-1 text-xs">
+              <span class="font-bold text-stone-400">Size:</span>
+              <span class="px-2 py-0.5 rounded border border-[#571c2c] bg-[#571c2c] text-white font-bold">Free Size</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0 flex items-center justify-between border-t border-stone-100 mt-2">
+          <span class="text-base font-black text-[#571c2c]">PKR 32,500</span>
+          <button onclick="addToBag(32500)" class="px-4 py-2 rounded-full bg-[#571c2c] hover:bg-[#3f121e] text-white text-xs font-bold uppercase tracking-wider transition">Add to Bag</button>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-stone-200 flex flex-col justify-between group">
+        <div>
+          <div class="h-80 relative overflow-hidden bg-stone-100">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Rose Quartz Formal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#571c2c] text-white text-[10px] font-bold uppercase">Pret</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-serif-title font-bold text-base text-stone-900 group-hover:text-[#571c2c] transition">Gulab Organza 2-Piece</h3>
+            <p class="text-xs text-stone-500">Pastel blush organza shirt with pearl drop hemlines and silk trousers.</p>
+            <div class="flex items-center gap-2 pt-1 text-xs">
+              <span class="font-bold text-stone-400">Size:</span>
+              <span class="px-2 py-0.5 rounded border border-stone-300 font-bold">S</span>
+              <span class="px-2 py-0.5 rounded border border-stone-300 font-bold">M</span>
+              <span class="px-2 py-0.5 rounded border border-[#571c2c] bg-[#571c2c] text-white font-bold">L</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0 flex items-center justify-between border-t border-stone-100 mt-2">
+          <span class="text-base font-black text-[#571c2c]">PKR 16,800</span>
+          <button onclick="addToBag(16800)" class="px-4 py-2 rounded-full bg-[#571c2c] hover:bg-[#3f121e] text-white text-xs font-bold uppercase tracking-wider transition">Add to Bag</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= THE ATELIER: HERITAGE & LUXURY CRAFT ================= -->
+  <section id="atelier" class="py-20 bg-[#571c2c] text-white px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-6 space-y-6">
+        <span class="px-3 py-1 rounded-full bg-white/10 text-rose-200 text-xs font-bold uppercase tracking-widest border border-white/20">
+          BEHIND THE CRAFT
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-bold font-serif-title text-[#fbf6f0] leading-tight">
+          The Atelier: Heritage <br />
+          <span class="italic font-normal text-rose-300">& Luxury Craft</span>
+        </h2>
+        <p class="text-sm text-stone-200 leading-relaxed font-light">
+          Every thread tells a story of century-old heritage. Our master karigars spend upwards of 180 uninterrupted hours crafting a single bridal ensemble, reviving authentic dabka, kora, gotta patti, and hand-cut sequins on the purest looms.
+        </p>
+        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
+          <div>
+            <div class="text-2xl font-bold font-serif-title text-rose-200">180+ Hours</div>
+            <div class="text-[11px] text-stone-300 uppercase">Per Bridal Piece</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold font-serif-title text-rose-200">100% Hand-worked</div>
+            <div class="text-[11px] text-stone-300 uppercase">Authentic Karigari</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 h-80 sm:h-96 rounded-2xl overflow-hidden shadow-2xl relative">
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80" alt="Gold Zardozi Embroidery Closeup" class="w-full h-full object-cover" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="contact" class="bg-[#120408] text-stone-400 text-xs pt-16 pb-12 border-t border-rose-950 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      <div class="space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-[#571c2c] text-white flex items-center justify-center font-serif-title font-bold text-base">M</div>
+          <span class="text-lg font-bold font-serif-title text-white tracking-widest uppercase">MAHWISH COUTURE</span>
+        </div>
+        <p class="leading-relaxed text-stone-400">
+          Where Fabric Becomes Art. Designer Pakistani pret, formal formals, luxury velvets, and bespoke bridal wear.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Customer Care</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-rose-300">Custom Size Guide</a></li>
+          <li><a href="#" class="hover:text-rose-300">Track Your Order</a></li>
+          <li><a href="#" class="hover:text-rose-300">Shipping & Customs</a></li>
+          <li><a href="#" class="hover:text-rose-300">Returns & Exchanges</a></li>
+          <li><a href="#" class="hover:text-rose-300">Book Bridal Consultation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Flagship Studio</h4>
+        <p class="leading-relaxed mb-2 text-stone-300">Studio 14-C, Fashion Avenue, MM Alam Road, Gulberg III, Lahore, Pakistan.</p>
+        <p class="text-stone-300 font-bold"><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> +92 343 3387801</p>
+        <p class="text-stone-300 font-bold"><i class="fa-solid fa-envelope text-rose-400 mr-2"></i> atelier@mahwishcouture.com</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-white text-xs uppercase tracking-widest mb-4">VIP Privileges</h4>
+        <p class="text-xs text-stone-400 mb-3">Join our private circle for early preview access to upcoming seasonal drops.</p>
+        <form onsubmit="event.preventDefault(); alert('Subscribed to VIP Atelier Circle!');" class="flex gap-2">
+          <input type="email" required placeholder="Enter your email" class="bg-black/60 border border-stone-700 px-3 py-2 rounded-lg text-white text-xs flex-1 focus:outline-none focus:border-rose-400" />
+          <button type="submit" class="px-4 py-2 bg-[#571c2c] text-white font-bold rounded-lg uppercase text-[10px]">Join</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-stone-500">
+      <div>© 2026 Mahwish Couture (Luxe Apparel). All Rights Reserved.</div>
+      <div>Portfolio Demo Crafted by <span class="text-rose-400 font-bold">Ahmed Wazir</span></div>
+    </div>
+  </footer>
+
+  <script>
+    let cartTotal = 2;
+    function addToBag(price) {
+      cartTotal++;
+      document.getElementById('cart-count').textContent = cartTotal;
+      alert(`Item added to your shopping bag! Total items: ${cartTotal}`);
+    }
+    function toggleCart() {
+      alert(`Shopping Bag: ${cartTotal} luxury couture pieces saved. Sample demo checkout.`);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Bids — Real Thrills | Pakistan's Premier Live Auto Auction</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #08080a;
+      color: #f1f5f9;
+    }
+    .bid-red {
+      color: #e60000;
+    }
+    .bg-bid-red {
+      background-color: #e60000;
+    }
+    .border-bid-red {
+      border-color: #e60000;
+    }
+  </style>
+</head>
+<body class="bg-[#08080a] text-slate-100 antialiased selection:bg-[#e60000] selection:text-white">
+
+  <!-- ================= TOP TICKER / LIVE AUCTION NOTICE ================= -->
+  <div class="bg-[#120406] border-b border-red-950/80 text-xs py-2 px-4 sm:px-8 text-neutral-300">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-3 text-[11px]">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-red-600/20 text-red-400 font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> LIVE AUCTIONS RUNNING
+        </span>
+        <span class="hidden md:inline text-neutral-600">|</span>
+        <span class="hidden md:inline text-neutral-400">Over 140+ inspected vehicles going under the digital hammer today</span>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <a href="#how" class="text-neutral-300 hover:text-red-400 font-medium">Bidding Guidelines</a>
+        <span class="text-neutral-700">|</span>
+        <a href="#inspection" class="text-neutral-300 hover:text-red-400 font-medium">Book Inspection</a>
+        <span class="text-neutral-700">|</span>
+        <span class="text-neutral-400"><i class="fa-solid fa-phone text-red-500 mr-1"></i> UAN: 042-111-BID-NOW</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN NAVBAR ================= -->
+  <header class="sticky top-0 z-50 bg-[#0c0c10]/95 backdrop-blur-xl border-b border-neutral-800 shadow-2xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-700 to-red-500 flex items-center justify-center text-white shadow-lg shadow-red-600/30">
+          <i class="fa-solid fa-gavel text-lg"></i>
+        </div>
+        <div>
+          <span class="text-xl font-black text-white tracking-wider uppercase">LIVE <span class="text-red-500">BIDS</span></span>
+          <span class="text-[9px] font-bold text-neutral-500 uppercase tracking-widest block -mt-1">Real Thrills Auto Auction</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-neutral-300">
+        <a href="#home" class="text-red-500 hover:text-red-400 transition">Live Auctions</a>
+        <a href="#popular" class="hover:text-red-400 transition">Popular Brands</a>
+        <a href="#certified" class="hover:text-red-400 transition">Certified Cars</a>
+        <a href="#sell" class="hover:text-red-400 transition">Sell Your Car</a>
+        <a href="#how" class="hover:text-red-400 transition">How It Works</a>
+        <a href="#app" class="hover:text-red-400 transition">Mobile App</a>
+      </nav>
+
+      <!-- Right Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="#sell" class="hidden sm:inline-block px-4 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs uppercase tracking-wider border border-neutral-700 transition">
+          Sell Car
+        </a>
+        <a href="#home" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/30 transition-all">
+          <i class="fa-solid fa-bolt mr-1"></i> Bid Now
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= HERO BANNER: LIVE BIDS. REAL THRILLS. ================= -->
+  <section id="home" class="relative overflow-hidden bg-gradient-to-b from-[#140508] via-[#0c0c10] to-[#08080a] py-24 sm:py-32 px-4 sm:px-8 border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Left Content -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-600/20 border border-red-500/40 text-red-400 text-xs font-black uppercase tracking-widest">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+          PAKISTAN'S FIRST DIGITAL AUTO AUCTION
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white uppercase tracking-tight leading-none">
+          LIVE BIDS. <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-500 to-amber-500">REAL THRILLS.</span>
+        </h1>
+
+        <p class="text-neutral-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+          Bid in real-time on 200-point inspected cars from across Pakistan. Transparent auction sheets, verified sellers, and secure escrow guarantees.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+          <a href="#live-grid" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-red-600 to-red-500 hover:brightness-110 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-red-600/40 transition-all hover:scale-105 flex items-center gap-2">
+            <i class="fa-solid fa-gavel"></i>
+            <span>Enter Live Auction</span>
+          </a>
+          <a href="#sell" class="px-8 py-3.5 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-white font-bold text-sm uppercase tracking-wider border border-neutral-700 transition-all">
+            List Your Car Free
+          </a>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-neutral-800/80 max-w-md mx-auto lg:mx-0">
+          <div>
+            <div class="text-2xl font-black text-white">4,800+</div>
+            <div class="text-[10px] text-neutral-400 uppercase font-bold">Cars Auctioned</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-red-500">98.4%</div>
+            <div class="text-[10px] text-neutral-400 uppercase font-bold">Successful Sales</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-white">PKR 12B+</div>
+            <div class="text-[10px] text-neutral-400 uppercase font-bold">Bids Traded</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visual: Dark Sports Car Mockup & Active Bidding Card -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative bg-gradient-to-b from-neutral-900 to-[#10080a] border border-red-500/30 rounded-3xl p-6 shadow-2xl overflow-hidden">
+          
+          <div class="relative h-60 rounded-2xl overflow-hidden mb-5 bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80" alt="Black Sports Sedan in Studio" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            
+            <!-- Live badge -->
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-red-600 text-white font-black text-[10px] uppercase flex items-center gap-1.5 shadow-lg">
+              <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> LIVE NOW
+            </div>
+
+            <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-amber-400 font-mono font-bold text-[11px] border border-amber-500/30">
+              <i class="fa-regular fa-clock mr-1"></i> Ends: 00:14:28
+            </div>
+
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <div class="text-lg font-black leading-tight">2023 Honda Civic RS Turbo</div>
+              <div class="text-xs text-neutral-300">Islamabad Registered · 14,200 km · Grade 4.5/A</div>
+            </div>
+          </div>
+
+          <!-- Bidding Board Details -->
+          <div class="space-y-4">
+            <div class="flex items-center justify-between p-3.5 bg-neutral-950/80 rounded-xl border border-neutral-800">
+              <div>
+                <span class="text-[10px] font-bold text-neutral-400 uppercase">Current Leading Bid</span>
+                <div class="text-2xl font-black text-red-500">PKR 8,450,000</div>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] font-bold text-neutral-400 uppercase">Total Bids Placed</span>
+                <div class="text-lg font-black text-white">24 Bidders</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button onclick="alert('Bid placed! New highest bidder.');" class="flex-1 py-3 bg-red-600 hover:bg-red-500 text-white font-black text-xs uppercase tracking-wider rounded-xl transition shadow-lg shadow-red-600/30">
+                Bid +PKR 50,000 (PKR 8.5M)
+              </button>
+              <button onclick="alert('Inspection sheet opened.');" class="px-4 py-3 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-bold text-xs rounded-xl border border-neutral-700">
+                <i class="fa-solid fa-file-pdf"></i> Sheet
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BODY TYPE SELECTOR ================= -->
+  <section class="py-10 bg-[#0e0e14] border-b border-neutral-800 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center text-xs font-bold text-neutral-400 uppercase tracking-widest mb-6">
+        Browse by Body Type
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+        
+        <div class="p-4 bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-800 hover:border-red-500 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition group">
+          <i class="fa-solid fa-car-side text-2xl text-neutral-400 group-hover:text-red-500 transition"></i>
+          <span class="text-xs font-bold text-neutral-200">Sedan</span>
+        </div>
+
+        <div class="p-4 bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-800 hover:border-red-500 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition group">
+          <i class="fa-solid fa-car text-2xl text-neutral-400 group-hover:text-red-500 transition"></i>
+          <span class="text-xs font-bold text-neutral-200">Hatchback</span>
+        </div>
+
+        <div class="p-4 bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-800 hover:border-red-500 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition group">
+          <i class="fa-solid fa-truck-monster text-2xl text-neutral-400 group-hover:text-red-500 transition"></i>
+          <span class="text-xs font-bold text-neutral-200">SUV & 4x4</span>
+        </div>
+
+        <div class="p-4 bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-800 hover:border-red-500 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition group">
+          <i class="fa-solid fa-car-rear text-2xl text-neutral-400 group-hover:text-red-500 transition"></i>
+          <span class="text-xs font-bold text-neutral-200">Crossover</span>
+        </div>
+
+        <div class="p-4 bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-800 hover:border-red-500 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition group">
+          <i class="fa-solid fa-crown text-2xl text-neutral-400 group-hover:text-red-500 transition"></i>
+          <span class="text-xs font-bold text-neutral-200">Luxury</span>
+        </div>
+
+        <div class="p-4 bg-neutral-900/80 hover:bg-neutral-800 border border-neutral-800 hover:border-red-500 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer transition group">
+          <i class="fa-solid fa-truck-pickup text-2xl text-neutral-400 group-hover:text-red-500 transition"></i>
+          <span class="text-xs font-bold text-neutral-200">Double Cabin</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= POPULAR BRANDS ================= -->
+  <section id="popular" class="py-14 px-4 sm:px-8 max-w-7xl mx-auto border-b border-neutral-800">
+    <div class="text-center mb-8">
+      <h3 class="text-xs font-black uppercase tracking-widest text-red-500">Featured Automotive Brands</h3>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4 text-center">
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">TOYOTA</div>
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">HONDA</div>
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">SUZUKI</div>
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">KIA</div>
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">HYUNDAI</div>
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">CHANGAN</div>
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">MG MOTORS</div>
+      <div class="p-3 bg-neutral-900/60 rounded-xl border border-neutral-800 font-bold text-xs text-neutral-300">HAVAL</div>
+    </div>
+  </section>
+
+  <!-- ================= CURRENT LIVE AUCTIONS GRID ================= -->
+  <section id="live-grid" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs font-black uppercase text-red-500 tracking-widest mb-1">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          REAL-TIME DIGITAL HAMMER
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-white uppercase">Current Live Auctions</h2>
+      </div>
+      <div class="flex items-center gap-3 mt-4 md:mt-0">
+        <button class="px-4 py-2 rounded-lg bg-red-600 text-white text-xs font-bold uppercase">All Active</button>
+        <button class="px-4 py-2 rounded-lg bg-neutral-900 text-neutral-400 hover:text-white text-xs font-bold uppercase">Ending Soon</button>
+        <button class="px-4 py-2 rounded-lg bg-neutral-900 text-neutral-400 hover:text-white text-xs font-bold uppercase">No Reserve</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Auction Card 1 -->
+      <div class="bg-neutral-900 border border-neutral-800 hover:border-red-500 rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl transition-all duration-300 group">
+        <div>
+          <div class="h-48 relative overflow-hidden bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" alt="Toyota Fortuner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-red-600 text-white font-black text-[10px] uppercase">Live: 28 Bids</span>
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/80 text-amber-400 font-mono text-[10px]">00:38:12</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-black text-white group-hover:text-red-500 transition leading-snug">2022 Toyota Fortuner Legender 2.8</h3>
+            <p class="text-xs text-neutral-400">Lahore · 26,000 km · 1st Owner · Sunroof · 4x4</p>
+            <div class="p-3 bg-neutral-950 rounded-xl border border-neutral-800/80 mt-3">
+              <span class="text-[10px] text-neutral-400 font-bold uppercase block">Highest Bid</span>
+              <span class="text-lg font-black text-red-500">PKR 17,200,000</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="alert('Place your bid on Toyota Fortuner Legender.');" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition">
+            Bid Now <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Auction Card 2 -->
+      <div class="bg-neutral-900 border border-neutral-800 hover:border-red-500 rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl transition-all duration-300 group">
+        <div>
+          <div class="h-48 relative overflow-hidden bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="KIA Sportage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-red-600 text-white font-black text-[10px] uppercase">Live: 19 Bids</span>
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/80 text-amber-400 font-mono text-[10px]">01:05:40</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-black text-white group-hover:text-red-500 transition leading-snug">2024 KIA Sportage AWD Alpha</h3>
+            <p class="text-xs text-neutral-400">Islamabad · 8,100 km · Bumper to Bumper Genuine</p>
+            <div class="p-3 bg-neutral-950 rounded-xl border border-neutral-800/80 mt-3">
+              <span class="text-[10px] text-neutral-400 font-bold uppercase block">Highest Bid</span>
+              <span class="text-lg font-black text-red-500">PKR 7,650,000</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="alert('Place your bid on KIA Sportage AWD.');" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition">
+            Bid Now <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Auction Card 3 -->
+      <div class="bg-neutral-900 border border-neutral-800 hover:border-red-500 rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl transition-all duration-300 group">
+        <div>
+          <div class="h-48 relative overflow-hidden bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" alt="Suzuki Swift" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-red-600 text-white font-black text-[10px] uppercase">Live: 14 Bids</span>
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/80 text-amber-400 font-mono text-[10px]">02:18:05</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-black text-white group-hover:text-red-500 transition leading-snug">2023 Suzuki Swift GLX CVT</h3>
+            <p class="text-xs text-neutral-400">Karachi · 19,400 km · Red · Push Start · Cruise</p>
+            <div class="p-3 bg-neutral-950 rounded-xl border border-neutral-800/80 mt-3">
+              <span class="text-[10px] text-neutral-400 font-bold uppercase block">Highest Bid</span>
+              <span class="text-lg font-black text-red-500">PKR 4,550,000</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="alert('Place your bid on Suzuki Swift GLX.');" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition">
+            Bid Now <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Auction Card 4 -->
+      <div class="bg-neutral-900 border border-neutral-800 hover:border-red-500 rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl transition-all duration-300 group">
+        <div>
+          <div class="h-48 relative overflow-hidden bg-neutral-950">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Hyundai Sonata" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-red-600 text-white font-black text-[10px] uppercase">Live: 31 Bids</span>
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/80 text-amber-400 font-mono text-[10px]">03:42:19</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-black text-white group-hover:text-red-500 transition leading-snug">2022 Hyundai Sonata 2.5</h3>
+            <p class="text-xs text-neutral-400">Lahore · 31,000 km · Panoramic Roof · Black</p>
+            <div class="p-3 bg-neutral-950 rounded-xl border border-neutral-800/80 mt-3">
+              <span class="text-[10px] text-neutral-400 font-bold uppercase block">Highest Bid</span>
+              <span class="text-lg font-black text-red-500">PKR 9,800,000</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="alert('Place your bid on Hyundai Sonata.');" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition">
+            Bid Now <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SELL YOUR CAR IN 3 EASY STEPS ================= -->
+  <section id="sell" class="py-20 bg-[#120508] border-y border-red-950/80 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="px-3 py-1 bg-red-600 text-white text-xs font-black uppercase rounded">NO HASSLE SELLING</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white uppercase">Sell Your Car In 3 Steps</h2>
+        <p class="text-neutral-400 text-xs sm:text-sm">Get the maximum market value with thousands of active buyers competing for your car.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-neutral-900/90 border border-neutral-800 p-8 rounded-2xl text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center text-2xl font-black mx-auto">
+            01
+          </div>
+          <h3 class="text-xl font-bold text-white">Free Doorstep Inspection</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Our certified inspectors run a complete 200+ point computer diagnostic scan and photograph your car right at your home.
+          </p>
+        </div>
+
+        <div class="bg-neutral-900/90 border border-neutral-800 p-8 rounded-2xl text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center text-2xl font-black mx-auto">
+            02
+          </div>
+          <h3 class="text-xl font-bold text-white">Set Your Reserve Price</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            You decide the minimum acceptable selling price. If the auction bids do not hit your reserve price, you owe zero commission.
+          </p>
+        </div>
+
+        <div class="bg-neutral-900/90 border border-neutral-800 p-8 rounded-2xl text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center text-2xl font-black mx-auto">
+            03
+          </div>
+          <h3 class="text-xl font-bold text-white">Live Bidding & Instant Cash</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Thousands of pre-verified buyers enter a live bidding war. Winner pays secure funds directly to your verified bank account.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DOWNLOAD MOBILE APP ================= -->
+  <section id="app" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="bg-gradient-to-r from-neutral-900 via-[#1a080c] to-neutral-900 border border-red-500/30 rounded-3xl p-8 sm:p-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-2xl">
+      <div class="lg:col-span-8 space-y-4">
+        <span class="px-3 py-1 rounded bg-red-600 text-white font-black text-xs uppercase">NEVER MISS A BID</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white uppercase leading-tight">
+          Download Live Bids Mobile App
+        </h2>
+        <p class="text-neutral-300 text-sm max-w-xl leading-relaxed">
+          Place live bids on the go with zero latency, receive instant outbid alerts, watch live engine revving audio clips, and inspect digital auction sheets on your smartphone.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <div class="px-6 py-3 rounded-xl bg-black border border-neutral-700 text-white flex items-center gap-3 cursor-pointer hover:border-red-500 transition">
+            <i class="fa-brands fa-apple text-2xl"></i>
+            <div>
+              <div class="text-[9px] text-neutral-400 uppercase">Download on the</div>
+              <div class="text-xs font-bold">Apple App Store</div>
+            </div>
+          </div>
+          <div class="px-6 py-3 rounded-xl bg-black border border-neutral-700 text-white flex items-center gap-3 cursor-pointer hover:border-red-500 transition">
+            <i class="fa-brands fa-google-play text-2xl text-red-400"></i>
+            <div>
+              <div class="text-[9px] text-neutral-400 uppercase">Get it on</div>
+              <div class="text-xs font-bold">Google Play Store</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 flex justify-center">
+        <div class="w-64 p-4 bg-neutral-950 rounded-3xl border-4 border-neutral-800 shadow-2xl text-center space-y-3">
+          <i class="fa-solid fa-mobile-screen-button text-4xl text-red-500"></i>
+          <div class="text-sm font-black text-white">Fast 1-Tap Bidding</div>
+          <p class="text-[11px] text-neutral-400">Rated 4.8/5 on Google Play by 45,000+ automotive bidders across Pakistan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-black text-neutral-400 text-xs pt-16 pb-12 border-t border-neutral-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white font-black"><i class="fa-solid fa-gavel text-sm"></i></div>
+          <span class="text-lg font-black text-white">LIVE <span class="text-red-500">BIDS</span></span>
+        </div>
+        <p class="text-neutral-400 leading-relaxed">
+          Pakistan's licensed live automotive bidding, vehicle verification and auction platform. Powered by verified inspections and secure escrow.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-black text-white uppercase text-xs tracking-wider mb-4">Quick Navigation</h4>
+        <ul class="space-y-2">
+          <li><a href="#live-grid" class="hover:text-red-400">Live Auction Rooms</a></li>
+          <li><a href="#sell" class="hover:text-red-400">Sell Car by Auction</a></li>
+          <li><a href="#popular" class="hover:text-red-400">Inspected Vehicles</a></li>
+          <li><a href="#app" class="hover:text-red-400">Download Mobile App</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-black text-white uppercase text-xs tracking-wider mb-4">Auction Centers</h4>
+        <p class="text-neutral-400 leading-relaxed mb-2">Lahore Auction Yard: Main Raiwind Road, Lahore.</p>
+        <p class="text-neutral-400 leading-relaxed mb-2">Karachi Auction Yard: Super Highway, Scheme 33, Karachi.</p>
+        <p class="text-neutral-400 leading-relaxed">Islamabad Inspection Hub: I-9 Industrial Area, Islamabad.</p>
+      </div>
+
+      <div>
+        <h4 class="font-black text-white uppercase text-xs tracking-wider mb-4">Contact & Support</h4>
+        <p class="mb-1 text-white font-bold"><i class="fa-solid fa-phone text-red-500 mr-2"></i> UAN: 042-111-BID-NOW (243669)</p>
+        <p class="mb-1 text-white font-bold"><i class="fa-solid fa-envelope text-red-500 mr-2"></i> support@livebids.pk</p>
+        <p class="text-neutral-400"><i class="fa-solid fa-clock text-red-500 mr-2"></i> 24/7 Digital Bidding Desk</p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 pt-8 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-neutral-500">
+      <div>© 2026 Live Bids Pakistan (Pvt) Ltd. All Rights Reserved.</div>
+      <div>Portfolio Demo Designed by <span class="text-red-500 font-bold">Ahmed Wazir</span></div>
+    </div>
+  </footer>
+
+</body>
+</html>

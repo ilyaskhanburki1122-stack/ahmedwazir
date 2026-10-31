@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmed Wazir | Professional Website Design Services</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Custom Styles -->
+    <!-- Custom Styles -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Dynamic Theme System (Controlled from Admin Dashboard) -->
+  <style id="dynamic-theme-style"></style>
+  <script>
+    (function() {
+      function hexToRgba(hex, alpha) {
+        if (!hex) return 'rgba(57, 120, 255, ' + alpha + ')';
+        hex = hex.replace('#', '');
+        if (hex.length === 3) hex = hex.split('').map(function(c) { return c + c; }).join('');
+        var r = parseInt(hex.substring(0, 2), 16) || 0;
+        var g = parseInt(hex.substring(2, 4), 16) || 0;
+        var b = parseInt(hex.substring(4, 6), 16) || 0;
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+      }
+
+      window.applyWebsiteTheme = function(primary, secondary) {
+        if (!primary || !secondary) return;
+        var styleEl = document.getElementById('dynamic-theme-style');
+        if (!styleEl) {
+          styleEl = document.createElement('style');
+          styleEl.id = 'dynamic-theme-style';
+          document.head.appendChild(styleEl);
+        }
+
+        var p20 = hexToRgba(primary, 0.2);
+        var p35 = hexToRgba(primary, 0.35);
+        var p50 = hexToRgba(primary, 0.5);
+        var s20 = hexToRgba(secondary, 0.2);
+        var s35 = hexToRgba(secondary, 0.35);
+        var s50 = hexToRgba(secondary, 0.5);
+        var s80 = hexToRgba(secondary, 0.8);
+
+        styleEl.textContent = 
+          ':root {\n' +
+          '  --primary-accent: ' + primary + ' !important;\n' +
+          '  --secondary-accent: ' + secondary + ' !important;\n' +
+          '  --border-glow: ' + p35 + ' !important;\n' +
+          '}\n' +
+          '.from-\\[\\#3978FF\\] {\n' +
+          '  --tw-gradient-from: ' + primary + ' var(--tw-gradient-from-position) !important;\n' +
+          '  --tw-gradient-to: ' + primary + ' var(--tw-gradient-to-position) !important;\n' +
+          '  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;\n' +
+          '}\n' +
+          '.via-\\[\\#00D4FF\\] {\n' +
+          '  --tw-gradient-to: ' + secondary + ' var(--tw-gradient-to-position) !important;\n' +
+          '  --tw-gradient-stops: var(--tw-gradient-from), ' + secondary + ' var(--tw-gradient-via-position), var(--tw-gradient-to) !important;\n' +
+          '}\n' +
+          '.to-\\[\\#60a5fa\\], .to-\\[\\#00D4FF\\], .to-\\[\\#2563eb\\] {\n' +
+          '  --tw-gradient-to: ' + secondary + ' var(--tw-gradient-to-position) !important;\n' +
+          '}\n' +
+          '.text-\\[\\#00D4FF\\], .text-\\[\\#3978FF\\], .text-cyan-400, .text-cyan-300, .text-blue-400, .text-blue-500 {\n' +
+          '  color: ' + secondary + ' !important;\n' +
+          '}\n' +
+          '.bg-\\[\\#00D4FF\\] { background-color: ' + secondary + ' !important; }\n' +
+          '.bg-\\[\\#3978FF\\] { background-color: ' + primary + ' !important; }\n' +
+          '.bg-\\[\\#3978FF\\]\\/10 { background-color: ' + p20 + ' !important; }\n' +
+          '.bg-\\[\\#3978FF\\]\\/20 { background-color: ' + p20 + ' !important; }\n' +
+          '.bg-\\[\\#00D4FF\\]\\/15, .bg-\\[\\#00D4FF\\]\\/20 { background-color: ' + s20 + ' !important; }\n' +
+          '.from-\\[\\#3978FF\\]\\/20 {\n' +
+          '  --tw-gradient-from: ' + p20 + ' var(--tw-gradient-from-position) !important;\n' +
+          '  --tw-gradient-to: ' + p20 + ' var(--tw-gradient-to-position) !important;\n' +
+          '  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;\n' +
+          '}\n' +
+          '.via-\\[\\#00D4FF\\]\\/15 {\n' +
+          '  --tw-gradient-to: ' + s20 + ' var(--tw-gradient-to-position) !important;\n' +
+          '  --tw-gradient-stops: var(--tw-gradient-from), ' + s20 + ' var(--tw-gradient-via-position), var(--tw-gradient-to) !important;\n' +
+          '}\n' +
+          '.border-\\[\\#3978FF\\], .border-\\[\\#3978FF\\]\\/20, .border-\\[\\#3978FF\\]\\/30, .border-\\[\\#3978FF\\]\\/40 {\n' +
+          '  border-color: ' + p35 + ' !important;\n' +
+          '}\n' +
+          '.border-\\[\\#00D4FF\\]\\/50 { border-color: ' + s50 + ' !important; }\n' +
+          '.shadow-\\[\\#3978FF\\]\\/30, .shadow-\\[\\#3978FF\\]\\/40 {\n' +
+          '  box-shadow: 0 10px 30px -5px ' + p35 + ' !important;\n' +
+          '}\n' +
+          '.hex-badge {\n' +
+          '  background: linear-gradient(135deg, ' + primary + ' 0%, ' + secondary + ' 100%) !important;\n' +
+          '  box-shadow: 0 0 22px ' + p50 + ' !important;\n' +
+          '}\n' +
+          '.nav-underline {\n' +
+          '  background: linear-gradient(90deg, ' + primary + ' 0%, ' + secondary + ' 100%) !important;\n' +
+          '  box-shadow: 0 0 12px ' + s80 + ' !important;\n' +
+          '}\n' +
+          '.glass-card:hover {\n' +
+          '  border-color: ' + p50 + ' !important;\n' +
+          '  box-shadow: 0 10px 30px -10px ' + p35 + ' !important;\n' +
+          '}\n' +
+          '.glass-card-featured {\n' +
+          '  background: linear-gradient(135deg, ' + p20 + ' 0%, rgba(17, 20, 28, 0.9) 100%) !important;\n' +
+          '  border: 1.5px solid ' + p50 + ' !important;\n' +
+          '  box-shadow: 0 0 30px ' + p20 + ' !important;\n' +
+          '}\n' +
+          '::selection {\n' +
+          '  background: ' + primary + ' !important;\n' +
+          '  color: #ffffff !important;\n' +
+          '}\n' +
+          '::-webkit-scrollbar-thumb:hover { background: ' + primary + ' !important; }\n' +
+          '.custom-cursor-dot { background: ' + secondary + ' !important; }\n' +
+          '.custom-cursor-glow { box-shadow: 0 0 35px 15px ' + s20 + ' !important; }\n' +
+          'a[href="#portfolio"].bg-gradient-to-r, a.btn-theme-primary {\n' +
+          '  background-image: linear-gradient(to right, ' + primary + ', ' + secondary + ') !important;\n' +
+          '}\n';
+      };
+
+      try {
+        var savedTheme = localStorage.getItem('aw_dashboard_theme');
+        if (savedTheme) {
+          var t = JSON.parse(savedTheme);
+          if (t && t.primary && t.secondary) {
+            window.applyWebsiteTheme(t.primary, t.secondary);
+          }
+        }
+      } catch (e) {}
+
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'aw_dashboard_theme') {
+          try {
+            var t = JSON.parse(e.newValue);
+            if (t && t.primary && t.secondary) {
+              window.applyWebsiteTheme(t.primary, t.secondary);
+            }
+          } catch(err) {}
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#3b82f6',
+              dark: '#07090e',
+              card: 'rgba(15, 23, 42, 0.65)',
+              green: '#10b981',
+              amber: '#f59e0b'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#08090D] text-slate-100 antialiased selection:bg-[#3978FF] selection:text-white">
+
+
+  <!-- Custom Glowing Mouse Cursor -->
+  <div id="custom-cursor-dot" class="custom-cursor-dot"></div>
+  <div id="custom-cursor-glow" class="custom-cursor-glow"></div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="main-header" class="sticky top-0 z-50 pt-4 px-3 sm:px-6 transition-all duration-300">
+    <div class="max-w-7xl mx-auto glass-card bg-[#070b15]/90 backdrop-blur-xl border border-slate-800/90 rounded-2xl md:rounded-3xl py-2.5 px-4 sm:px-6 flex items-center justify-between shadow-2xl shadow-blue-950/30">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <!-- Hexagon Badge Icon -->
+        <div class="hex-badge">
+          <div class="hex-badge-inner">
+            <span class="font-black text-white text-xs tracking-widest">AW</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="flex items-center text-lg sm:text-xl font-extrabold tracking-wide text-white">
+            <span>AHMED</span>
+            <span class="text-blue-400 ml-1.5 font-bold">WAZIR</span>
+          </div>
+          <!-- Underline with Dot -->
+          <div class="flex items-center gap-1 mt-0.5">
+            <div class="h-[2px] w-9 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_#22d3ee]"></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-semibold text-sm">
+        <a href="#hero" class="nav-link active">
+          Home
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#about" class="nav-link">
+          About Me
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#services" class="nav-link">
+          Services
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#portfolio" class="nav-link">
+          Portfolio
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#pricing" class="nav-link">
+          Pricing
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#testimonials" class="nav-link">
+          Client Reviews
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#contact" class="nav-link">
+          Contact
+          <span class="nav-underline"></span>
+        </a>
+      </nav>
+
+      <!-- Right Action Button: Chat Us -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="https://wa.me/923433387801" target="_blank" class="px-5 py-2.5 rounded-2xl btn-whatsapp text-white font-bold text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/25 hover:scale-105 transition-all">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          <span>Chat Us</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="lg:hidden text-slate-300 hover:text-white text-2xl focus:outline-none p-1">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden mt-3 p-6 glass-card bg-[#070b15]/95 backdrop-blur-2xl rounded-2xl mx-2 flex flex-col gap-3 text-center border border-slate-800 shadow-2xl">
+      <a href="#hero" class="text-slate-200 hover:text-blue-400 font-semibold py-2">Home</a>
+      <a href="#about" class="text-slate-200 hover:text-blue-400 font-semibold py-2">About Me</a>
+      <a href="#services" class="text-slate-200 hover:text-blue-400 font-semibold py-2">Services</a>
+      <a href="#portfolio" class="text-slate-200 hover:text-blue-400 font-semibold py-2">Portfolio</a>
+      <a href="#pricing" class="text-slate-200 hover:text-blue-400 font-semibold py-2">Pricing</a>
+      <a href="#testimonials" class="text-slate-200 hover:text-blue-400 font-semibold py-2">Client Reviews</a>
+      <a href="#contact" class="text-slate-200 hover:text-blue-400 font-semibold py-2">Contact</a>
+      <a href="https://wa.me/923433387801" target="_blank" class="w-full py-3 rounded-xl btn-whatsapp text-white font-bold text-center mt-2 flex items-center justify-center gap-2">
+        <i class="fa-brands fa-whatsapp text-xl"></i> Chat Us
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="hero" class="relative pt-12 pb-20 px-4 sm:px-8 overflow-hidden">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Left Content -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        
+        <!-- Pill Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3978FF]/10 border border-[#3978FF]/30 text-[#00D4FF] text-xs sm:text-sm font-semibold tracking-wide">
+          <span class="w-2 h-2 rounded-full bg-[#00D4FF] animate-pulse"></span>
+          PROFESSIONAL WEBSITE DESIGNER & DEVELOPER
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+          <span class="block text-2xl sm:text-3xl font-extrabold text-[#00D4FF] mb-2 tracking-wider">AHMED WAZIR</span>
+          Turning Ideas Into <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3978FF] via-[#00D4FF] to-[#60a5fa]">Powerful Digital Experiences.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-[#A4ACBA] text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+          I design modern, responsive and professional websites that help businesses build their online presence and grow.
+        </p>
+
+        <!-- Trust Rating Badge -->
+        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#11141C]/80 border border-slate-800 text-sm">
+          <div class="flex text-amber-400 text-sm gap-1">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <span class="text-white font-semibold">5.0 Star Rating</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-[#00D4FF] font-medium">150+ Satisfied Clients</span>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="space-y-4 pt-2">
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <a href="#portfolio" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#3978FF] to-[#2563eb] hover:from-[#2563eb] hover:to-[#1d4ed8] text-white font-extrabold text-sm flex items-center gap-2 shadow-lg shadow-[#3978FF]/30 transition-all hover:scale-105">
+              <span>Explore My Portfolio</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Sub-features Bullet Line -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-[#A4ACBA] font-semibold pt-1">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#00D4FF] font-bold"></i> Free Consultation</span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#00D4FF] font-bold"></i> Fast Delivery</span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#00D4FF] font-bold"></i> 100% Satisfaction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visual: Website Design & Development Showcase Card -->
+      <div class="lg:col-span-5 relative flex flex-col items-center" id="hero-workspace-wrapper">
+
+        <!-- Ambient Electric Blue & Cyan glow -->
+        <div class="absolute -inset-6 bg-gradient-to-r from-[#3978FF]/20 via-[#00D4FF]/15 to-[#3978FF]/20 rounded-3xl blur-3xl pointer-events-none"></div>
+
+        <!-- Workspace Card: Modern Web Design & Development UI Card -->
+        <div class="relative w-full mx-auto max-w-lg" id="hero-workspace-card">
+
+          <div class="relative bg-[#0c1220]/95 border border-[#3978FF]/30 rounded-3xl p-6 sm:p-7 shadow-[0_0_55px_-10px_rgba(57,120,255,0.3)] backdrop-blur-2xl transition-all duration-300 hover:shadow-[0_0_65px_-5px_rgba(0,212,255,0.4)] hover:border-[#00D4FF]/50 overflow-hidden">
+            
+            <!-- Ambient top cyan light -->
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-56 h-24 bg-[#00D4FF]/20 blur-3xl pointer-events-none rounded-full"></div>
+            <!-- Subtle dark grid texture -->
+            <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none"></div>
+
+            <!-- Top Row: Icon Badge + Heading (Website Design & Development) -->
+            <div class="flex items-center gap-4 relative z-10">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3978FF] via-blue-600 to-[#00D4FF] flex items-center justify-center text-white shadow-lg shadow-[#3978FF]/40 shrink-0">
+                <i class="fa-solid fa-laptop-code text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-white font-bold text-xl sm:text-2xl tracking-tight leading-tight">Web Design & Development</h3>
+                <p class="text-[#00D4FF] text-xs sm:text-sm font-medium mt-0.5">WordPress, E-Commerce & Custom Web</p>
+              </div>
+            </div>
+
+            <!-- Middle Row: 3 Website Tech Boxes (WordPress, E-Commerce, Modern UI/UX) -->
+            <div class="grid grid-cols-3 gap-3 sm:gap-3.5 mt-6 relative z-10">
+              <!-- WordPress Box -->
+              <div class="bg-[#111827]/90 hover:bg-[#162035] border border-slate-800 hover:border-[#00D4FF]/60 rounded-2xl p-4 flex flex-col items-center justify-center gap-2.5 transition-all duration-300 hover:scale-[1.03] group shadow-inner">
+                <div class="w-10 h-10 rounded-xl bg-[#00D4FF]/15 flex items-center justify-center text-[#00D4FF] group-hover:scale-110 transition-transform">
+                  <i class="fa-brands fa-wordpress text-2xl"></i>
+                </div>
+                <span class="text-xs font-semibold text-slate-300 tracking-wide">WordPress</span>
+              </div>
+
+              <!-- E-Commerce Box -->
+              <div class="bg-[#111827]/90 hover:bg-[#162035] border border-slate-800 hover:border-emerald-500/60 rounded-2xl p-4 flex flex-col items-center justify-center gap-2.5 transition-all duration-300 hover:scale-[1.03] group shadow-inner">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-cart-shopping text-2xl"></i>
+                </div>
+                <span class="text-xs font-semibold text-slate-300 tracking-wide">E-Commerce</span>
+              </div>
+
+              <!-- Custom UI/UX Web Box -->
+              <div class="bg-[#111827]/90 hover:bg-[#162035] border border-slate-800 hover:border-[#3978FF]/60 rounded-2xl p-4 flex flex-col items-center justify-center gap-2.5 transition-all duration-300 hover:scale-[1.03] group shadow-inner">
+                <div class="w-10 h-10 rounded-xl bg-[#3978FF]/15 flex items-center justify-center text-[#3978FF] group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-code text-2xl"></i>
+                </div>
+                <span class="text-xs font-semibold text-slate-300 tracking-wide">Custom Web</span>
+              </div>
+            </div>
+
+            <!-- Bottom Row: Website Performance & Quality Score (99%) -->
+            <div class="mt-4 sm:mt-5 bg-[#111827]/90 border border-slate-800 rounded-2xl p-4 sm:p-5 relative z-10 shadow-inner">
+              <div class="flex items-center justify-between text-xs sm:text-sm">
+                <span class="font-semibold text-slate-200">Website Quality & Client Satisfaction</span>
+                <span class="font-bold text-[#00D4FF] font-mono tracking-wide">99%</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-900/90 rounded-full mt-3 overflow-hidden p-0.5 border border-slate-800/80">
+                <div class="h-full rounded-full bg-gradient-to-r from-[#3978FF] via-[#00D4FF] to-emerald-400 shadow-[0_0_12px_rgba(0,212,255,0.7)] transition-all duration-1000" style="width: 99%;"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div><!-- /hero-workspace-card -->
+
+        <!-- Stat Counters Bar -->
+        <div id="stats-section" class="w-full max-w-lg mt-4 glass-card p-4 sm:p-5 rounded-2xl border border-slate-700/60 bg-slate-900/80 backdrop-blur-xl shadow-2xl">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center divide-x-0 sm:divide-x divide-slate-800/80">
+            <div class="px-2 py-1">
+              <div class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center justify-center gap-1">
+                <span class="stat-counter" data-target="250">0</span>
+                <span class="text-[#38bdf8] font-black">+</span>
+              </div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mt-1.5 leading-snug">WEBSITES DELIVERED</div>
+            </div>
+            <div class="px-2 py-1">
+              <div class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center justify-center gap-1">
+                <span class="stat-counter" data-target="180">0</span>
+                <span class="text-[#38bdf8] font-black">+</span>
+              </div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mt-1.5 leading-snug">HAPPY CLIENTS</div>
+            </div>
+            <div class="px-2 py-1">
+              <div class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center justify-center gap-1">
+                <span class="stat-counter" data-target="4">0</span>
+                <span class="text-[#38bdf8] font-black">+</span>
+              </div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mt-1.5 leading-snug">YEARS EXPERIENCE</div>
+            </div>
+            <div class="px-2 py-1">
+              <div class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center justify-center gap-1">
+                <span class="stat-counter" data-target="98">0</span>
+                <span class="text-[#38bdf8] font-black">%</span>
+              </div>
+              <div class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mt-1.5 leading-snug">CLIENT RETENTION</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /hero grid -->
+  </section><!-- /hero section -->
+
+  <!-- ================= TECH STACK / MARQUEE TICKER ================= -->
+
+  <section class="py-6 border-y border-slate-800/80 bg-slate-950/60 overflow-hidden">
+    <div class="marquee-wrapper">
+      <div class="marquee-content text-slate-400 text-sm font-semibold flex items-center">
+        <span class="flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-500 text-lg"></i> HTML5 & CSS3</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-react text-cyan-400 text-lg"></i> React.js</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-node text-green-500 text-lg"></i> Node.js</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-wordpress text-blue-400 text-lg"></i> WordPress</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-figma text-purple-400 text-lg"></i> UI/UX Figma</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-js text-yellow-400 text-lg"></i> JavaScript ES6+</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-shopify text-emerald-500 text-lg"></i> Shopify & WooCommerce</span>
+      </div>
+      <div class="marquee-content text-slate-400 text-sm font-semibold flex items-center">
+        <span class="flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-500 text-lg"></i> HTML5 & CSS3</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-react text-cyan-400 text-lg"></i> React.js</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-node text-green-500 text-lg"></i> Node.js</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-wordpress text-blue-400 text-lg"></i> WordPress</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-figma text-purple-400 text-lg"></i> UI/UX Figma</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-js text-yellow-400 text-lg"></i> JavaScript ES6+</span>
+        <span class="flex items-center gap-2"><i class="fa-brands fa-shopify text-emerald-500 text-lg"></i> Shopify & WooCommerce</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES SECTION ================= -->
+  <section id="services" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto relative">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-block px-4 py-1.5 rounded-full bg-[#3978FF]/10 border border-[#3978FF]/30 text-[#00D4FF] text-xs font-semibold uppercase tracking-wider mb-3">
+        OUR SERVICES
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
+        Websites Built for <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3978FF] via-[#00D4FF] to-blue-400">Every Business</span>
+      </h2>
+      <p class="text-[#A4ACBA] text-base sm:text-lg mt-4">
+        From custom e-commerce stores to academy platforms and high-converting corporate portals, I craft digital experiences tailored to your goals.
+      </p>
+    </div>
+
+    <!-- 12 Service Cards Grid: 3 cols on desktop, 2 on tablets, 1 on mobile -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      
+      <!-- 1. Business Website Design -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-[#3978FF]/60 hover:shadow-xl hover:shadow-[#3978FF]/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-[#3978FF] text-2xl mb-6 group-hover:bg-[#3978FF] group-hover:text-white transition-all">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-[#00D4FF] transition">Business Website Design</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Sleek corporate websites that establish instant credibility, communicate value propositions, and turn visitors into qualified leads.
+          </p>
+        </div>
+        <a href="#contact" class="text-[#00D4FF] font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 2. E-Commerce Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-emerald-400 transition">E-Commerce Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Feature-packed online stores with product catalogs, smooth checkout funnels, inventory tracking, and payment gateways.
+          </p>
+        </div>
+        <a href="#contact" class="text-emerald-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 3. WordPress Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-indigo-500/60 hover:shadow-xl hover:shadow-indigo-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+            <i class="fa-brands fa-wordpress"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-indigo-400 transition">WordPress Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Custom-built WordPress solutions offering effortless content editing, custom themes, robust plugins, and top-tier security.
+          </p>
+        </div>
+        <a href="#contact" class="text-indigo-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 4. WooCommerce Store -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-purple-400 transition">WooCommerce Store</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Scalable WooCommerce setups configured for local Pakistani & international shipping, tax calculation, and order automation.
+          </p>
+        </div>
+        <a href="#contact" class="text-purple-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 5. School & Academy Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-amber-500/60 hover:shadow-xl hover:shadow-amber-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-amber-400 transition">School & Academy Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Educational portals equipped with student admission forms, teacher directories, fee notices, and LMS online learning modules.
+          </p>
+        </div>
+        <a href="#contact" class="text-amber-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 6. Restaurant Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-orange-500/60 hover:shadow-xl hover:shadow-orange-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 text-2xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-orange-400 transition">Restaurant Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Mouth-watering food presentation layouts, interactive digital menus, table reservation engines, and WhatsApp ordering.
+          </p>
+        </div>
+        <a href="#contact" class="text-orange-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 7. Hospital Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-teal-500/60 hover:shadow-xl hover:shadow-teal-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 text-2xl mb-6 group-hover:bg-teal-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-hospital"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-teal-400 transition">Hospital Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Trust-building medical layouts featuring doctor schedules, department overviews, online appointment booking, and emergency contacts.
+          </p>
+        </div>
+        <a href="#contact" class="text-teal-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 8. Real Estate Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-rose-500/60 hover:shadow-xl hover:shadow-rose-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 text-2xl mb-6 group-hover:bg-rose-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-building"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-rose-400 transition">Real Estate Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Luxury property showcases with high-res photo galleries, location filters, price breakdowns, and direct agent inquiry forms.
+          </p>
+        </div>
+        <a href="#contact" class="text-rose-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 9. Transport Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-sky-500/60 hover:shadow-xl hover:shadow-sky-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl mb-6 group-hover:bg-sky-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-sky-400 transition">Transport Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Fleet tracking pages, shipment quote calculators, logistics service catalogs, and instant driver/cargo coordination.
+          </p>
+        </div>
+        <a href="#contact" class="text-sky-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 10. Portfolio Website -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-cyan-500/60 hover:shadow-xl hover:shadow-cyan-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-[#00D4FF] text-2xl mb-6 group-hover:bg-[#00D4FF] group-hover:text-black transition-all">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-[#00D4FF] transition">Portfolio Website</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Showcase your talent with stunning personal portfolios for freelancers, photographers, designers, and high-ticket consultants.
+          </p>
+        </div>
+        <a href="#contact" class="text-[#00D4FF] font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 11. Landing Page Design -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-violet-500/60 hover:shadow-xl hover:shadow-violet-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400 text-2xl mb-6 group-hover:bg-violet-600 group-hover:text-white transition-all">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-violet-400 transition">Landing Page Design</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            High-converting single-page landing experiences built for Facebook/Google ad campaigns with blazing sub-second load speed.
+          </p>
+        </div>
+        <a href="#contact" class="text-violet-400 font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- 12. Custom Website Development -->
+      <div class="glass-card p-7 sm:p-8 rounded-2xl group border border-slate-800 hover:border-blue-500/60 hover:shadow-xl hover:shadow-blue-500/15 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-2xl bg-[#3978FF]/10 border border-[#3978FF]/30 flex items-center justify-center text-[#3978FF] text-2xl mb-6 group-hover:bg-[#3978FF] group-hover:text-white transition-all">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2.5 group-hover:text-[#00D4FF] transition">Custom Website Development</h3>
+          <p class="text-[#A4ACBA] text-sm leading-relaxed mb-6">
+            Tailor-made web solutions built from scratch with clean modern code (HTML5, Tailwind, React, Node.js) with zero limitations.
+          </p>
+        </div>
+        <a href="#contact" class="text-[#3978FF] font-semibold text-sm inline-flex items-center gap-2 group-hover:translate-x-1.5 transition-transform">
+          Get Started <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ME / WHY CHOOSE US SECTION ================= -->
+  <section id="about" class="py-24 px-4 sm:px-8 bg-[#0a0d15] border-y border-slate-800/80 relative overflow-hidden">
+    <div id="why-us"></div>
+    
+    <!-- Ambient Blue & Cyan Glows -->
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#3978FF]/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <!-- ================= ABOUT ME PROFILE BLOCK ================= -->
+      <div class="mb-24 glass-card bg-[#11141C]/80 border border-[#3978FF]/20 rounded-3xl p-6 sm:p-12 shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Left Column: Ahmed Wazir Profile Photo -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="relative group">
+              <!-- Outer glowing aura -->
+              <div class="absolute -inset-3 bg-gradient-to-r from-[#3978FF] to-[#00D4FF] rounded-3xl blur-xl opacity-35 group-hover:opacity-65 transition duration-500"></div>
+              
+              <!-- Image Frame -->
+              <div class="relative w-64 h-80 sm:w-72 sm:h-96 rounded-2xl bg-[#090d18] border-2 border-[#3978FF]/40 overflow-hidden shadow-2xl">
+                <img src="ahmed-profile.jpg" alt="Ahmed Wazir - Lead Designer & Developer" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" />
+                
+                <!-- Bottom Scrim Gradient & Title -->
+                <div class="absolute inset-x-0 bottom-0 pt-16 pb-7 px-4 bg-gradient-to-t from-[#08090D] via-[#08090D]/80 to-transparent text-center">
+                  <h4 class="text-xl font-black text-white tracking-wide drop-shadow-md">AHMED WAZIR</h4>
+                  <p class="text-xs text-[#00D4FF] font-semibold tracking-wider uppercase mt-0.5">Lead Designer & Developer</p>
+                </div>
+              </div>
+
+              <!-- Available Badge -->
+              <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#08090D] border border-emerald-500/60 shadow-lg flex items-center gap-2 whitespace-nowrap z-20">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-[11px] font-bold text-emerald-400 tracking-wide">Available for New Projects</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Bio & Introduction -->
+          <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-[#3978FF]/10 border border-[#3978FF]/30 text-[#00D4FF] text-xs font-semibold uppercase tracking-wider">
+              ABOUT THE CREATOR
+            </div>
+            
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+              Meet the Designer <br class="hidden sm:block" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3978FF] via-[#00D4FF] to-blue-400">Behind the Work</span>
+            </h2>
+            
+            <div>
+              <div class="text-xl font-bold text-white">AHMED WAZIR</div>
+              <div class="text-sm font-semibold text-[#00D4FF]">Professional Website Designer & Developer</div>
+            </div>
+
+            <p class="text-[#A4ACBA] text-sm sm:text-base leading-relaxed">
+              I specialize in creating attractive, modern, and high-converting websites for businesses across diverse industries. From corporate brands and online stores to academies, hospitals, real estate agencies, and luxury fashion labels, I engineer digital solutions that solve real business challenges.
+            </p>
+
+            <p class="text-[#A4ACBA] text-sm sm:text-base leading-relaxed">
+              Every website I build is 100% mobile responsive, ultra-fast, and search-engine optimized to turn first-time visitors into long-term clients.
+            </p>
+
+            <!-- Skills Pills -->
+            <div class="pt-2 flex flex-wrap gap-2 justify-center lg:justify-start">
+              <span class="px-3 py-1 rounded-lg bg-[#08090D] border border-slate-800 text-xs text-white font-medium">WordPress & WooCommerce</span>
+              <span class="px-3 py-1 rounded-lg bg-[#08090D] border border-slate-800 text-xs text-white font-medium">React.js & Tailwind CSS</span>
+              <span class="px-3 py-1 rounded-lg bg-[#08090D] border border-slate-800 text-xs text-white font-medium">UI/UX Wireframing</span>
+              <span class="px-3 py-1 rounded-lg bg-[#08090D] border border-slate-800 text-xs text-white font-medium">Speed Tuning (99+ PageSpeed)</span>
+              <span class="px-3 py-1 rounded-lg bg-[#08090D] border border-slate-800 text-xs text-white font-medium">SEO Architecture</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start">
+              <a href="#portfolio" class="px-6 py-3 rounded-xl bg-gradient-to-r from-[#3978FF] to-[#2563eb] text-white font-bold text-xs sm:text-sm shadow-lg shadow-[#3978FF]/30 hover:scale-105 transition-all flex items-center gap-2">
+                <span>View My Work</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+              <a href="#contact" class="px-6 py-3 rounded-xl bg-[#08090D] border border-slate-700 text-white font-bold text-xs sm:text-sm hover:border-[#3978FF] hover:text-[#00D4FF] transition-all">
+                <span>Get In Touch</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section Header: Why Clients Choose Ahmed Wazir -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-[#3978FF]/10 border border-[#3978FF]/30 text-[#00D4FF] text-xs font-semibold uppercase tracking-wider mb-3">
+          WHY CHOOSE US
+        </div>
+        <h3 class="text-3xl sm:text-5xl font-extrabold text-white">
+          Why Clients Trust <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3978FF] via-[#00D4FF] to-blue-400">Ahmed Wazir</span>
+        </h3>
+        <p class="text-[#A4ACBA] text-base sm:text-lg mt-4">
+          We combine cutting-edge technology with creative UI/UX design to deliver web solutions that drive measurable business results.
+        </p>
+      </div>
+
+      <!-- 8 Advantage Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">100% Mobile Responsive</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Perfect layout display across all smartphones, tablets, and wide screen monitors.</p>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">Ultra Fast Speed</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Optimized code structure ensuring sub-second load times and 99+ Google PageSpeed score.</p>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">SEO Optimized</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Built-in search engine optimization setup to rank higher on Google search results.</p>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">24/7 Support</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Dedicated post-launch technical assistance and maintenance support whenever needed.</p>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">Custom UI/UX Design</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Unique modern design aesthetics built strictly tailored to your specific brand identity.</p>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">On-Time Delivery</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Strict adherence to project timelines with regular progress updates during development.</p>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">Secure & Scalable</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Clean code architecture with top security protocols against vulnerabilities.</p>
+        </div>
+
+        <div class="glass-card p-6 flex flex-col items-start">
+          <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+          <h4 class="font-bold text-lg text-white mb-2">Affordable Pricing</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Transparent competitive packages with zero hidden costs or setup surprises.</p>
+        </div>
+
+      </div>
+
+      <!-- 5-Step Process Section matching Image 2 -->
+      <div class="mt-20 pt-10 border-t border-slate-800/60">
+        <div class="text-center mb-16">
+          <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            A Simple, Transparent <span class="text-[#38bdf8]">5-Step Process</span>
+          </h3>
+        </div>
+        
+        <div class="relative grid grid-cols-1 md:grid-cols-5 gap-8 max-w-7xl mx-auto">
+          <!-- Horizontal Connecting Line for Desktop -->
+          <div class="hidden md:block absolute top-7 left-14 right-14 h-[1px] bg-slate-800/90 -z-0"></div>
+
+          <!-- Step 01 -->
+          <div class="flex flex-col items-center text-center relative z-10 group">
+            <div class="w-14 h-14 rounded-2xl bg-[#090f1d] border border-slate-700/80 text-white font-black text-base flex items-center justify-center mb-5 group-hover:border-blue-500 group-hover:text-[#38bdf8] shadow-xl transition-all">
+              01
+            </div>
+            <h4 class="font-extrabold text-base text-white mb-2 group-hover:text-[#38bdf8] transition-colors">Discovery Call</h4>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-[210px]">
+              We talk on WhatsApp about your business, goals and the pages you need.
+            </p>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="flex flex-col items-center text-center relative z-10 group">
+            <div class="w-14 h-14 rounded-2xl bg-[#090f1d] border border-slate-700/80 text-white font-black text-base flex items-center justify-center mb-5 group-hover:border-blue-500 group-hover:text-[#38bdf8] shadow-xl transition-all">
+              02
+            </div>
+            <h4 class="font-extrabold text-base text-white mb-2 group-hover:text-[#38bdf8] transition-colors">Design Concept</h4>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-[210px]">
+              You receive a premium design preview before a single line of code is written.
+            </p>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="flex flex-col items-center text-center relative z-10 group">
+            <div class="w-14 h-14 rounded-2xl bg-[#090f1d] border border-slate-700/80 text-white font-black text-base flex items-center justify-center mb-5 group-hover:border-blue-500 group-hover:text-[#38bdf8] shadow-xl transition-all">
+              03
+            </div>
+            <h4 class="font-extrabold text-base text-white mb-2 group-hover:text-[#38bdf8] transition-colors">Domain & Hosting</h4>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-[210px]">
+              You pay 50% advance payment so we can purchase your domain, hosting and other required tools.
+            </p>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="flex flex-col items-center text-center relative z-10 group">
+            <div class="w-14 h-14 rounded-2xl bg-[#090f1d] border border-slate-700/80 text-white font-black text-base flex items-center justify-center mb-5 group-hover:border-blue-500 group-hover:text-[#38bdf8] shadow-xl transition-all">
+              04
+            </div>
+            <h4 class="font-extrabold text-base text-white mb-2 group-hover:text-[#38bdf8] transition-colors">Review & Corrections</h4>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-[210px]">
+              We send you the website link — if you find any mistake, send it back to us and we will fix it for you.
+            </p>
+          </div>
+
+          <!-- Step 05 -->
+          <div class="flex flex-col items-center text-center relative z-10 group">
+            <div class="w-14 h-14 rounded-2xl bg-[#090f1d] border border-slate-700/80 text-white font-black text-base flex items-center justify-center mb-5 group-hover:border-blue-500 group-hover:text-[#38bdf8] shadow-xl transition-all">
+              05
+            </div>
+            <h4 class="font-extrabold text-base text-white mb-2 group-hover:text-[#38bdf8] transition-colors">Launch & Support</h4>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-[210px]">
+              Full payment is due on website completion. We publish, connect your domain, and stay available 24/7 after go-live.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= PORTFOLIO SHOWCASE SECTION ================= -->
+  <section id="portfolio" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto relative">
+    
+    <!-- Glow Backdrops -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- ================= PORTFOLIO SECTION HEADER ================= -->
+    <div class="text-center max-w-3xl mx-auto mb-14 relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-extrabold text-xs uppercase tracking-widest mb-4 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        <span>MY CREATIVE PORTFOLIO</span>
+      </div>
+      <h2 class="text-4xl sm:text-6xl font-black text-white tracking-tight">
+        My <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400">Creative Portfolio</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-4 font-medium leading-relaxed max-w-2xl mx-auto">
+        Explore 6 Distinct, Modern Websites Designed for High-Growth Industries
+      </p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-14 relative z-10">
+      <button class="tab-btn active" data-filter="all">All Projects</button>
+      <button class="tab-btn" data-filter="ecommerce">E-Commerce</button>
+      <button class="tab-btn" data-filter="corporate">Corporate B2B</button>
+      <button class="tab-btn" data-filter="automotive">Automotive</button>
+      <button class="tab-btn" data-filter="school">School & Education</button>
+      <button class="tab-btn" data-filter="fashion">Luxury Fashion</button>
+    </div>
+
+    <!-- Featured Projects Grid: 3-col Desktop, 2-col Tablet, 1-col Mobile -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10" id="portfolio-grid">
+      
+      <!-- ================= 1. E-COMMERCE STORE ================= -->
+      <div class="project-card rounded-2xl bg-[#0c101d] border border-slate-800/80 p-4 sm:p-5 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group" data-category="ecommerce">
+        <!-- Browser Mockup Window -->
+        <div class="rounded-xl overflow-hidden border border-slate-800 bg-[#0b101f] shadow-inner">
+          <!-- Browser Top Bar -->
+          <div class="bg-[#0e1424] px-3 py-1.5 flex items-center justify-between border-b border-slate-800/80">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-[#ef4444] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#f59e0b] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#10b981] inline-block"></span>
+            </div>
+            <div class="bg-[#070b14] border border-slate-800/80 rounded px-3 py-0.5 text-slate-400 font-mono text-[11px] text-center flex-1 max-w-[220px] mx-auto truncate">
+              www.crazyoctoberstore.com
+            </div>
+            <div class="w-6 shrink-0"></div>
+          </div>
+          <!-- Website Live Preview Image -->
+          <div class="portfolio-img-wrapper relative overflow-hidden bg-slate-900">
+            <img src="portfolio-ecommerce.png" alt="E-Commerce Mega Store Website" class="portfolio-scroll-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Project Title -->
+        <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight mt-3.5 mb-1.5">
+          E-Commerce Mega Store
+        </h3>
+
+        <!-- Project Description -->
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2">
+          A complete online mega store featuring flash sales, product categories, electronics, lifestyle appliances, cart and secure checkout.
+        </p>
+
+        <!-- Tech / Feature Pills -->
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">WooCommerce</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Online Payments</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">SEO</span>
+        </div>
+      </div>
+
+      <!-- ================= 2. PCMA PAKISTAN ================= -->
+      <div class="project-card rounded-2xl bg-[#0c101d] border border-slate-800/80 p-4 sm:p-5 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group" data-category="corporate">
+        <!-- Browser Mockup Window -->
+        <div class="rounded-xl overflow-hidden border border-slate-800 bg-[#0b101f] shadow-inner">
+          <!-- Browser Top Bar -->
+          <div class="bg-[#0e1424] px-3 py-1.5 flex items-center justify-between border-b border-slate-800/80">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-[#ef4444] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#f59e0b] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#10b981] inline-block"></span>
+            </div>
+            <div class="bg-[#070b14] border border-slate-800/80 rounded px-3 py-0.5 text-slate-400 font-mono text-[11px] text-center flex-1 max-w-[220px] mx-auto truncate">
+              www.pcma.org.pk
+            </div>
+            <div class="w-6 shrink-0"></div>
+          </div>
+          <!-- Website Live Preview Image -->
+          <div class="portfolio-img-wrapper relative overflow-hidden bg-slate-900">
+            <img src="portfolio-pcma.png" alt="PCMA Pakistan Website" class="portfolio-scroll-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Project Title -->
+        <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight mt-3.5 mb-1.5">
+          PCMA Pakistan
+        </h3>
+
+        <!-- Project Description -->
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2">
+          Official industrial B2B portal for Pakistan's chemical sector. Features policy advocacy, specialized committees, executive leadership and member onboarding.
+        </p>
+
+        <!-- Tech / Feature Pills -->
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Industrial B2B</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Policy Advocacy</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Member Portal</span>
+        </div>
+      </div>
+
+      <!-- ================= 3. SERVIS TYRES & RUBBER ================= -->
+      <div class="project-card rounded-2xl bg-[#0c101d] border border-slate-800/80 p-4 sm:p-5 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group" data-category="automotive">
+        <!-- Browser Mockup Window -->
+        <div class="rounded-xl overflow-hidden border border-slate-800 bg-[#0b101f] shadow-inner">
+          <!-- Browser Top Bar -->
+          <div class="bg-[#0e1424] px-3 py-1.5 flex items-center justify-between border-b border-slate-800/80">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-[#ef4444] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#f59e0b] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#10b981] inline-block"></span>
+            </div>
+            <div class="bg-[#070b14] border border-slate-800/80 rounded px-3 py-0.5 text-slate-400 font-mono text-[11px] text-center flex-1 max-w-[220px] mx-auto truncate">
+              www.servistyres.com
+            </div>
+            <div class="w-6 shrink-0"></div>
+          </div>
+          <!-- Website Live Preview Image -->
+          <div class="portfolio-img-wrapper relative overflow-hidden bg-slate-900">
+            <img src="portfolio-servis.png" alt="Servis Tyres & Rubber Website" class="portfolio-scroll-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Project Title -->
+        <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight mt-3.5 mb-1.5">
+          Servis Tyres & Rubber
+        </h3>
+
+        <!-- Project Description -->
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2">
+          Automotive manufacturing brand with interactive tyre finder, OEM motorcycle partnerships, 40+ country export map, and Servis lubricants.
+        </p>
+
+        <!-- Tech / Feature Pills -->
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Tyre Selector</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">OEM Approved</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Export Network</span>
+        </div>
+      </div>
+
+      <!-- ================= 4. LIVE BIDS AUTO AUCTION ================= -->
+      <div class="project-card rounded-2xl bg-[#0c101d] border border-slate-800/80 p-4 sm:p-5 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group" data-category="automotive">
+        <!-- Browser Mockup Window -->
+        <div class="rounded-xl overflow-hidden border border-slate-800 bg-[#0b101f] shadow-inner">
+          <!-- Browser Top Bar -->
+          <div class="bg-[#0e1424] px-3 py-1.5 flex items-center justify-between border-b border-slate-800/80">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-[#ef4444] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#f59e0b] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#10b981] inline-block"></span>
+            </div>
+            <div class="bg-[#070b14] border border-slate-800/80 rounded px-3 py-0.5 text-slate-400 font-mono text-[11px] text-center flex-1 max-w-[220px] mx-auto truncate">
+              www.livebids.pk
+            </div>
+            <div class="w-6 shrink-0"></div>
+          </div>
+          <!-- Website Live Preview Image -->
+          <div class="portfolio-img-wrapper relative overflow-hidden bg-slate-900">
+            <img src="portfolio-autobids.png" alt="Live Bids Auto Auction Website" class="portfolio-scroll-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Project Title -->
+        <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight mt-3.5 mb-1.5">
+          Live Bids Auto Auction
+        </h3>
+
+        <!-- Project Description -->
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2">
+          Digital live car bidding platform with real-time countdown clocks, 200-point computer inspection sheets, verified sellers and mobile app synchronization.
+        </p>
+
+        <!-- Tech / Feature Pills -->
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Live Auctions</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Inspection Sheets</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Mobile App</span>
+        </div>
+      </div>
+
+      <!-- ================= 5. FALCON ENGLISH SCHOOL ================= -->
+      <div class="project-card rounded-2xl bg-[#0c101d] border border-slate-800/80 p-4 sm:p-5 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group" data-category="school">
+        <!-- Browser Mockup Window -->
+        <div class="rounded-xl overflow-hidden border border-slate-800 bg-[#0b101f] shadow-inner">
+          <!-- Browser Top Bar -->
+          <div class="bg-[#0e1424] px-3 py-1.5 flex items-center justify-between border-b border-slate-800/80">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-[#ef4444] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#f59e0b] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#10b981] inline-block"></span>
+            </div>
+            <div class="bg-[#070b14] border border-slate-800/80 rounded px-3 py-0.5 text-slate-400 font-mono text-[11px] text-center flex-1 max-w-[220px] mx-auto truncate">
+              www.falconschool.edu.pk
+            </div>
+            <div class="w-6 shrink-0"></div>
+          </div>
+          <!-- Website Live Preview Image -->
+          <div class="portfolio-img-wrapper relative overflow-hidden bg-slate-900">
+            <img src="portfolio-school.png" alt="Falcon English School Website" class="portfolio-scroll-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Project Title -->
+        <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight mt-3.5 mb-1.5">
+          Falcon English School
+        </h3>
+
+        <!-- Project Description -->
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2">
+          Premier educational portal featuring Principal's message with national crest, STEM robotics labs, Primary/Middle/High curriculums and WhatsApp admissions.
+        </p>
+
+        <!-- Tech / Feature Pills -->
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Admissions 2026–27</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">STEM Labs</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Matric Result</span>
+        </div>
+      </div>
+
+      <!-- ================= 6. MAHWISH LUXURY COUTURE ================= -->
+      <div class="project-card rounded-2xl bg-[#0c101d] border border-slate-800/80 p-4 sm:p-5 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group" data-category="fashion">
+        <!-- Browser Mockup Window -->
+        <div class="rounded-xl overflow-hidden border border-slate-800 bg-[#0b101f] shadow-inner">
+          <!-- Browser Top Bar -->
+          <div class="bg-[#0e1424] px-3 py-1.5 flex items-center justify-between border-b border-slate-800/80">
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="w-2 h-2 rounded-full bg-[#ef4444] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#f59e0b] inline-block"></span>
+              <span class="w-2 h-2 rounded-full bg-[#10b981] inline-block"></span>
+            </div>
+            <div class="bg-[#070b14] border border-slate-800/80 rounded px-3 py-0.5 text-slate-400 font-mono text-[11px] text-center flex-1 max-w-[220px] mx-auto truncate">
+              www.mahwishcouture.com
+            </div>
+            <div class="w-6 shrink-0"></div>
+          </div>
+          <!-- Website Live Preview Image -->
+          <div class="portfolio-img-wrapper relative overflow-hidden bg-slate-900">
+            <img src="portfolio-couture.png" alt="Mahwish Luxury Couture Website" class="portfolio-scroll-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Project Title -->
+        <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight mt-3.5 mb-1.5">
+          Mahwish Luxury Couture
+        </h3>
+
+        <!-- Project Description -->
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2">
+          Pakistani luxury pret and bridal boutique featuring 8 handcrafted product cards with PKR pricing, custom size selectors, atelier craft, and functional bag.
+        </p>
+
+        <!-- Tech / Feature Pills -->
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Luxury Pret</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">Bridal Couture</span>
+          <span class="px-2.5 py-1 rounded-lg bg-[#101726] border border-[#1e293b] text-slate-300 font-medium text-[11px]">PKR Shopping Bag</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="see-more-container" class="hidden"></div>
+
+    <!-- ================= BOTTOM CTA BANNER ================= -->
+    <div class="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#090f24] via-[#0d1b3d] to-[#090f24] border border-blue-500/30 shadow-2xl relative overflow-hidden text-center z-10">
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-3xl mx-auto space-y-4 relative z-10">
+        <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 text-xs font-extrabold uppercase tracking-widest">
+          LET'S COLLABORATE
+        </div>
+        <h3 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          Have a Website Idea? <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400">Let’s Build Something Professional.</span>
+        </h3>
+        <p class="text-slate-300 text-sm sm:text-base font-medium max-w-xl mx-auto">
+          Get a modern, ultra-fast, and 100% mobile-responsive website tailored to scale your brand and convert visitors into loyal clients.
+        </p>
+        
+        <!-- Brand Signature -->
+        <div class="pt-2 pb-3">
+          <div class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">AHMED WAZIR</div>
+          <div class="text-xs sm:text-sm font-semibold text-blue-400 tracking-wider">Professional Website Designer & Developer</div>
+        </div>
+
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+          <a href="#contact" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#3978FF] via-blue-600 to-[#00D4FF] hover:from-blue-600 hover:to-[#3978FF] text-white font-extrabold text-sm shadow-xl shadow-[#3978FF]/30 transition-all hover:scale-105 flex items-center gap-2">
+            <span>Start Your Project</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= PRICING PACKAGES SECTION ================= -->
+  <section id="pricing" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto relative">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+        Our <span class="text-[#2563eb]">Packages</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-4 font-medium leading-relaxed max-w-2xl mx-auto">
+        Choose the package that fits your business. Message on WhatsApp for the price — no hidden charges, and every package includes SSL and a mobile-perfect design.
+      </p>
+    </div>
+
+    <!-- 3 Tier Pricing Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+      
+      <!-- Card 1: Basic (Dark Glass Card) -->
+      <div class="bg-[#070c18] rounded-3xl p-8 text-white shadow-2xl flex flex-col justify-between border border-slate-800 relative hover:-translate-y-1 transition-transform">
+        <div>
+          <!-- Header Badge -->
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🥉</span>
+            <h3 class="text-2xl font-black text-white">Basic</h3>
+          </div>
+          <p class="text-slate-400 text-xs mt-1 font-medium">Perfect for small shops & personal brands</p>
+          
+          <!-- Price Box -->
+          <div class="mt-6">
+            <h4 class="text-3xl font-extrabold text-[#38bdf8]">Special Price</h4>
+            <p class="text-[11px] text-slate-400 font-medium mt-0.5">Message on WhatsApp to get your best price</p>
+          </div>
+
+          <!-- Green Offer Pill Tag -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold mt-4">
+            <span>🎉</span> 20% OFF for Limited Time
+          </div>
+
+          <!-- Features List -->
+          <ul class="space-y-3.5 text-xs text-slate-200 font-semibold my-8 border-t border-slate-800/80 pt-6">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> 1 Landing Page</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Mobile Friendly Design</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Contact & WhatsApp Button</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Basic SEO Setup</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Free SSL Certificate</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Fast Loading Speed</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> 30 Days Free Support</li>
+          </ul>
+        </div>
+
+        <a href="https://wa.me/923433387801?text=Hi%20Ahmed!%20I%20am%20interested%20in%20the%20Basic%20Package." target="_blank" class="w-full py-4 rounded-2xl bg-[#2563eb] hover:bg-blue-600 text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 transition-all">
+          <i class="fa-brands fa-whatsapp text-lg"></i> Get Basic Price
+        </a>
+      </div>
+
+      <!-- Card 2: Premium (Center Featured Dark Glass Card) -->
+      <div class="bg-[#070c18] rounded-3xl p-8 text-white shadow-2xl shadow-blue-950/80 flex flex-col justify-between border-2 border-blue-500/60 relative hover:-translate-y-1 transition-transform">
+        <!-- Top Right POPULAR Badge -->
+        <div class="absolute top-6 right-6 px-3.5 py-1 rounded-full bg-amber-500 text-slate-950 font-black text-[10px] tracking-wider uppercase">
+          POPULAR
+        </div>
+
+        <div>
+          <!-- Header Badge -->
+          <div class="flex items-center gap-2">
+            <span class="text-xl">💎</span>
+            <h3 class="text-2xl font-black text-white">Premium</h3>
+          </div>
+          <p class="text-slate-400 text-xs mt-1 font-medium">Most popular for growing businesses</p>
+          
+          <!-- Price Box -->
+          <div class="mt-6">
+            <h4 class="text-3xl font-extrabold text-[#38bdf8]">Special Price</h4>
+            <p class="text-[11px] text-slate-400 font-medium mt-0.5">Message on WhatsApp to get your best price</p>
+          </div>
+
+          <!-- Green Offer Pill Tag -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold mt-4">
+            <span>🎉</span> 20% OFF for Limited Time
+          </div>
+
+          <!-- Features List -->
+          <ul class="space-y-3.5 text-xs text-slate-200 font-semibold my-8 border-t border-slate-800/80 pt-6">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> 5 Premium Pages</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Custom Modern UI Design</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> WordPress / Custom Build</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Advanced On-Page SEO</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Google Analytics + Maps</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Blog Section Included</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> Social Media Integration</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-blue-400 text-sm"></i> 90 Days Free Support</li>
+          </ul>
+        </div>
+
+        <a href="https://wa.me/923433387801?text=Hi%20Ahmed!%20I%20am%20interested%20in%20the%20Premium%20Package." target="_blank" class="w-full py-4 rounded-2xl bg-[#00c853] hover:bg-[#00e676] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30 transition-all">
+          <i class="fa-brands fa-whatsapp text-lg"></i> Get Premium Price
+        </a>
+      </div>
+
+      <!-- Card 3: Gold (Dark Glass Card with Gold Accent) -->
+      <div class="bg-[#070c18] rounded-3xl p-8 text-white shadow-2xl flex flex-col justify-between border-2 border-amber-500/70 relative hover:-translate-y-1 transition-transform">
+        <!-- Top Right BEST VALUE Badge -->
+        <div class="absolute top-6 right-6 px-3.5 py-1 rounded-full bg-amber-400 text-slate-950 font-black text-[10px] tracking-wider uppercase">
+          BEST VALUE
+        </div>
+
+        <div>
+          <!-- Header Badge -->
+          <div class="flex items-center gap-2">
+            <span class="text-xl">👑</span>
+            <h3 class="text-2xl font-black text-white">Gold</h3>
+          </div>
+          <p class="text-slate-400 text-xs mt-1 font-medium">Complete solution — store, booking & more</p>
+          
+          <!-- Price Box -->
+          <div class="mt-6">
+            <h4 class="text-3xl font-extrabold text-[#f59e0b]">Special Price</h4>
+            <p class="text-[11px] text-slate-400 font-medium mt-0.5">Message on WhatsApp to get your best price</p>
+          </div>
+
+          <!-- Green Offer Pill Tag -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold mt-4">
+            <span>🎉</span> 20% OFF for Limited Time
+          </div>
+
+          <!-- Features List -->
+          <ul class="space-y-3.5 text-xs text-slate-200 font-semibold my-8 border-t border-slate-800/80 pt-6">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> Unlimited Pages & Products</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> Full E-Commerce Store</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> Secure Payment Gateway</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> Order & Booking System</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> Complete SEO Optimisation</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> Logo + Branding Design</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> Admin Training Video</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-circle-check text-amber-400 text-sm"></i> 360 Days Free Support</li>
+          </ul>
+        </div>
+
+        <a href="https://wa.me/923433387801?text=Hi%20Ahmed!%20I%20am%20interested%20in%20the%20Gold%20Package." target="_blank" class="w-full py-4 rounded-2xl bg-[#d97706] hover:bg-amber-600 text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 transition-all">
+          <i class="fa-brands fa-whatsapp text-lg"></i> Get Gold Price
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom Tailored Quote Note -->
+    <p class="text-center text-xs text-slate-400 font-medium mt-12">
+      Need something custom? <a href="https://wa.me/923433387801?text=Hi%20Ahmed!%20I%20need%20a%20custom%20website%20quote." target="_blank" class="text-emerald-400 font-bold underline hover:text-emerald-300 transition-colors">Message on WhatsApp</a> and get a free tailored quote within minutes.
+    </p>
+
+  </section>
+
+  <!-- ================= TESTIMONIALS SECTION ================= -->
+  <section id="testimonials" class="py-24 px-4 sm:px-8 bg-slate-950/40 border-y border-slate-800/60 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto mb-12">
+      
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
+          100% SATISFIED CLIENTS
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
+          What Our <span class="text-gradient-green">Clients Say</span>
+        </h2>
+        <p class="text-slate-400 text-base sm:text-lg mt-4">
+          Read verified feedback from 10+ business owners who transformed their online presence with Ahmed Wazir.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Infinite Continuous Marquee Wrapper (Row 1) -->
+    <div class="marquee-wrapper mb-8">
+      <div class="marquee-content flex gap-6">
+        
+        <!-- Review 1 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Ahmed Wazir designed our academy portal with incredible speed and visual quality. Our student enrollments doubled right after launch!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-blue-500 to-cyan-400 animate-spin-slow flex items-center justify-center shadow-lg shadow-blue-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">AA</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Al Funun Academy Director</div>
+              <div class="text-[10px] text-slate-400">Education Sector</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Working with Ahmed was seamless. The e-commerce store he created for us loads blazingly fast and mobile users love it."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-emerald-500 to-teal-400 animate-spin-slow flex items-center justify-center shadow-lg shadow-emerald-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">MK</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Muhammad Khan</div>
+              <div class="text-[10px] text-slate-400">TechMart Founder</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "The design quality is top-notch! Extremely responsive, great communication, and delivered 2 days before the deadline."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-purple-500 to-pink-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-purple-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">SH</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Sarah Hassan</div>
+              <div class="text-[10px] text-slate-400">Real Estate Manager</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Ahmed designed our clinic booking platform with exceptional security, visual elegance, and mobile responsiveness."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-cyan-500 to-blue-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-cyan-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">TM</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Dr. Tariq Mahmood</div>
+              <div class="text-[10px] text-slate-400">HealthCare Portal Director</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Our website traffic and lead conversions jumped 45% after Ahmed Wazir redesigned our corporate site. Outstanding support!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-rose-500 to-amber-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-rose-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">AR</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Ayesha Rehman</div>
+              <div class="text-[10px] text-slate-400">CreativePulse CEO</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Duplicate Row 1 for continuous loop -->
+      <div class="marquee-content flex gap-6">
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Ahmed Wazir designed our academy portal with incredible speed and visual quality. Our student enrollments doubled right after launch!"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-blue-500 to-cyan-400 animate-spin-slow flex items-center justify-center shadow-lg shadow-blue-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">AA</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Al Funun Academy Director</div><div class="text-[10px] text-slate-400">Education Sector</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Working with Ahmed was seamless. The e-commerce store he created for us loads blazingly fast and mobile users love it."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-emerald-500 to-teal-400 animate-spin-slow flex items-center justify-center shadow-lg shadow-emerald-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">MK</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Muhammad Khan</div><div class="text-[10px] text-slate-400">TechMart Founder</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"The design quality is top-notch! Extremely responsive, great communication, and delivered 2 days before the deadline."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-purple-500 to-pink-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-purple-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">SH</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Sarah Hassan</div><div class="text-[10px] text-slate-400">Real Estate Manager</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Ahmed designed our clinic booking platform with exceptional security, visual elegance, and mobile responsiveness."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-cyan-500 to-blue-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-cyan-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">TM</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Dr. Tariq Mahmood</div><div class="text-[10px] text-slate-400">HealthCare Portal Director</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Our website traffic and lead conversions jumped 45% after Ahmed Wazir redesigned our corporate site."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-rose-500 to-amber-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-rose-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">AR</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Ayesha Rehman</div><div class="text-[10px] text-slate-400">CreativePulse CEO</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infinite Continuous Marquee Wrapper (Row 2 Reverse) -->
+    <div class="marquee-wrapper">
+      <div class="marquee-content-reverse flex gap-6">
+        
+        <!-- Review 6 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Extremely impressive execution on our SaaS cloud product landing page. Clean Tailwind structure and fast performance."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-indigo-500 to-purple-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-indigo-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">BA</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Bilal Ahmed</div>
+              <div class="text-[10px] text-slate-400">SaaSify Tech Lead</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 7 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "The online restaurant ordering platform Ahmed created for us increased our daily takeaway orders significantly!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-amber-500 to-red-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-amber-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">UF</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Usman Farooq</div>
+              <div class="text-[10px] text-slate-400">Gourmet Dining Owner</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 8 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Beautiful UI/UX design with smooth animation. Our customers love shopping on the new boutique store. 10/10 service!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-pink-500 to-rose-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-pink-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">FZ</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Fatima Zahra</div>
+              <div class="text-[10px] text-slate-400">Luxe Fashion Manager</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 9 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Fast, reliable, and super creative web developer. He built our fleet tracking company portal in record time."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-teal-500 to-emerald-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-teal-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">KR</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Kashif Raza</div>
+              <div class="text-[10px] text-slate-400">Apex Auto Logistics Director</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 10 -->
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">
+              "Top quality LMS platform design. The course registration and video module integration work flawlessly!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-blue-600 to-indigo-600 animate-spin-slow flex items-center justify-center shadow-lg shadow-blue-600/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">ZS</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Zainab Shah</div>
+              <div class="text-[10px] text-slate-400">SkillForge Academy Founder</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Duplicate Row 2 for continuous loop -->
+      <div class="marquee-content-reverse flex gap-6">
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Extremely impressive execution on our SaaS cloud product landing page. Clean Tailwind structure and fast performance."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-indigo-500 to-purple-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-indigo-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">BA</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Bilal Ahmed</div><div class="text-[10px] text-slate-400">SaaSify Tech Lead</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"The online restaurant ordering platform Ahmed created for us increased our daily takeaway orders significantly!"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-amber-500 to-red-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-amber-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">UF</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Usman Farooq</div><div class="text-[10px] text-slate-400">Gourmet Dining Owner</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Beautiful UI/UX design with smooth animation. Our customers love shopping on the new boutique store. 10/10 service!"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-pink-500 to-rose-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-pink-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">FZ</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Fatima Zahra</div><div class="text-[10px] text-slate-400">Luxe Fashion Manager</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Fast, reliable, and super creative web developer. He built our fleet tracking company portal in record time."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-teal-500 to-emerald-500 animate-spin-slow flex items-center justify-center shadow-lg shadow-teal-500/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">KR</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Kashif Raza</div><div class="text-[10px] text-slate-400">Apex Auto Logistics Director</div></div>
+          </div>
+        </div>
+        <div class="glass-card p-6 w-[340px] flex-shrink-0 flex flex-col justify-between border border-slate-800">
+          <div class="space-y-3">
+            <div class="flex text-amber-400 text-xs gap-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="text-slate-300 text-xs italic leading-relaxed">"Top quality LMS platform design. The course registration and video module integration work flawlessly!"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800/80 mt-4">
+            <div class="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-blue-600 to-indigo-600 animate-spin-slow flex items-center justify-center shadow-lg shadow-blue-600/30">
+              <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xs">ZS</div>
+            </div>
+            <div><div class="text-xs font-bold text-white">Zainab Shah</div><div class="text-[10px] text-slate-400">SkillForge Academy Founder</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ SECTION ================= -->
+  <section id="faq" class="py-24 px-4 sm:px-8 max-w-5xl mx-auto">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+        FAQS
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
+        Frequently Asked <span class="text-gradient-blue">Questions</span>
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg mt-4">
+        Got questions? We have answers to help you get started smoothly.
+      </p>
+    </div>
+
+    <!-- Accordion Container -->
+    <div class="space-y-4">
+      
+      <!-- FAQ 1 -->
+      <div class="faq-item glass-card p-6 rounded-2xl cursor-pointer">
+        <div class="faq-question flex items-center justify-between font-bold text-base sm:text-lg text-white">
+          <span>How long does it take to build a complete website?</span>
+          <i class="fa-solid fa-plus faq-icon transition-transform duration-300 text-slate-400"></i>
+        </div>
+        <div class="faq-answer text-slate-400 text-sm mt-3 leading-relaxed">
+          Standard landing pages and basic websites are delivered within 3 to 5 business days. Complex e-commerce stores, LMS platforms, or custom web portals usually take between 7 to 14 days depending on feature requirements.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item glass-card p-6 rounded-2xl cursor-pointer">
+        <div class="faq-question flex items-center justify-between font-bold text-base sm:text-lg text-white">
+          <span>Will my website be mobile friendly and fast loading?</span>
+          <i class="fa-solid fa-plus faq-icon transition-transform duration-300 text-slate-400"></i>
+        </div>
+        <div class="faq-answer text-slate-400 text-sm mt-3 leading-relaxed">
+          Yes, absolutely! Every website we build is 100% responsive, optimized for smartphones, tablets, and large screens, and passes high Google PageSpeed performance scores.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item glass-card p-6 rounded-2xl cursor-pointer">
+        <div class="faq-question flex items-center justify-between font-bold text-base sm:text-lg text-white">
+          <span>Do you provide custom design or use ready templates?</span>
+          <i class="fa-solid fa-plus faq-icon transition-transform duration-300 text-slate-400"></i>
+        </div>
+        <div class="faq-answer text-slate-400 text-sm mt-3 leading-relaxed">
+          We craft custom designs tailored to your brand identity, colors, and industry needs. We do not copy generic templates, ensuring your site stands out from competitors.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item glass-card p-6 rounded-2xl cursor-pointer">
+        <div class="faq-question flex items-center justify-between font-bold text-base sm:text-lg text-white">
+          <span>What technologies do you use for web development?</span>
+          <i class="fa-solid fa-plus faq-icon transition-transform duration-300 text-slate-400"></i>
+        </div>
+        <div class="faq-answer text-slate-400 text-sm mt-3 leading-relaxed">
+          We specialize in modern frontend stacks including HTML5, CSS3, Tailwind CSS, JavaScript ES6+, React, Next.js, Node.js Express, as well as WordPress and WooCommerce when requested.
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item glass-card p-6 rounded-2xl cursor-pointer">
+        <div class="faq-question flex items-center justify-between font-bold text-base sm:text-lg text-white">
+          <span>Do you offer website maintenance after launch?</span>
+          <i class="fa-solid fa-plus faq-icon transition-transform duration-300 text-slate-400"></i>
+        </div>
+        <div class="faq-answer text-slate-400 text-sm mt-3 leading-relaxed">
+          Yes! We provide post-launch support, security audits, performance updates, and minor content revisions to keep your website running smoothly 24/7.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT & CONSULTATION SECTION ================= -->
+  <section id="contact" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto relative overflow-hidden">
+    
+    <!-- Ambient Blue & Cyan Glow Backdrop -->
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#3978FF]/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3978FF]/10 border border-[#3978FF]/30 text-[#00D4FF] text-xs font-bold tracking-widest uppercase mb-4">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#00D4FF] shadow-[0_0_6px_#00D4FF]"></span> GET IN TOUCH
+      </div>
+      <h2 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+        Let's Build Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3978FF] via-[#00D4FF] to-blue-400">Dream Website</span>
+      </h2>
+      <p class="text-[#A4ACBA] text-sm sm:text-base mt-4 font-medium max-w-2xl mx-auto leading-relaxed">
+        Send your project inquiry or fill out the form below. I typically respond within minutes.
+      </p>
+    </div>
+
+    <!-- 2 Container Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch relative z-10">
+      
+      <!-- Left Container (5 Cols): Office Location & Direct Contact -->
+      <div class="lg:col-span-5 bg-[#11141C]/90 border border-[#3978FF]/20 rounded-3xl p-8 flex flex-col justify-between shadow-2xl backdrop-blur-xl">
+        <div>
+          <!-- Status Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-[11px] font-extrabold mb-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ONLINE NOW
+          </div>
+
+          <!-- Title & Description -->
+          <h3 class="text-2xl font-black text-white mb-2">Get in Touch Directly</h3>
+          <p class="text-[#A4ACBA] text-xs leading-relaxed mb-6 font-medium">
+            Have a project in mind or want to discuss ideas? Send your project details or visit our office. Free consultation, honest pricing, and transparent milestone delivery.
+          </p>
+
+          <!-- Check List -->
+          <ul class="space-y-3.5 text-xs text-slate-200 font-semibold mb-8">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400 font-bold"></i> Quick response within minutes</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400 font-bold"></i> 100% Free project consultation</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400 font-bold"></i> Direct one-on-one consultation</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400 font-bold"></i> Mon – Sun · 9:00 AM – 11:00 PM PKT</li>
+          </ul>
+
+          <!-- Location Info Box -->
+          <div class="p-4 rounded-2xl bg-[#08090D] border border-slate-800 text-xs flex items-start gap-3 mb-3">
+            <i class="fa-solid fa-location-dot text-[#00D4FF] text-base mt-0.5 shrink-0"></i>
+            <div>
+              <div class="text-[10px] text-[#00D4FF] font-extrabold uppercase tracking-wider mb-1">OFFICE LOCATION</div>
+              <div class="text-white font-semibold leading-relaxed">
+                Alfunun Academy, Hawksbay Rd, Musharraf Colony Sector 6 Hawkes Bay Town, Karachi, 74200
+              </div>
+            </div>
+          </div>
+
+          <!-- Email Info Box -->
+          <div class="p-4 rounded-2xl bg-[#08090D] border border-slate-800 text-xs flex items-start gap-3 mb-6">
+            <i class="fa-solid fa-envelope text-[#00D4FF] text-base mt-0.5 shrink-0"></i>
+            <div>
+              <div class="text-[10px] text-[#00D4FF] font-extrabold uppercase tracking-wider mb-1">OFFICIAL EMAIL</div>
+              <a href="mailto:ahmedyaseenwazir@gmail.com" class="contact-email-link text-white font-semibold hover:text-[#00D4FF] transition-colors break-all">
+                ahmedyaseenwazir@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Embedded Map Card at Bottom -->
+        <div class="rounded-2xl overflow-hidden border border-slate-800 bg-[#08090D] shadow-md h-44 relative">
+          <iframe src="https://maps.google.com/maps?q=Alfunun+Academy,+Hawksbay+Rd,+Musharraf+Colony+Sector+6+Hawkes+Bay+Town,+Karachi,+74200&t=&z=15&ie=UTF8&iwloc=&output=embed" class="w-full h-full border-0 filter opacity-90 grayscale-[0.2]" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <!-- Right Container (7 Cols): Request Your Free Quote -->
+      <div class="lg:col-span-7 bg-[#11141C]/90 border border-[#3978FF]/20 rounded-3xl p-8 sm:p-10 shadow-2xl flex flex-col justify-between backdrop-blur-xl">
+        <div>
+          <h3 class="text-2xl font-black text-white mb-1">Request Your Free Quote</h3>
+          <p class="text-[#A4ACBA] text-xs font-medium mb-8">Fill this quick form — it connects directly via WhatsApp or submission with all details pre-filled.</p>
+
+          <form id="whatsapp-quote-form" class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-[11px] font-bold tracking-wider text-[#A4ACBA] uppercase mb-2">YOUR NAME *</label>
+                <input type="text" id="wa-name" required placeholder="e.g. Ali Hassan" class="w-full px-4 py-3.5 rounded-xl bg-[#08090D] border border-slate-700/80 text-white text-sm focus:outline-none focus:border-[#3978FF] transition-colors" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold tracking-wider text-[#A4ACBA] uppercase mb-2">EMAIL ADDRESS</label>
+                <input type="email" id="wa-email" placeholder="e.g. ali@example.com" class="w-full px-4 py-3.5 rounded-xl bg-[#08090D] border border-slate-700/80 text-white text-sm focus:outline-none focus:border-[#3978FF] transition-colors" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-[11px] font-bold tracking-wider text-[#A4ACBA] uppercase mb-2">SERVICE NEEDED</label>
+                <select id="wa-service" class="w-full px-4 py-3.5 rounded-xl bg-[#08090D] border border-slate-700/80 text-white text-sm focus:outline-none focus:border-[#3978FF] transition-colors">
+                  <option value="Business Website">Business Website Design</option>
+                  <option value="E-Commerce Store">E-Commerce Website</option>
+                  <option value="WordPress Website">WordPress Website</option>
+                  <option value="WooCommerce Store">WooCommerce Store</option>
+                  <option value="School & Academy">School & Academy Website</option>
+                  <option value="Restaurant Website">Restaurant Website</option>
+                  <option value="Hospital Website">Hospital Website</option>
+                  <option value="Real Estate Website">Real Estate Website</option>
+                  <option value="Transport Website">Transport Website</option>
+                  <option value="Portfolio Website">Portfolio Website</option>
+                  <option value="Landing Page">Landing Page Design</option>
+                  <option value="Custom Web App">Custom Website Development</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold tracking-wider text-[#A4ACBA] uppercase mb-2">BUDGET (PKR)</label>
+                <select id="wa-budget" class="w-full px-4 py-3.5 rounded-xl bg-[#08090D] border border-slate-700/80 text-white text-sm focus:outline-none focus:border-[#3978FF] transition-colors">
+                  <option value="20,000 – 40,000">20,000 – 40,000 PKR</option>
+                  <option value="40,000 – 80,000">40,000 – 80,000 PKR</option>
+                  <option value="80,000+">80,000+ PKR</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold tracking-wider text-[#A4ACBA] uppercase mb-2">PROJECT DETAILS</label>
+              <textarea id="wa-details" rows="4" placeholder="Tell me about your business, required pages, features, or reference websites you like..." class="w-full px-4 py-3.5 rounded-xl bg-[#08090D] border border-slate-700/80 text-white text-sm focus:outline-none focus:border-[#3978FF] transition-colors"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-[#3978FF] to-[#2563eb] hover:from-[#2563eb] hover:to-[#1d4ed8] text-white font-extrabold text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-[#3978FF]/30 transition-all hover:scale-[1.01]">
+              <i class="fa-solid fa-paper-plane text-base mr-1"></i>
+              <span>Send Project Details</span>
+              <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+            </button>
+          </form>
+        </div>
+
+        <p class="text-center text-[11px] text-[#A4ACBA] mt-6 flex items-center justify-center gap-1.5 font-medium">
+          🔒 Your details are securely sent directly to Ahmed Wazir.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-[#050811] border-t border-slate-900 pt-16 pb-12 px-4 sm:px-8 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      
+      <!-- Col 1: Brand Info -->
+      <div class="space-y-5">
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3.5 group">
+          <div class="hex-badge">
+            <div class="hex-badge-inner">
+              <span class="font-black text-white text-xs tracking-widest">AW</span>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center text-lg sm:text-xl font-extrabold tracking-wide text-white">
+              <span>AHMED</span>
+              <span class="text-blue-400 ml-1.5 font-bold">WAZIR</span>
+            </div>
+            <div class="flex items-center gap-1 mt-0.5">
+              <div class="h-[2px] w-9 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_#22d3ee]"></div>
+            </div>
+          </div>
+        </a>
+
+        <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+          Professional website design & development services. Stunning, responsive, fast and SEO-friendly websites for businesses, shops, schools, restaurants and personal brands worldwide.
+        </p>
+
+        <!-- Social Media Icons Row: Facebook, TikTok, Instagram, WhatsApp -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="w-11 h-11 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500/50 hover:bg-blue-500/10 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-110 transition-all duration-300" title="Facebook">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+          </a>
+          <a href="https://tiktok.com" target="_blank" aria-label="TikTok" class="w-11 h-11 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 hover:shadow-lg hover:shadow-pink-500/25 hover:scale-110 transition-all duration-300" title="TikTok">
+            <i class="fa-brands fa-tiktok text-lg"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="w-11 h-11 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:border-rose-500/50 hover:bg-rose-500/10 hover:shadow-lg hover:shadow-rose-500/25 hover:scale-110 transition-all duration-300" title="Instagram">
+            <i class="fa-brands fa-instagram text-xl"></i>
+          </a>
+          <a href="https://wa.me/923433387801" target="_blank" aria-label="WhatsApp" class="w-11 h-11 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/25 hover:scale-110 transition-all duration-300" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div>
+        <h4 class="text-white font-black text-xs tracking-widest uppercase mb-5">QUICK LINKS</h4>
+        <ul class="space-y-3 text-xs text-slate-400 font-medium">
+          <li><a href="#hero" class="hover:text-white transition-colors">Home</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+          <li><a href="#why-us" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+          <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+          <li><a href="#testimonials" class="hover:text-white transition-colors">Reviews</a></li>
+          <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Services -->
+      <div>
+        <h4 class="text-white font-black text-xs tracking-widest uppercase mb-5">SERVICES</h4>
+        <ul class="space-y-3 text-xs text-slate-400 font-medium">
+          <li><a href="#services" class="hover:text-white transition-colors">Business Website</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">E-Commerce Website</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">WooCommerce Website</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">WordPress Website</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Portfolio Website</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">School & Academy</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Restaurant Website</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Hospital Website</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Get Started & Promo Box -->
+      <div>
+        <h4 class="text-white font-black text-xs tracking-widest uppercase mb-5">GET STARTED</h4>
+        
+        <!-- Promo Box -->
+        <div class="bg-[#0b1329]/90 border border-slate-800/90 rounded-2xl p-4 mb-5 shadow-inner">
+          <div class="flex items-center gap-1.5 font-bold text-white text-xs mb-1">
+            <span>🎉</span> 20% OFF Every Package
+          </div>
+          <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+            Book your website today and grow your business online.
+          </p>
+          <a href="https://wa.me/923433387801?text=Hi%20Ahmed!%20I%20want%20to%20order%20a%20website%20with%2020%25%20discount." target="_blank" class="text-[#38bdf8] font-bold text-xs inline-flex items-center gap-1 hover:underline">
+            Order Now &rarr;
+          </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="space-y-2 text-xs">
+          <p class="text-slate-400">Availability: <span class="text-slate-300 font-semibold">24/7 Support</span></p>
+          <p class="text-slate-400"><strong class="text-slate-300">Email:</strong> <a href="mailto:ahmedyaseenwazir@gmail.com" class="contact-email-link text-slate-300 hover:text-[#00D4FF] transition-colors">ahmedyaseenwazir@gmail.com</a></p>
+          <p class="text-slate-400 leading-relaxed pt-1">
+            <strong class="text-slate-300">Location:</strong> Alfunun Academy, Hawksbay Rd, Musharraf Colony Sector 6 Hawkes Bay Town, Karachi, 74200
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-center text-slate-500 text-[11px]">
+      <span>Designed & Developed by Ahmed Wazir</span>
+    </div>
+  </footer>
+
+  <!-- ================= PROJECT PREVIEW MODAL ================= -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden modal-backdrop items-center justify-center p-4">
+    <div class="glass-card max-w-3xl w-full p-6 sm:p-7 rounded-3xl relative overflow-hidden space-y-4 border border-slate-700 shadow-2xl bg-[#080d1a]/95 backdrop-blur-2xl">
+      <button id="close-modal-btn" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl z-20">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div>
+        <span id="modal-category" class="text-xs font-bold uppercase tracking-wider text-blue-400">Category</span>
+        <h3 id="modal-title" class="text-2xl font-black text-white mt-1">Project Title</h3>
+      </div>
+
+      <!-- Live Mockup Window with Browser, Website Header, and Footer -->
+      <div class="browser-mockup rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-950">
+        <!-- Browser Chrome Bar -->
+        <div class="browser-header bg-[#0a0f1d] px-4 py-2.5 flex items-center border-b border-slate-800">
+          <div class="flex items-center gap-1.5 mr-3">
+            <span class="browser-dot dot-red"></span>
+            <span class="browser-dot dot-yellow"></span>
+            <span class="browser-dot dot-green"></span>
+          </div>
+          <span id="modal-address-bar" class="browser-address-bar text-xs py-1 px-4 text-slate-400 font-mono">www.website-preview.com</span>
+        </div>
+
+        <!-- Website Mockup Header (Navbar) -->
+        <div class="flex items-center justify-between px-4 py-2.5 bg-[#0b1224] border-b border-slate-800 text-xs">
+          <div class="flex items-center gap-2 font-black text-white">
+            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            <span id="modal-site-logo">WEBSITE BRAND</span>
+          </div>
+          <div class="hidden sm:flex items-center gap-3.5 text-[11px] text-slate-300 font-medium">
+            <span>Home</span>
+            <span>About Us</span>
+            <span>Portfolio</span>
+            <span>Reviews</span>
+            <span>Contact</span>
+          </div>
+          <a href="demo.html" target="_blank" class="px-2.5 py-1 rounded bg-blue-600 text-white font-bold text-[10px] hover:bg-blue-500 transition-colors flex items-center gap-1">
+            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+            <span>Live Demo</span>
+          </a>
+        </div>
+
+        <!-- Website Live Interactive Frame Area -->
+        <div class="relative h-[420px] overflow-hidden bg-slate-900 border-t border-b border-slate-800">
+          <iframe id="modal-iframe" src="demo-travel.html" class="w-full h-full border-0 shadow-inner"></iframe>
+          <img id="modal-img" src="" alt="Project Preview" class="hidden w-full h-auto object-cover object-top" />
+        </div>
+      </div>
+
+      <p id="modal-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed"></p>
+
+      <div class="pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-slate-800/80">
+        <a href="demo.html" target="_blank" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs flex items-center gap-2 border border-slate-700 transition-all">
+          <i class="fa-solid fa-arrow-up-right-from-square text-blue-400 text-xs"></i>
+          <span>Open Full Interactive Demo</span>
+        </a>
+        <a href="https://wa.me/923433387801?text=Hi%20Ahmed!%20I%20want%20to%20order%20a%20website%20like%20this%20demo" target="_blank" id="modal-order-btn" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span>Order This Project &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION ================= -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 bg-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-emerald-400/50">
+    <i class="fa-solid fa-circle-check text-xl"></i>
+    <span id="toast-message" class="text-sm font-semibold">Message sent successfully!</span>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

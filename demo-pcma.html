@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCMA — Pakistan Chemical Manufacturers Association</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0c1527;
+      color: #f1f5f9;
+    }
+    .text-pcma-cyan {
+      color: #00d4ff;
+    }
+    .bg-pcma-navy {
+      background-color: #091224;
+    }
+    .bg-pcma-card {
+      background: rgba(15, 28, 54, 0.75);
+    }
+  </style>
+</head>
+<body class="bg-[#0b1325] text-slate-100 antialiased selection:bg-[#00d4ff] selection:text-[#091224]">
+
+  <!-- ================= TOP NOTIFICATION BAR ================= -->
+  <div class="bg-[#070d1a] border-b border-slate-800 text-xs py-2 px-4 sm:px-8 text-slate-300">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-4 text-[11px]">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-building-flag text-[#00d4ff]"></i> Pakistan Chemical Manufacturers Association</span>
+        <span class="hidden md:inline text-slate-600">|</span>
+        <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-envelope text-[#00d4ff]"></i> info@pcma.org.pk</span>
+        <span class="hidden lg:flex items-center gap-1.5"><i class="fa-solid fa-phone text-[#00d4ff]"></i> +92 (42) 3575-8901</span>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <a href="#membership" class="text-[#00d4ff] hover:underline font-bold">Membership Portal</a>
+        <span class="text-slate-600">|</span>
+        <a href="#events" class="hover:text-white">Annual Expo 2026</a>
+        <div class="flex items-center gap-2 ml-2">
+          <a href="#" class="text-slate-400 hover:text-white"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#" class="text-slate-400 hover:text-white"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="text-slate-400 hover:text-white"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-50 bg-[#091224]/95 backdrop-blur-xl border-b border-slate-800/90 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#0055ff] to-[#00d4ff] p-0.5 shadow-lg shadow-blue-600/30">
+          <div class="w-full h-full bg-[#091224] rounded-[10px] flex items-center justify-center">
+            <span class="font-black text-xl tracking-tighter text-white">PC<span class="text-[#00d4ff]">MA</span></span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-black text-white tracking-wide leading-tight">PCMA PAKISTAN</span>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Chemical Manufacturers Association</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-slate-300">
+        <a href="#home" class="text-[#00d4ff] hover:text-[#00d4ff] transition">Home</a>
+        <a href="#about" class="hover:text-[#00d4ff] transition">About Us</a>
+        <a href="#news" class="hover:text-[#00d4ff] transition">Latest News</a>
+        <a href="#committees" class="hover:text-[#00d4ff] transition">Committee Area</a>
+        <a href="#leadership" class="hover:text-[#00d4ff] transition">Leadership</a>
+        <a href="#members" class="hover:text-[#00d4ff] transition">Members</a>
+        <a href="#benefits" class="hover:text-[#00d4ff] transition">Benefits</a>
+        <a href="#contact" class="hover:text-[#00d4ff] transition">Contact</a>
+      </nav>
+
+      <!-- Right Call to Action -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-[11px] font-bold text-blue-300">
+          <i class="fa-solid fa-award text-amber-400"></i> 30 Years Excellence
+        </div>
+        <a href="#membership" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0055ff] to-[#00d4ff] hover:brightness-110 text-white font-extrabold text-xs shadow-lg shadow-blue-500/25 transition-all">
+          Member Login
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="home" class="relative overflow-hidden bg-[#091224] text-white py-28 sm:py-36 px-4 sm:px-8 border-b border-slate-800">
+    <!-- Background Image with Dark Industrial Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1581093458791-9d15b22b137d?auto=format&fit=crop&w=2000&q=85" alt="Chemical Refinery Night" class="w-full h-full object-cover object-center opacity-30 scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#091224] via-[#091224]/85 to-[#091224]/50"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0b1325] via-transparent to-transparent"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="max-w-3xl space-y-6">
+        
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00d4ff]/10 border border-[#00d4ff]/30 text-[#00d4ff] text-xs font-extrabold uppercase tracking-widest">
+          <span class="w-2 h-2 rounded-full bg-[#00d4ff] animate-pulse"></span>
+          Apex Representative Body of Pakistan Chemical Industry
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight tracking-tight">
+          Advancing Pakistan's <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] via-blue-400 to-indigo-300">Manufacturing Sector</span>
+        </h1>
+
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal max-w-2xl">
+          We are united to strengthen and advance Pakistan's chemical sector by driving industrial growth, policy advocacy, sustainable manufacturing and global export competitiveness.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="#about" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#0055ff] to-[#00d4ff] hover:brightness-110 text-white font-extrabold text-sm shadow-xl shadow-blue-600/30 transition-all hover:scale-105 flex items-center gap-2">
+            <span>Learn More</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="#membership" class="px-8 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-bold text-sm border border-slate-700 transition-all hover:scale-105">
+            Become a Member
+          </a>
+        </div>
+
+        <!-- Quick highlights line -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-slate-800/80 max-w-2xl">
+          <div>
+            <div class="text-2xl font-black text-[#00d4ff]">120+</div>
+            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Corporate Members</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-white">$5.2B+</div>
+            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Invested Capital</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-[#00d4ff]">$1.8B+</div>
+            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Exports / Year</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-white">85K+</div>
+            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Industrial Workforce</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 1: A STRONG NETWORK ================= -->
+  <section id="about" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto relative">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Visual Collage -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative w-full aspect-square max-w-md mx-auto">
+          <!-- Central Hexagon / Circle Image -->
+          <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border-4 border-[#00d4ff]/30 shadow-2xl mx-auto relative z-10 bg-slate-900">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80" alt="Chemical Research Lab" class="w-full h-full object-cover" />
+          </div>
+          <!-- Floating Accent Badge 1 -->
+          <div class="absolute -top-4 -left-2 sm:left-4 bg-[#091224] border border-blue-500/40 rounded-2xl p-4 shadow-xl z-20 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-[#00d4ff] flex items-center justify-center text-lg">
+              <i class="fa-solid fa-flask-vial"></i>
+            </div>
+            <div>
+              <div class="text-xs font-black text-white">ISO 9001 & 14001</div>
+              <div class="text-[10px] text-slate-400">Responsible Care®</div>
+            </div>
+          </div>
+          <!-- Floating Accent Badge 2 -->
+          <div class="absolute -bottom-4 -right-2 sm:right-4 bg-[#091224] border border-emerald-500/40 rounded-2xl p-4 shadow-xl z-20 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <div>
+              <div class="text-xs font-black text-white">Green Chemistry</div>
+              <div class="text-[10px] text-slate-400">Sustainable Future</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Description -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-[#00d4ff] text-xs font-extrabold uppercase tracking-widest">
+          ABOUT PCMA
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+          A Strong Network Of <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-blue-400">Chemical Manufacturers</span>
+        </h2>
+        <p class="text-slate-300 text-base leading-relaxed">
+          The Pakistan Chemical Manufacturers Association (PCMA) was established to serve as the unified, authoritative voice of the chemical manufacturing sector in Pakistan. Representing basic chemicals, specialty formulations, polymers, fertilizers, industrial gases, and coatings, PCMA advocates for policy reforms, tariff rationalization, and energy security.
+        </p>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          By collaborating with government ministries, international chemical councils, and research universities, PCMA drives technological modernization, import substitution, and environmental stewardship across Pakistan.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-circle-check text-[#00d4ff] mt-1"></i>
+            <div>
+              <h4 class="text-sm font-bold text-white">Policy & Tariff Advocacy</h4>
+              <p class="text-xs text-slate-400">Direct representation before FBR, NTC & Ministry of Commerce.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-circle-check text-[#00d4ff] mt-1"></i>
+            <div>
+              <h4 class="text-sm font-bold text-white">Global B2B Linkages</h4>
+              <p class="text-xs text-slate-400">Affiliation with ICCA, Gulf Petrochemicals & Asian Chemical Councils.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 2: LATEST NEWS ================= -->
+  <section id="news" class="py-20 px-4 sm:px-8 bg-[#091224] border-y border-slate-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-[#00d4ff] text-xs font-extrabold uppercase tracking-widest">
+          PRESS & UPDATES
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">Explore Our Latest News</h2>
+        <p class="text-slate-400 text-sm">Stay informed with the latest chemical sector developments, policy announcements, and association events.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- News 1 -->
+        <div class="bg-[#0f1c36] border border-slate-800 hover:border-[#00d4ff]/50 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+          <div class="h-48 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=700&q=80" alt="Government Meeting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#0055ff] text-white text-[10px] font-bold uppercase">Policy Dialogue</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="text-[11px] font-semibold text-[#00d4ff]">October 12, 2026 · Islamabad</div>
+            <h3 class="text-lg font-bold text-white group-hover:text-[#00d4ff] transition leading-snug">
+              PCMA Delegation Meets Federal Minister on Chemical Raw Material Tariff Rationalization
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Discussions centered on reducing customs duties on basic industrial chemicals to stimulate domestic manufacturing and boost exports.
+            </p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00d4ff] pt-2 hover:underline">
+              Read Full Story <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- News 2 -->
+        <div class="bg-[#0f1c36] border border-slate-800 hover:border-[#00d4ff]/50 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+          <div class="h-48 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=700&q=80" alt="Expo Centre Conference" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#00d4ff] text-[#091224] text-[10px] font-black uppercase">Exhibition</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="text-[11px] font-semibold text-[#00d4ff]">September 28, 2026 · Lahore</div>
+            <h3 class="text-lg font-bold text-white group-hover:text-[#00d4ff] transition leading-snug">
+              Pakistan Chemical Expo 2026 to Host 250+ Global Exhibitors at Expo Centre Lahore
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              PCMA announces the 4th edition of Pakistan Chemical Expo with high-level delegations from China, Turkey, Germany and GCC countries.
+            </p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00d4ff] pt-2 hover:underline">
+              Read Full Story <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- News 3 -->
+        <div class="bg-[#0f1c36] border border-slate-800 hover:border-[#00d4ff]/50 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+          <div class="h-48 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80" alt="Industrial Plant Technology" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-bold uppercase">Sustainability</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="text-[11px] font-semibold text-[#00d4ff]">August 19, 2026 · Karachi</div>
+            <h3 class="text-lg font-bold text-white group-hover:text-[#00d4ff] transition leading-snug">
+              National Decarbonization & Wastewater Treatment Framework Launched for Chemical Units
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              PCMA partners with UNIDO and Ministry of Climate Change to introduce zero liquid discharge guidelines for all chemical manufacturing plants.
+            </p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00d4ff] pt-2 hover:underline">
+              Read Full Story <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3: COMMITTEE AREA ================= -->
+  <section id="committees" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+      <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-[#00d4ff] text-xs font-extrabold uppercase tracking-widest">
+        SPECIALIZED DOMAINS
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-white">Committee Area</h2>
+      <p class="text-slate-400 text-sm">Specialized technical committees addressing key industrial challenges, legislative reforms and innovation standards.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <div class="p-6 rounded-2xl bg-[#0f1c36]/90 border border-slate-800 hover:border-blue-500 transition-all group">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-[#00d4ff] flex items-center justify-center text-xl mb-4 group-hover:bg-[#00d4ff] group-hover:text-[#091224] transition-all">
+          <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00d4ff] transition">Tariff, Taxation & Budget</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Formulates budget proposals for the Federal Board of Revenue, customs duties adjustments, and sales tax refunds.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-[#0f1c36]/90 border border-slate-800 hover:border-blue-500 transition-all group">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-[#00d4ff] flex items-center justify-center text-xl mb-4 group-hover:bg-[#00d4ff] group-hover:text-[#091224] transition-all">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00d4ff] transition">Energy & Utilities Affairs</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Advocates for uninterrupted gas supply, competitive power tariffs, and captive power policy reforms for chemical plants.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-[#0f1c36]/90 border border-slate-800 hover:border-blue-500 transition-all group">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-[#00d4ff] flex items-center justify-center text-xl mb-4 group-hover:bg-[#00d4ff] group-hover:text-[#091224] transition-all">
+          <i class="fa-solid fa-shield-virus"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00d4ff] transition">Environment, Health & Safety</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Champions Responsible Care® code, OSHA industrial standards, hazard prevention, and effluent discharge compliance.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-[#0f1c36]/90 border border-slate-800 hover:border-blue-500 transition-all group">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-[#00d4ff] flex items-center justify-center text-xl mb-4 group-hover:bg-[#00d4ff] group-hover:text-[#091224] transition-all">
+          <i class="fa-solid fa-microchip"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00d4ff] transition">R&D, Innovation & Academia</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Bridges chemical manufacturers with leading universities (NUST, UET, LUMS) for commercialization of local patents.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-[#0f1c36]/90 border border-slate-800 hover:border-blue-500 transition-all group">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-[#00d4ff] flex items-center justify-center text-xl mb-4 group-hover:bg-[#00d4ff] group-hover:text-[#091224] transition-all">
+          <i class="fa-solid fa-globe"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00d4ff] transition">International Trade & WTO</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Monitors anti-dumping duties, FTAs with regional countries, and overseas chemical export facilitation missions.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-[#0f1c36]/90 border border-slate-800 hover:border-blue-500 transition-all group">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-[#00d4ff] flex items-center justify-center text-xl mb-4 group-hover:bg-[#00d4ff] group-hover:text-[#091224] transition-all">
+          <i class="fa-solid fa-certificate"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00d4ff] transition">Quality Standards & PSQCA</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">Works with Pakistan Standards & Quality Control Authority to harmonize local chemical grades with REACH & GHS.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4: LEADERSHIP / MEET THE TEAM ================= -->
+  <section id="leadership" class="py-20 px-4 sm:px-8 bg-[#091224] border-y border-slate-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-[#00d4ff] text-xs font-extrabold uppercase tracking-widest">
+          EXECUTIVE BOARD
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">Meet The Team</h2>
+        <p class="text-slate-400 text-sm">Distinguished industrialists and technocrats steering the strategic vision of Pakistan's chemical sector.</p>
+      </div>
+
+      <!-- Chairman Spotlight -->
+      <div class="max-w-4xl mx-auto bg-[#0f1c36] border border-blue-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-4 flex justify-center">
+            <div class="w-48 h-56 rounded-2xl overflow-hidden border-2 border-[#00d4ff] shadow-xl relative bg-slate-900">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Chairman PCMA" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div class="md:col-span-8 space-y-3 text-center md:text-left">
+            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-[#00d4ff] text-xs font-bold uppercase">Chairman's Message</span>
+            <h3 class="text-2xl font-black text-white">Mr. Haroon-ur-Rashid</h3>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Chairman, PCMA (2025–2027)</p>
+            <p class="text-slate-300 text-sm leading-relaxed italic pt-2">
+              "The chemical industry is the mother of all manufacturing. Without basic and specialty chemicals, no textile, pharmaceutical, agricultural or automotive factory can operate. Our mission is to transform Pakistan from an importer of intermediate chemicals into a premier regional chemical exporter."
+            </p>
+            <div class="pt-2 flex items-center justify-center md:justify-start gap-4 text-xs text-slate-400 font-semibold">
+              <span><i class="fa-solid fa-building text-[#00d4ff] mr-1"></i> CEO, Descon Industrial</span>
+              <span><i class="fa-solid fa-location-dot text-[#00d4ff] mr-1"></i> Lahore, Pakistan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vice Chairmen & Board -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        
+        <div class="bg-[#0f1c36] p-5 rounded-2xl border border-slate-800 text-center hover:border-[#00d4ff]/40 transition group">
+          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-3 border-2 border-slate-700 group-hover:border-[#00d4ff]">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Board Member" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="font-bold text-white text-sm">Tariq Mahmood</h4>
+          <p class="text-[11px] text-[#00d4ff]">Senior Vice Chairman</p>
+          <p class="text-[10px] text-slate-400 mt-1">Sitara Peroxide Ltd.</p>
+        </div>
+
+        <div class="bg-[#0f1c36] p-5 rounded-2xl border border-slate-800 text-center hover:border-[#00d4ff]/40 transition group">
+          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-3 border-2 border-slate-700 group-hover:border-[#00d4ff]">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="Board Member" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="font-bold text-white text-sm">Zubair F. Tufail</h4>
+          <p class="text-[11px] text-[#00d4ff]">Vice Chairman (South)</p>
+          <p class="text-[10px] text-slate-400 mt-1">Tufail Chemical Industries</p>
+        </div>
+
+        <div class="bg-[#0f1c36] p-5 rounded-2xl border border-slate-800 text-center hover:border-[#00d4ff]/40 transition group">
+          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-3 border-2 border-slate-700 group-hover:border-[#00d4ff]">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="Board Member" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="font-bold text-white text-sm">Dr. Mansoor Ahmad</h4>
+          <p class="text-[11px] text-[#00d4ff]">Secretary General</p>
+          <p class="text-[10px] text-slate-400 mt-1">PCMA Secretariat</p>
+        </div>
+
+        <div class="bg-[#0f1c36] p-5 rounded-2xl border border-slate-800 text-center hover:border-[#00d4ff]/40 transition group">
+          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-3 border-2 border-slate-700 group-hover:border-[#00d4ff]">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Board Member" class="w-full h-full object-cover" />
+          </div>
+          <h4 class="font-bold text-white text-sm">Samina Khawar</h4>
+          <p class="text-[11px] text-[#00d4ff]">Executive Committee</p>
+          <p class="text-[10px] text-slate-400 mt-1">Archroma Pakistan</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 5: PROUD MEMBERS ================= -->
+  <section id="members" class="py-16 px-4 sm:px-8 border-b border-slate-800 bg-[#0c1527]">
+    <div class="max-w-7xl mx-auto text-center">
+      <h3 class="text-xs font-extrabold uppercase tracking-widest text-[#00d4ff] mb-6">Our Proud Corporate Members</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 items-center justify-center opacity-85">
+        <div class="p-4 bg-[#091224] rounded-xl border border-slate-800 text-center font-black tracking-wider text-white">ENGRO POLYMER</div>
+        <div class="p-4 bg-[#091224] rounded-xl border border-slate-800 text-center font-black tracking-wider text-[#00d4ff]">LOTTE CHEMICAL</div>
+        <div class="p-4 bg-[#091224] rounded-xl border border-slate-800 text-center font-black tracking-wider text-white">ICI PAKISTAN</div>
+        <div class="p-4 bg-[#091224] rounded-xl border border-slate-800 text-center font-black tracking-wider text-emerald-400">DESCON OXYCHEM</div>
+        <div class="p-4 bg-[#091224] rounded-xl border border-slate-800 text-center font-black tracking-wider text-amber-400">SITARA PEROXIDE</div>
+        <div class="p-4 bg-[#091224] rounded-xl border border-slate-800 text-center font-black tracking-wider text-cyan-300">ARCHROMA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 6: BENEFITS OF JOINING ================= -->
+  <section id="benefits" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-6 space-y-6">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-[#00d4ff] text-xs font-extrabold uppercase tracking-widest">
+          MEMBERSHIP PRIVILEGES
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+          Benefits Of Joining <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-blue-400">The PCMA</span>
+        </h2>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Becoming a certified PCMA corporate member equips your manufacturing enterprise with vital regulatory intelligence, government lobbying power, and direct access to international chemical supply chains.
+        </p>
+
+        <div class="space-y-4 pt-2">
+          <div class="p-4 rounded-xl bg-[#0f1c36] border border-slate-800 flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-[#00d4ff] flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-bullhorn text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Policy Voice & Tariff Advocacy</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Submit your company's customs duty and tax rationalization cases directly to federal committees.</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#0f1c36] border border-slate-800 flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-[#00d4ff] flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-handshake-simple text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Overseas Trade Delegations</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Join official trade missions to GCC, China, Europe and USA with Ministry of Commerce support.</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#0f1c36] border border-slate-800 flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-[#00d4ff] flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-file-invoice text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Chemical Sector Market Intelligence</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Receive monthly import/export statistics, global pricing indices, and regulatory compliance updates.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Membership Application Card -->
+      <div class="lg:col-span-6" id="membership">
+        <div class="bg-[#091224] border-2 border-blue-500/40 rounded-3xl p-8 sm:p-10 shadow-2xl relative">
+          <div class="absolute -top-3 -right-3 bg-gradient-to-r from-blue-600 to-[#00d4ff] text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
+            Admissions Open
+          </div>
+
+          <h3 class="text-2xl font-black text-white mb-2">Apply for PCMA Membership</h3>
+          <p class="text-xs text-slate-400 mb-6">Join 120+ leading Pakistani chemical manufacturing companies today.</p>
+
+          <form class="space-y-4" onsubmit="event.preventDefault(); alert('Membership Application submitted! PCMA secretariat will contact you within 24 hours.');">
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Company / Enterprise Name</label>
+              <input type="text" required placeholder="e.g. Apex Petrochemicals Ltd." class="w-full bg-[#0f1c36] border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d4ff]" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">NTN / Registration No.</label>
+                <input type="text" required placeholder="1234567-8" class="w-full bg-[#0f1c36] border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d4ff]" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Chemical Sub-sector</label>
+                <select class="w-full bg-[#0f1c36] border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00d4ff]">
+                  <option>Basic Chemicals</option>
+                  <option>Specialty & Fine Chemicals</option>
+                  <option>Polymers & Resins</option>
+                  <option>Paints, Inks & Coatings</option>
+                  <option>Fertilizers & Agrochem</option>
+                  <option>Industrial Gases</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Authorized Contact Person</label>
+                <input type="text" required placeholder="Full Name & Designation" class="w-full bg-[#0f1c36] border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d4ff]" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Official Mobile / WhatsApp</label>
+                <input type="tel" required placeholder="+92 300 1234567" class="w-full bg-[#0f1c36] border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00d4ff]" />
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-[#0055ff] to-[#00d4ff] hover:brightness-110 text-white font-extrabold text-sm shadow-xl shadow-blue-500/30 transition-all hover:scale-[1.01] mt-2">
+              Submit Membership Application <i class="fa-solid fa-paper-plane ml-2"></i>
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION 7: VOICES OF OUR STRONG PILLARS ================= -->
+  <section class="py-20 px-4 sm:px-8 bg-[#091224] border-t border-slate-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-2xl sm:text-4xl font-black text-white">Voices Of Our Strong Pillars</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-2">What Pakistan's top chemical industrial leaders say about PCMA's contributions.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[#0f1c36] p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <p class="text-xs text-slate-300 leading-relaxed italic">
+            "PCMA has been instrumental in resolving our high-tariff raw material bottlenecks. Their unified representation before the National Tariff Commission has saved our industry millions in unjustified duties."
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">EP</div>
+            <div>
+              <div class="text-xs font-bold text-white">Engro Polymer & Chem</div>
+              <div class="text-[10px] text-slate-400">Karachi Complex</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#0f1c36] p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <p class="text-xs text-slate-300 leading-relaxed italic">
+            "The annual Pakistan Chemical Expo organized by PCMA opened direct supply channels for us with Turkish and German manufacturers. A truly visionary platform."
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#00d4ff] text-[#091224] flex items-center justify-center font-black text-sm">LC</div>
+            <div>
+              <div class="text-xs font-bold text-white">Lotte Chemical Pakistan</div>
+              <div class="text-[10px] text-slate-400">Port Qasim Plant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#0f1c36] p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+          <p class="text-xs text-slate-300 leading-relaxed italic">
+            "Responsible Care® safety and wastewater guidelines established by PCMA have helped our manufacturing unit meet European REACH compliance standards effortlessly."
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">AP</div>
+            <div>
+              <div class="text-xs font-bold text-white">Archroma Pakistan</div>
+              <div class="text-[10px] text-slate-400">Jamshoro Facility</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 8: CONTACT & FOOTER ================= -->
+  <footer id="contact" class="bg-[#070d1a] border-t border-slate-800 pt-16 pb-12 px-4 sm:px-8 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      
+      <div class="space-y-4 md:col-span-1">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0055ff] to-[#00d4ff] flex items-center justify-center font-black text-white text-lg">
+            PC
+          </div>
+          <span class="text-lg font-black text-white tracking-wide">PCMA PAKISTAN</span>
+        </div>
+        <p class="leading-relaxed">
+          The premier representative body of chemical manufacturing industries across Pakistan, promoting industrial growth, research, and global competitiveness.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-extrabold text-white text-sm uppercase mb-4 tracking-wider">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#about" class="hover:text-[#00d4ff]">About PCMA</a></li>
+          <li><a href="#committees" class="hover:text-[#00d4ff]">Committee Areas</a></li>
+          <li><a href="#leadership" class="hover:text-[#00d4ff]">Executive Board</a></li>
+          <li><a href="#news" class="hover:text-[#00d4ff]">News & Events</a></li>
+          <li><a href="#membership" class="hover:text-[#00d4ff]">Membership Form</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-extrabold text-white text-sm uppercase mb-4 tracking-wider">Secretariat Offices</h4>
+        <div class="space-y-3">
+          <div>
+            <div class="font-bold text-white text-xs">Head Office (Lahore):</div>
+            <p>Suite 401, 4th Floor, Eden Heights, Jail Road, Main Gulberg, Lahore, Pakistan.</p>
+          </div>
+          <div>
+            <div class="font-bold text-white text-xs">Regional Office (Karachi):</div>
+            <p>Clifton Centre, Block 5, Clifton, Karachi, Pakistan.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-extrabold text-white text-sm uppercase mb-4 tracking-wider">Contact & Help</h4>
+        <div class="space-y-2">
+          <p><i class="fa-solid fa-phone text-[#00d4ff] mr-2"></i> +92 (42) 3575-8901 / 8902</p>
+          <p><i class="fa-solid fa-envelope text-[#00d4ff] mr-2"></i> info@pcma.org.pk</p>
+          <p><i class="fa-solid fa-clock text-[#00d4ff] mr-2"></i> Mon - Fri: 9:00 AM - 5:30 PM</p>
+          <div class="pt-3 flex gap-3 text-sm">
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-[#0055ff] hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-[#00d4ff] hover:text-slate-900 transition"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-[11px] text-slate-500">
+      <div>© 2026 Pakistan Chemical Manufacturers Association (PCMA). All Rights Reserved.</div>
+      <div>Designed & Developed by <span class="text-[#00d4ff] font-bold">Ahmed Wazir</span></div>
+    </div>
+  </footer>
+
+</body>
+</html>
