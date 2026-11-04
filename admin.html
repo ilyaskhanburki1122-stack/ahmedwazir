@@ -506,6 +506,10 @@
         <a class="nav-item active" data-section="dashboard" onclick="switchSection('dashboard')">
             <i class="fa-solid fa-chart-pie"></i> Dashboard
         </a>
+        <a class="nav-item" data-section="inquiries" onclick="switchSection('inquiries')">
+            <i class="fa-solid fa-inbox"></i> Client Inquiries
+            <span class="nav-badge" id="inquiriesCount" style="background:#10b981; color:#fff;">0</span>
+        </a>
 
         <div class="nav-section-label">Content</div>
         <a class="nav-item" data-section="hero" onclick="switchSection('hero')">
@@ -517,6 +521,10 @@
         </a>
         <a class="nav-item" data-section="about" onclick="switchSection('about')">
             <i class="fa-solid fa-user"></i> About Me
+        </a>
+        <a class="nav-item" data-section="process" onclick="switchSection('process')">
+            <i class="fa-solid fa-list-check"></i> Work Process (5 Steps)
+            <span class="nav-badge">5</span>
         </a>
         <a class="nav-item" data-section="portfolio" onclick="switchSection('portfolio')">
             <i class="fa-solid fa-folder-open"></i> Portfolio
@@ -535,6 +543,9 @@
         </a>
 
         <div class="nav-section-label">Configuration</div>
+        <a class="nav-item" data-section="branding" onclick="switchSection('branding')">
+            <i class="fa-solid fa-stamp"></i> Header &amp; Footer Branding
+        </a>
         <a class="nav-item" data-section="contact" onclick="switchSection('contact')">
             <i class="fa-solid fa-phone"></i> Contact Info
         </a>
@@ -610,6 +621,11 @@
                     <div class="stat-value" id="dashPricingCount">3</div>
                     <div class="stat-label">Pricing Plans</div>
                 </div>
+                <div class="stat-card" style="border-color:rgba(16,185,129,0.3); background:rgba(16,185,129,0.06); cursor:pointer;" onclick="switchSection('inquiries')">
+                    <div class="stat-icon" style="color:#10b981;"><i class="fa-solid fa-inbox"></i></div>
+                    <div class="stat-value" id="dashInquiriesCount" style="color:#10b981;">0</div>
+                    <div class="stat-label">Client Inquiries</div>
+                </div>
                 <div class="stat-card stat-rose">
                     <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
                     <div class="stat-value" id="dashLastSaved">—</div>
@@ -623,19 +639,40 @@
                     <h3><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
                 </div>
                 <div class="quick-actions">
+                    <a class="quick-action" onclick="switchSection('inquiries')"><i class="fa-solid fa-inbox" style="color:#10b981;"></i><span>View Inquiries</span></a>
                     <a class="quick-action" onclick="switchSection('hero')"><i class="fa-solid fa-house"></i><span>Edit Hero</span></a>
                     <a class="quick-action" onclick="switchSection('services')"><i class="fa-solid fa-briefcase"></i><span>Manage Services</span></a>
                     <a class="quick-action" onclick="switchSection('about')"><i class="fa-solid fa-user"></i><span>Edit About</span></a>
+                    <a class="quick-action" onclick="switchSection('process')"><i class="fa-solid fa-list-check" style="color:#38bdf8;"></i><span>5-Step Process</span></a>
                     <a class="quick-action" onclick="switchSection('portfolio')"><i class="fa-solid fa-folder-open"></i><span>Manage Portfolio</span></a>
                     <a class="quick-action" onclick="switchSection('pricing')"><i class="fa-solid fa-tags"></i><span>Edit Pricing</span></a>
                     <a class="quick-action" onclick="switchSection('reviews')"><i class="fa-solid fa-star"></i><span>Manage Reviews</span></a>
                     <a class="quick-action" onclick="switchSection('faq')"><i class="fa-solid fa-circle-question"></i><span>Edit FAQ</span></a>
+                    <a class="quick-action" onclick="switchSection('branding')"><i class="fa-solid fa-stamp" style="color:#a855f7;"></i><span>Header/Footer</span></a>
                     <a class="quick-action" onclick="switchSection('contact')"><i class="fa-solid fa-phone"></i><span>Contact Info</span></a>
                     <a class="quick-action" onclick="switchSection('social')"><i class="fa-solid fa-share-nodes"></i><span>Social Links</span></a>
                     <a class="quick-action" onclick="switchSection('settings')"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
                     <a class="quick-action" onclick="window.open('index.html','_blank')"><i class="fa-solid fa-eye"></i><span>Preview Site</span></a>
                     <a class="quick-action" onclick="exportData()"><i class="fa-solid fa-download"></i><span>Export Data</span></a>
                 </div>
+            </div>
+        </div>
+
+        <!-- ==================== INQUIRIES SECTION ==================== -->
+        <div class="section-panel" id="panel-inquiries">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+                <div>
+                    <h2 class="section-title">Client Inquiries &amp; Leads</h2>
+                    <p class="section-subtitle">Real-time quote requests and messages submitted by clients on your website contact form.</p>
+                </div>
+                <div class="btn-group" style="margin-top:0;">
+                    <button class="btn btn-secondary btn-sm" onclick="loadInquiries()"><i class="fa-solid fa-rotate"></i> Refresh</button>
+                    <button class="btn btn-danger btn-sm" onclick="clearAllInquiries()"><i class="fa-solid fa-trash"></i> Clear All</button>
+                </div>
+            </div>
+
+            <div id="inquiriesList" style="display:flex; flex-direction:column; gap:14px;">
+                <!-- Dynamically filled with client leads -->
             </div>
         </div>
 
@@ -744,6 +781,30 @@
             </div>
         </div>
 
+        <!-- ==================== PROCESS SECTION ==================== -->
+        <div class="section-panel" id="panel-process">
+            <h2 class="section-title">Work Process (5 Steps)</h2>
+            <p class="section-subtitle">Edit the 5-step transparent workflow displayed on your website.</p>
+
+            <div class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-heading"></i> Process Main Title</h3>
+                </div>
+                <div class="form-group">
+                    <label>Heading Text (Use &lt;span class="text-[#38bdf8]"&gt;...&lt;/span&gt; for highlighted text)</label>
+                    <input type="text" class="form-control" id="processHeadingInput" placeholder='A Simple, Transparent <span class="text-[#38bdf8]">5-Step Process</span>'>
+                </div>
+            </div>
+
+            <div class="items-grid" id="processGrid">
+                <!-- 5 Step cards rendered dynamically -->
+            </div>
+
+            <div class="btn-group" style="margin-top:20px;">
+                <button class="btn btn-primary" onclick="saveProcess()"><i class="fa-solid fa-floppy-disk"></i> Save Process Steps</button>
+            </div>
+        </div>
+
         <!-- ==================== PORTFOLIO SECTION ==================== -->
         <div class="section-panel" id="panel-portfolio">
             <h2 class="section-title">Portfolio</h2>
@@ -801,6 +862,63 @@
 
             <div class="items-grid" id="faqGrid">
                 <!-- Dynamically filled -->
+            </div>
+        </div>
+
+        <!-- ==================== BRANDING & FOOTER SECTION ==================== -->
+        <div class="section-panel" id="panel-branding">
+            <h2 class="section-title">Header, Footer &amp; Branding</h2>
+            <p class="section-subtitle">Customize brand logo, navigation labels, footer bio, promo card, and copyright details.</p>
+
+            <div class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-stamp"></i> Header &amp; Brand Logo</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Brand Logo Initials (Badge)</label>
+                        <input type="text" class="form-control" id="brandingLogoBadge" placeholder="AW">
+                    </div>
+                    <div class="form-group">
+                        <label>Brand Logo Name</label>
+                        <input type="text" class="form-control" id="brandingLogoText" placeholder="AHMED WAZIR">
+                    </div>
+                    <div class="form-group">
+                        <label>Navbar Chat Button Label</label>
+                        <input type="text" class="form-control" id="brandingChatBtnText" placeholder="Chat Us">
+                    </div>
+                    <div class="form-group">
+                        <label>Hero Availability Pill Text</label>
+                        <input type="text" class="form-control" id="brandingHeroBadge" placeholder="AVAILABLE FOR NEW PROJECTS">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-shoe-prints"></i> Footer Content &amp; Promo Banner</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Footer Brand Bio Paragraph</label>
+                        <textarea class="form-control" id="brandingFooterBio" rows="3" placeholder="Professional website design & development services..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Footer Copyright Line</label>
+                        <input type="text" class="form-control" id="brandingFooterCopyright" placeholder="Designed & Developed by Ahmed Wazir">
+                    </div>
+                    <div class="form-group">
+                        <label>Footer Promo Box Title</label>
+                        <input type="text" class="form-control" id="brandingPromoTitle" placeholder="20% OFF Every Package">
+                    </div>
+                    <div class="form-group">
+                        <label>Footer Promo Box Description</label>
+                        <input type="text" class="form-control" id="brandingPromoText" placeholder="Book your website today and grow your business online.">
+                    </div>
+                </div>
+                <div class="btn-group" style="margin-top:16px;">
+                    <button class="btn btn-primary" onclick="saveBranding()"><i class="fa-solid fa-floppy-disk"></i> Save Branding Changes</button>
+                </div>
             </div>
         </div>
 
@@ -1161,6 +1279,26 @@ const DEFAULTS = {
         meta: "Professional website design & development services by Ahmed Wazir. Custom e-commerce, corporate websites, portals, and landing pages.",
         password: "ahmedwazir112233"
     },
+    process: {
+        heading: 'A Simple, Transparent <span class="text-[#38bdf8]">5-Step Process</span>',
+        steps: [
+            { num: "01", title: "Discovery Call", desc: "We talk on WhatsApp about your business, goals and the pages you need." },
+            { num: "02", title: "Design Concept", desc: "You receive a premium design preview before a single line of code is written." },
+            { num: "03", title: "Domain & Hosting", desc: "You pay 50% advance payment so we can purchase your domain, hosting and other required tools." },
+            { num: "04", title: "Review & Corrections", desc: "We send you the website link — if you find any mistake, send it back to us and we will fix it for you." },
+            { num: "05", title: "Launch & Support", desc: "Full payment is due on website completion. We publish, connect your domain, and stay available 24/7 after go-live." }
+        ]
+    },
+    branding: {
+        logoBadge: "AW",
+        logoText: "AHMED WAZIR",
+        chatBtnText: "Chat Us",
+        heroBadge: "AVAILABLE FOR NEW PROJECTS",
+        footerBio: "Professional website design & development services. Stunning, responsive, fast and SEO-friendly websites for businesses, shops, schools, restaurants and personal brands worldwide.",
+        footerCopyright: "Designed & Developed by Ahmed Wazir",
+        promoTitle: "20% OFF Every Package",
+        promoText: "Book your website today and grow your business online."
+    },
     theme: {
         preset: "blue",
         primary: "#3978FF",
@@ -1222,13 +1360,16 @@ function escHTML(str) {
 
 const sectionTitles = {
     dashboard: 'Dashboard',
+    inquiries: 'Client Inquiries & Leads',
     hero: 'Hero Section',
     services: 'Services',
     about: 'About Me',
+    process: 'Work Process (5 Steps)',
     portfolio: 'Portfolio',
     pricing: 'Pricing',
     reviews: 'Reviews',
     faq: 'FAQ',
+    branding: 'Header & Footer Branding',
     contact: 'Contact Info',
     social: 'Social Links',
     theme: 'Website Theme & Colors',
@@ -1277,13 +1418,16 @@ function logout() {
 function loadSectionData(section) {
     switch(section) {
         case 'dashboard': loadDashboard(); break;
+        case 'inquiries': loadInquiries(); break;
         case 'hero': loadHero(); break;
         case 'services': renderServices(); break;
         case 'about': loadAbout(); break;
+        case 'process': loadProcess(); break;
         case 'portfolio': renderPortfolio(); break;
         case 'pricing': renderPricing(); break;
         case 'reviews': renderReviews(); break;
         case 'faq': renderFaq(); break;
+        case 'branding': loadBranding(); break;
         case 'contact': loadContact(); break;
         case 'social': loadSocial(); break;
         case 'theme': loadTheme(); break;
@@ -1301,18 +1445,23 @@ function loadDashboard() {
     const reviews = getData('reviews');
     const faq = getData('faq');
     const pricing = getData('pricing');
+    const inquiries = JSON.parse(localStorage.getItem('aw_contact_inquiries') || '[]');
 
     document.getElementById('dashServicesCount').textContent = services.length;
     document.getElementById('dashPortfolioCount').textContent = portfolio.length;
     document.getElementById('dashReviewsCount').textContent = reviews.length;
     document.getElementById('dashFaqCount').textContent = faq.length;
     document.getElementById('dashPricingCount').textContent = pricing.length;
+    const dashInqEl = document.getElementById('dashInquiriesCount');
+    if (dashInqEl) dashInqEl.textContent = inquiries.length;
 
     // Sidebar badges
     document.getElementById('servicesCount').textContent = services.length;
     document.getElementById('portfolioCount').textContent = portfolio.length;
     document.getElementById('reviewsCount').textContent = reviews.length;
     document.getElementById('faqCount').textContent = faq.length;
+    const inqBadge = document.getElementById('inquiriesCount');
+    if (inqBadge) inqBadge.textContent = inquiries.length;
 
     // Last saved
     const lastSaved = localStorage.getItem('aw_dashboard_lastSaved');
@@ -1905,12 +2054,164 @@ function changePassword() {
 }
 
 // ===================================================================
+// INQUIRIES & LEADS MANAGEMENT
+// ===================================================================
+
+function loadInquiries() {
+    const list = JSON.parse(localStorage.getItem('aw_contact_inquiries') || '[]');
+    const container = document.getElementById('inquiriesList');
+    const badge = document.getElementById('inquiriesCount');
+    const dashBadge = document.getElementById('dashInquiriesCount');
+    if (badge) badge.textContent = list.length;
+    if (dashBadge) dashBadge.textContent = list.length;
+
+    if (!container) return;
+    if (list.length === 0) {
+        container.innerHTML = `
+            <div class="card" style="text-align:center; padding:48px 20px; color:var(--text-muted);">
+                <i class="fa-solid fa-inbox" style="font-size:42px; margin-bottom:14px; opacity:0.4;"></i>
+                <h3 style="font-size:16px; font-weight:700; color:var(--text-primary); margin-bottom:6px;">No Inquiries Yet</h3>
+                <p style="font-size:13px; max-width:400px; margin:0 auto; line-height:1.5;">When visitors fill out your website's contact quote form, their names, services, budgets, and WhatsApp details will appear here automatically.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = list.map(item => `
+        <div class="card" style="border-left:4px solid #10b981; padding:20px; position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                <div>
+                    <h3 style="font-size:16px; font-weight:800; color:#fff; display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-user-circle" style="color:#10b981;"></i> ${escHTML(item.name || 'Anonymous Client')}
+                    </h3>
+                    <span style="font-size:11px; color:var(--text-muted);">${escHTML(item.date || '')}</span>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                    ${item.service ? `<span class="badge" style="background:rgba(57,120,255,0.15); color:#3978FF; border:1px solid rgba(57,120,255,0.3); font-weight:700;">${escHTML(item.service)}</span>` : ''}
+                    ${item.budget ? `<span class="badge" style="background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); font-weight:700;"><i class="fa-solid fa-coins"></i> ${escHTML(item.budget)}</span>` : ''}
+                    <button class="btn btn-danger btn-sm" onclick="deleteInquiry(${item.id})" title="Delete Inquiry" style="padding:4px 8px;"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--text-secondary); margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border-color);">
+                ${item.email ? `<div><i class="fa-solid fa-envelope" style="color:var(--accent-cyan); margin-right:4px;"></i> <a href="mailto:${escHTML(item.email)}" style="color:#fff; text-decoration:underline;">${escHTML(item.email)}</a></div>` : ''}
+                ${item.phone ? `<div><i class="fa-brands fa-whatsapp" style="color:#10b981; margin-right:4px;"></i> <a href="https://wa.me/${escHTML(item.phone.replace(/\\D/g,''))}" target="_blank" style="color:#10b981; font-weight:700;">${escHTML(item.phone)}</a></div>` : ''}
+            </div>
+            ${item.message ? `<div style="font-size:13px; color:#e2e8f0; line-height:1.6; background:rgba(0,0,0,0.3); padding:12px 14px; border-radius:10px; border:1px solid var(--border-color);"><strong style="color:var(--text-muted); font-size:11px; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;">Project Details / Message:</strong>${escHTML(item.message)}</div>` : ''}
+        </div>
+    `).join('');
+}
+
+function deleteInquiry(id) {
+    let list = JSON.parse(localStorage.getItem('aw_contact_inquiries') || '[]');
+    list = list.filter(i => i.id !== id);
+    localStorage.setItem('aw_contact_inquiries', JSON.stringify(list));
+    loadInquiries();
+    showToast('Deleted', 'Inquiry removed successfully.');
+}
+
+function clearAllInquiries() {
+    if (confirm('Are you sure you want to delete all client inquiries?')) {
+        localStorage.removeItem('aw_contact_inquiries');
+        loadInquiries();
+        showToast('Cleared', 'All inquiries have been cleared.');
+    }
+}
+
+// ===================================================================
+// WORK PROCESS (5 STEPS) MANAGEMENT
+// ===================================================================
+
+function loadProcess() {
+    const data = getData('process') || DEFAULTS.process;
+    const headingInput = document.getElementById('processHeadingInput');
+    if (headingInput) headingInput.value = data.heading || DEFAULTS.process.heading;
+
+    const container = document.getElementById('processGrid');
+    if (!container) return;
+    const steps = (data.steps && data.steps.length === 5) ? data.steps : DEFAULTS.process.steps;
+    container.innerHTML = steps.map((s, idx) => `
+        <div class="card item-card" style="position:relative;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+                <span style="width:34px; height:34px; border-radius:10px; background:rgba(57,120,255,0.15); border:1px solid rgba(57,120,255,0.3); color:#38bdf8; font-weight:900; font-size:14px; display:flex; align-items:center; justify-content:center;">
+                    ${s.num || ('0' + (idx + 1))}
+                </span>
+                <h4 style="font-size:15px; font-weight:800; color:#fff;">Step ${idx + 1}</h4>
+            </div>
+            <div class="form-group" style="margin-bottom:12px;">
+                <label>Step Number</label>
+                <input type="text" class="form-control pr-step-num" value="${escHTML(s.num || ('0' + (idx + 1)))}">
+            </div>
+            <div class="form-group" style="margin-bottom:12px;">
+                <label>Step Title</label>
+                <input type="text" class="form-control pr-step-title" value="${escHTML(s.title || '')}" placeholder="e.g. Discovery Call">
+            </div>
+            <div class="form-group">
+                <label>Step Description</label>
+                <textarea class="form-control pr-step-desc" rows="3" placeholder="Explain what happens in this step...">${escHTML(s.desc || '')}</textarea>
+            </div>
+        </div>
+    `).join('');
+}
+
+function saveProcess() {
+    const heading = document.getElementById('processHeadingInput').value.trim();
+    const nums = document.querySelectorAll('.pr-step-num');
+    const titles = document.querySelectorAll('.pr-step-title');
+    const descs = document.querySelectorAll('.pr-step-desc');
+    const steps = [];
+
+    nums.forEach((numEl, idx) => {
+        steps.push({
+            num: numEl.value.trim() || ('0' + (idx + 1)),
+            title: titles[idx] ? titles[idx].value.trim() : '',
+            desc: descs[idx] ? descs[idx].value.trim() : ''
+        });
+    });
+
+    setData('process', { heading, steps });
+    showToast('Process Saved', '5-Step process workflow saved successfully.');
+}
+
+// ===================================================================
+// BRANDING & FOOTER MANAGEMENT
+// ===================================================================
+
+function loadBranding() {
+    const data = getData('branding') || DEFAULTS.branding;
+    const el = (id) => document.getElementById(id);
+    if (el('brandingLogoBadge')) el('brandingLogoBadge').value = data.logoBadge || 'AW';
+    if (el('brandingLogoText')) el('brandingLogoText').value = data.logoText || 'AHMED WAZIR';
+    if (el('brandingChatBtnText')) el('brandingChatBtnText').value = data.chatBtnText || 'Chat Us';
+    if (el('brandingHeroBadge')) el('brandingHeroBadge').value = data.heroBadge || 'AVAILABLE FOR NEW PROJECTS';
+    if (el('brandingFooterBio')) el('brandingFooterBio').value = data.footerBio || DEFAULTS.branding.footerBio;
+    if (el('brandingFooterCopyright')) el('brandingFooterCopyright').value = data.footerCopyright || DEFAULTS.branding.footerCopyright;
+    if (el('brandingPromoTitle')) el('brandingPromoTitle').value = data.promoTitle || DEFAULTS.branding.promoTitle;
+    if (el('brandingPromoText')) el('brandingPromoText').value = data.promoText || DEFAULTS.branding.promoText;
+}
+
+function saveBranding() {
+    const el = (id) => document.getElementById(id);
+    const data = {
+        logoBadge: el('brandingLogoBadge').value.trim(),
+        logoText: el('brandingLogoText').value.trim(),
+        chatBtnText: el('brandingChatBtnText').value.trim(),
+        heroBadge: el('brandingHeroBadge').value.trim(),
+        footerBio: el('brandingFooterBio').value.trim(),
+        footerCopyright: el('brandingFooterCopyright').value.trim(),
+        promoTitle: el('brandingPromoTitle').value.trim(),
+        promoText: el('brandingPromoText').value.trim()
+    };
+    setData('branding', data);
+    showToast('Branding Saved', 'Header, footer and branding settings updated.');
+}
+
+// ===================================================================
 // DATA MANAGEMENT
 // ===================================================================
 
 function exportData() {
     const allData = {};
-    const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+    const keys = ['hero', 'services', 'about', 'process', 'portfolio', 'pricing', 'reviews', 'faq', 'branding', 'contact', 'social', 'settings', 'theme'];
     keys.forEach(k => { allData[k] = getData(k); });
 
     const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' });
@@ -1930,7 +2231,7 @@ function importData(event) {
     reader.onload = function (e) {
         try {
             const data = JSON.parse(e.target.result);
-            const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+            const keys = ['hero', 'services', 'about', 'process', 'portfolio', 'pricing', 'reviews', 'faq', 'branding', 'contact', 'social', 'settings', 'theme'];
             let count = 0;
             keys.forEach(k => {
                 if (data[k]) {
@@ -1952,7 +2253,7 @@ function resetData() {
     if (!confirm('⚠️ This will reset ALL dashboard data to defaults. This action cannot be undone. Continue?')) return;
     if (!confirm('Are you really sure? All your custom data will be lost.')) return;
 
-    const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+    const keys = ['hero', 'services', 'about', 'process', 'portfolio', 'pricing', 'reviews', 'faq', 'branding', 'contact', 'social', 'settings', 'theme'];
     keys.forEach(k => localStorage.removeItem('aw_dashboard_' + k));
     localStorage.removeItem('aw_dashboard_lastSaved');
     showToast('Data Reset', 'All data has been reset to defaults.', 'info');
@@ -1964,8 +2265,7 @@ function resetData() {
 // ===================================================================
 
 function applyToWebsite() {
-    // Save a master flag that the main site JS can check
-    const keys = ['hero', 'services', 'about', 'portfolio', 'pricing', 'reviews', 'faq', 'contact', 'social', 'settings', 'theme'];
+    const keys = ['hero', 'services', 'about', 'process', 'portfolio', 'pricing', 'reviews', 'faq', 'branding', 'contact', 'social', 'settings', 'theme'];
     keys.forEach(k => {
         const data = getData(k);
         localStorage.setItem('aw_dashboard_' + k, JSON.stringify(data));
@@ -1984,12 +2284,15 @@ function updateBadges() {
     const portfolio = getData('portfolio');
     const reviews = getData('reviews');
     const faq = getData('faq');
+    const inq = JSON.parse(localStorage.getItem('aw_contact_inquiries') || '[]');
 
     const el = (id) => document.getElementById(id);
     if (el('servicesCount')) el('servicesCount').textContent = services.length;
     if (el('portfolioCount')) el('portfolioCount').textContent = portfolio.length;
     if (el('reviewsCount')) el('reviewsCount').textContent = reviews.length;
     if (el('faqCount')) el('faqCount').textContent = faq.length;
+    if (el('inquiriesCount')) el('inquiriesCount').textContent = inq.length;
+    if (el('dashInquiriesCount')) el('dashInquiriesCount').textContent = inq.length;
 }
 
 // ===================================================================

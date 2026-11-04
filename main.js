@@ -339,6 +339,68 @@ document.addEventListener('DOMContentLoaded', () => {
         if (wa) wa.href = social.whatsapp;
       }
     }
+
+    // 11. WORK PROCESS (5 STEPS)
+    const processData = getDashboardData('process');
+    if (processData) {
+      if (processData.heading) {
+        const headingEl = document.getElementById('process-heading');
+        if (headingEl) headingEl.innerHTML = processData.heading;
+      }
+      if (processData.steps && Array.isArray(processData.steps) && processData.steps.length > 0) {
+        const grid = document.getElementById('process-steps-grid');
+        if (grid) {
+          const lineHtml = '<div class="hidden md:block absolute top-7 left-14 right-14 h-[1px] bg-slate-800/90 -z-0"></div>';
+          const stepsHtml = processData.steps.map(s => `
+            <div class="flex flex-col items-center text-center relative z-10 group">
+              <div class="w-14 h-14 rounded-2xl bg-[#090f1d] border border-slate-700/80 text-white font-black text-base flex items-center justify-center mb-5 group-hover:border-blue-500 group-hover:text-[#38bdf8] shadow-xl transition-all">
+                ${s.num || '01'}
+              </div>
+              <h4 class="font-extrabold text-base text-white mb-2 group-hover:text-[#38bdf8] transition-colors">${s.title || ''}</h4>
+              <p class="text-slate-400 text-xs leading-relaxed max-w-[210px]">
+                ${s.desc || ''}
+              </p>
+            </div>
+          `).join('');
+          grid.innerHTML = lineHtml + stepsHtml;
+        }
+      }
+    }
+
+    // 12. BRANDING & FOOTER
+    const branding = getDashboardData('branding');
+    if (branding) {
+      if (branding.logoText) {
+        document.querySelectorAll('header a span.font-extrabold span:first-child, footer a span.font-extrabold span:first-child').forEach(el => {
+          el.textContent = branding.logoText;
+        });
+      }
+      if (branding.logoBadge) {
+        document.querySelectorAll('.hex-badge-inner span').forEach(el => {
+          el.textContent = branding.logoBadge;
+        });
+      }
+      if (branding.chatBtnText) {
+        const chatSpan = document.querySelector('header a.btn-whatsapp span');
+        if (chatSpan) chatSpan.textContent = branding.chatBtnText;
+      }
+      if (branding.footerBio) {
+        const footerBioEl = document.querySelector('footer p.text-slate-400');
+        if (footerBioEl) footerBioEl.textContent = branding.footerBio;
+      }
+      if (branding.footerCopyright) {
+        const copyEl = document.querySelector('footer .text-slate-500 span');
+        if (copyEl) copyEl.textContent = branding.footerCopyright;
+      }
+      if (branding.promoTitle) {
+        const promoT = document.querySelector('footer .bg-\\[\\#0b1329\\]\\/90 .font-bold.text-white');
+        if (promoT) promoT.innerHTML = `<span>🎉</span> ${branding.promoTitle}`;
+      }
+      if (branding.promoText) {
+        const promoP = document.querySelector('footer .bg-\\[\\#0b1329\\]\\/90 p.text-slate-400');
+        if (promoP) promoP.textContent = branding.promoText;
+      }
+    }
   }
 
   // Execute sync on page load!
@@ -657,6 +719,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Open WhatsApp in new tab
       window.open(waUrl, '_blank');
+
+      // Save inquiry to localStorage for Admin Dashboard
+      try {
+        const inqList = JSON.parse(localStorage.getItem('aw_contact_inquiries') || '[]');
+        inqList.unshift({
+          id: Date.now(),
+          date: new Date().toLocaleString(),
+          name: name || 'Website Visitor',
+          email: email || '',
+          phone: '',
+          service: service || 'General Inquiry',
+          budget: budget || 'Negotiable',
+          message: details || ''
+        });
+        localStorage.setItem('aw_contact_inquiries', JSON.stringify(inqList));
+      } catch (e) {}
 
       // Send background API log
       try {
